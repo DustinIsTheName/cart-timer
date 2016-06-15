@@ -13,7 +13,7 @@ if Rails.env.development?
 	ShopifyApp.configure do |config|
 	  config.api_key = "61c85c93e7b9b5acef15600c65ca4828"
 	  config.secret = "4f8faabf9ffb419617d83ce156683373"
-	  config.redirect_uri = "http://localhost:3000/auth/shopify/callback/"
+	  config.redirect_uri = "http://localhost:3000/auth/shopify/callback"
 	  # config.callback_url = "https://shopifytestasp.herokuapp.com/auth/shopify/callback/"
 	  config.scope = "read_orders, read_products, read_content"
 	  config.embedded_app = true
