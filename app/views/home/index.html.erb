@@ -7,14 +7,36 @@
   });
 </script>
 <h3>Products</h3>
+<p><%= @shop_session.url %></p>
 <table>
   <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td>
-          <a href='https://<%="#{@shop_session.url}/admin/products/#{product.id}"%>' target="_blank"> <%= product.id %> </a>
-        </td>
-      </tr>
+
+
+    <%= form_for @option do |o| %>
+      
+      <div class="form-group">
+
+        <%= o.label :enable %>
+        <%= o.check_box :enable, class: 'form-control' %>
+
+        <%= o.label :timer_label_text %>
+        <%= o.text_area :timer_label_text, class: 'form-control' %>
+        
+        <%= o.label :timer_warning_message %>
+        <%= o.text_area :timer_warning_message, class: 'form-control' %>
+
+        <%= o.label :timer_expired_message %>
+        <%= o.text_area :timer_expired_message, class: 'form-control' %>
+
+        <%= o.label :custom_css %>
+        <%= o.text_area :custom_css, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= o.submit class: "btn btn-primary" %>
+      </div>
+
     <% end %>
+
   </tbody>
 </table>
