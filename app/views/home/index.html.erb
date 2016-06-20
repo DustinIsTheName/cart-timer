@@ -7,29 +7,60 @@
   });
 </script>
 <h3>Products</h3>
-<p><%= Shop.find_by_shopify_domain(@shop_session.url).option.custom_css %></p>
+<p><%= Shop.find_by_shopify_domain(@shop_session.url) %></p>
 <table>
   <tbody>
 
 
     <%= form_for @option do |o| %>
       
-      <div class="form-group">
+      <div class="well">
+        <div class="form-group">
 
-        <%= o.label :enable %>
-        <%= o.check_box :enable, class: 'form-control' %>
+          <%= o.label :enable %>
+          <%= o.check_box :enable, class: 'form-control' %>
 
-        <%= o.label :timer_label_text %>
-        <%= o.text_area :timer_label_text, class: 'form-control' %>
-        
-        <%= o.label :timer_warning_message %>
-        <%= o.text_area :timer_warning_message, class: 'form-control' %>
+          <%= o.label :timer_label_text %>
+          <%= o.text_area :timer_label_text, class: 'form-control' %>
+          
+          <%= o.label :timer_warning_message %>
+          <%= o.text_area :timer_warning_message, class: 'form-control' %>
 
-        <%= o.label :timer_expired_message %>
-        <%= o.text_area :timer_expired_message, class: 'form-control' %>
+          <%= o.label :timer_expired_message %>
+          <%= o.text_area :timer_expired_message, class: 'form-control' %>
 
-        <%= o.label :custom_css %>
-        <%= o.text_area :custom_css, class: 'form-control' %>
+          <%= o.label :custom_css %>
+          <%= o.text_area :custom_css, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="well">
+        <div class="form-group">
+
+          <%= o.label :header_color %>
+          <input type="text" class="form-control color_picker_visable" value="<%= @option.header_color %>" data-index="1">
+          <%= o.hidden_field :header_color, class: 'color_picker index-1' %>
+
+          <%= o.label :header_font_size %>
+          <%= o.number_field :header_font_size, class: 'form-control' %>
+          
+          <%= o.label :header_border_color %>
+          <input type="text" class="form-control color_picker_visable" value="<%= @option.header_border_color %>" data-index="2">
+          <%= o.hidden_field :header_border_color, class: 'form-control color_picker index-2' %>
+
+          <%= o.label :header_background_color %>
+          <input type="text" class="form-control color_picker_visable" value="<%= @option.header_background_color %>" data-index="3">
+          <%= o.hidden_field :header_background_color, class: 'form-control color_picker index-3' %>
+
+          <%= o.label :header_border_radius %>
+          <%= o.number_field :header_border_radius, class: 'form-control' %>
+
+          <%= o.label :header_padding %>
+          <%= o.text_field :header_padding, class: 'form-control' %>
+
+          <%= o.label :header_padding %>
+          <%= o.text_field :header_padding, class: 'form-control' %>
+        </div>
       </div>
 
       <div class="form-group">

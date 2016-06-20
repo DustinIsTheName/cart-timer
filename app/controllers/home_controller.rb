@@ -1,7 +1,7 @@
 class HomeController < AuthenticatedController
   def index
     @shop = Shop.find_by_shopify_domain(@shop_session.url)
-    
+
     @products = ShopifyAPI::Product.find(:all, :params => {:limit => 10})
 
     @option = @shop.option
@@ -28,7 +28,8 @@ class HomeController < AuthenticatedController
   private
 
 		def option_params
-			params.require(:option).permit(:enable, :custom_css, :timer_label_text, :timer_warning_message, :timer_expired_message, :description)
+			params.require(:option).permit(:enable, :custom_css, :timer_label_text, :timer_warning_message, :timer_expired_message, :description,
+                                     :header_color, :header_font_size, :header_border_color, :header_background_color, :header_border_radius, :header_padding, :header_margin)
 		end
 
 end

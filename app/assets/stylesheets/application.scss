@@ -13,4 +13,14 @@
  *= require_tree .
  *= require_self
  */
+ /*
+ *= require jquery.minicolors
+ */
 @import "bootstrap";
+
+.minicolors-theme-default .minicolors-input.color_picker_visable + .minicolors-swatch {top: 15px;}
+
+.minicolors-theme-default .minicolors-input.color_picker_visable {
+  height: 28px;
+  margin: 10px 0;
+}
