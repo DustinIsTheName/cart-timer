@@ -19,16 +19,20 @@
 
 <body>
 
-  <ul class="list-group">
-    <li class="list-group-item">
-      <%= link_to 'Settings', root_path %>
-    </li>
-    <li class="list-group-item">
-      <%= link_to 'Install Instructions', install_instructions_path %>
-    </li>
-  </ul>
+  <div class="container">
 
-  <%= yield %>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <%= link_to 'Settings', root_path %>
+      </li>
+      <li class="list-group-item">
+        <%= link_to 'Install Instructions', install_instructions_path %>
+      </li>
+    </ul>
+
+    <%= yield %>
+
+  </div>
   
 </body>
 </html>

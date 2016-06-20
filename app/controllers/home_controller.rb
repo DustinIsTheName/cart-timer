@@ -1,13 +1,17 @@
 class HomeController < AuthenticatedController
   def index
+    @shop = Shop.find_by_shopify_domain(@shop_session.url)
+    
     @products = ShopifyAPI::Product.find(:all, :params => {:limit => 10})
 
-    @option = Option.first
+    @option = @shop.option
   end
 
   def update
 
-  	@option = Option.first
+    @shop = Shop.find_by_shopify_domain(@shop_session.url)
+
+  	@option = @shop.option
 
   	if @option.update_attributes(option_params)
 			flash[:success] = "Successfully updated"
