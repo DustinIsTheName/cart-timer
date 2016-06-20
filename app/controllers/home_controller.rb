@@ -29,7 +29,8 @@ class HomeController < AuthenticatedController
 
 		def option_params
 			params.require(:option).permit(:enable, :custom_css, :timer_label_text, :timer_warning_message, :timer_expired_message, :description,
-                                     :header_color, :header_font_size, :header_border_color, :header_background_color, :header_border_radius, :header_padding, :header_margin)
+                                     :header_color, :header_font_size, :header_border_color, :header_background_color, :header_border_radius, :header_padding, :header_margin,
+                                     :quick_view_color, :quick_view_font_size, :quick_view_border_color, :quick_view_background_color, :quick_view_border_radius, :quick_view_padding, :quick_view_margin)
 		end
 
 end
