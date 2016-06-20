@@ -78,7 +78,7 @@
           <%= o.hidden_field :quick_view_border_color, class: 'form-control color_picker index-5' %>
 
           <%= o.label :quick_view_background_color %>
-          <input type="text" class="form-control color_picker_visable" value="<%= @option.quick_view_background_color %>" data-index="6">
+          <input type="text" class="gform-control color_picker_visable" value="<%= @option.quick_view_background_color %>" data-index="6">
           <%= o.hidden_field :quick_view_background_color, class: 'form-control color_picker index-6' %>
 
           <%= o.label :quick_view_border_radius %>
@@ -89,6 +89,35 @@
 
           <%= o.label :quick_view_margin %>
           <%= o.text_field :quick_view_margin, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="well">
+        <div class="form-group">
+
+          <%= o.label :message_color %>
+          <input type="text" class="form-control color_picker_visable" value="<%= @option.message_color %>" data-index="7">
+          <%= o.hidden_field :message_color, class: 'color_picker index-7' %>
+
+          <%= o.label :message_font_size %>
+          <%= o.number_field :message_font_size, class: 'form-control' %>
+          
+          <%= o.label :message_border_color %>
+          <input type="text" class="form-control color_picker_visable" value="<%= @option.message_border_color %>" data-index="8">
+          <%= o.hidden_field :message_border_color, class: 'form-control color_picker index-8' %>
+
+          <%= o.label :message_background_color %>
+          <input type="text" class="gform-control color_picker_visable" value="<%= @option.message_background_color %>" data-index="9">
+          <%= o.hidden_field :message_background_color, class: 'form-control color_picker index-9' %>
+
+          <%= o.label :message_border_radius %>
+          <%= o.number_field :message_border_radius, class: 'form-control' %>
+
+          <%= o.label :message_padding %>
+          <%= o.text_field :message_padding, class: 'form-control' %>
+
+          <%= o.label :message_margin %>
+          <%= o.text_field :message_margin, class: 'form-control' %>
         </div>
       </div>
 
