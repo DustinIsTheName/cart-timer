@@ -121,6 +121,34 @@
         </div>
       </div>
 
+      <div class="well">
+        <div class="form-group">
+
+          <%= o.label :button_1_text %>
+          <%= o.text_field :button_1_text, class: 'form-control' %>
+
+          <%= o.label :button_1_color %>
+          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_1_color %>" data-index="10">
+          <%= o.hidden_field :button_1_color, class: 'form-control index-10' %>
+          
+          <%= o.label :button_1_font_size %>
+          <%= o.number_field :button_1_font_size, class: 'form-control' %>
+
+          <%= o.label :button_1_background_color %>
+          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_1_background_color %>" data-index="11">
+          <%= o.hidden_field :button_1_background_color, class: 'form-control color_picker index-11' %>
+
+          <%= o.label :button_1_padding %>
+          <%= o.text_field :button_1_padding, class: 'form-control' %>
+
+          <%= o.label :button_1_border %>
+          <%= o.text_field :button_1_border, class: 'form-control' %>
+
+          <%= o.label :button_1_border_radius %>
+          <%= o.number_field :button_1_border_radius, class: 'form-control' %>
+        </div>
+      </div>
+
       <div class="form-group">
         <%= o.submit class: "btn btn-primary" %>
       </div>
