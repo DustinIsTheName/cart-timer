@@ -142,7 +142,8 @@
           <%= o.text_field :button_1_padding, class: 'form-control' %>
 
           <%= o.label :button_1_border %>
-          <%= o.text_field :button_1_border, class: 'form-control' %>
+          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_1_border %>" data-index="12">
+          <%= o.hidden_field :button_1_border, class: 'form-control color_picker index-12' %>
 
           <%= o.label :button_1_border_radius %>
           <%= o.number_field :button_1_border_radius, class: 'form-control' %>
