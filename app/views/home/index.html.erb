@@ -150,6 +150,35 @@
         </div>
       </div>
 
+      <div class="well">
+        <div class="form-group">
+
+          <%= o.label :button_2_text %>
+          <%= o.text_field :button_2_text, class: 'form-control' %>
+
+          <%= o.label :button_2_color %>
+          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_2_color %>" data-index="10">
+          <%= o.hidden_field :button_2_color, class: 'form-control index-10' %>
+          
+          <%= o.label :button_2_font_size %>
+          <%= o.number_field :button_2_font_size, class: 'form-control' %>
+
+          <%= o.label :button_2_background_color %>
+          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_2_background_color %>" data-index="11">
+          <%= o.hidden_field :button_2_background_color, class: 'form-control color_picker index-11' %>
+
+          <%= o.label :button_2_padding %>
+          <%= o.text_field :button_2_padding, class: 'form-control' %>
+
+          <%= o.label :button_2_border %>
+          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_2_border %>" data-index="12">
+          <%= o.hidden_field :button_2_border, class: 'form-control color_picker index-12' %>
+
+          <%= o.label :button_2_border_radius %>
+          <%= o.number_field :button_2_border_radius, class: 'form-control' %>
+        </div>
+      </div>
+
       <div class="form-group">
         <%= o.submit class: "btn btn-primary" %>
       </div>
