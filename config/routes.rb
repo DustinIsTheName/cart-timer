@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root :to => 'home#index'
   get 'install-instructions' => 'home#install_instructions'
   patch '/option/:id' => 'home#update', as: 'option'
+  get '/timer-js' => 'home#timer_js'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

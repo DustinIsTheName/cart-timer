@@ -1,4 +1,7 @@
 class HomeController < AuthenticatedController
+
+  protect_from_forgery except: :timer_js
+  
   def index
     @shop = Shop.find_by_shopify_domain(@shop_session.url)
 
@@ -23,6 +26,18 @@ class HomeController < AuthenticatedController
   end
 
   def install_instructions
+  end
+
+  def timer_js
+    @shop = Shop.find_by_shopify_domain(@shop_session.url)
+
+    @option = @shop.option
+
+    respond_to do |format|
+      format.json { render json: @option }
+      format.js
+    end
+
   end
 
   private
