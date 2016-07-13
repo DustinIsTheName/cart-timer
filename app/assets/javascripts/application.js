@@ -17,9 +17,6 @@
 //= require jquery.minicolors
 
 $(document).ready(function() {
-  $('.color_picker').click(function() {
-  	console.log('Waaaaaaaa!!!!!');
-  });
 
 	$('.color_picker_visable').minicolors();
 
