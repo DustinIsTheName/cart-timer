@@ -29,12 +29,11 @@ class HomeController < AuthenticatedController
   end
 
   def timer_js
-    @shop = Shop.find_by_shopify_domain(@shop_session.url)
+    @shop = Shop.find_by_shopify_domain(params[:shop])
 
     @option = @shop.option
 
     respond_to do |format|
-      format.json { render json: @option }
       format.js
     end
 

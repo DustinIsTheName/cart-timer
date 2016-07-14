@@ -1,1 +1,99 @@
-alert('Too Bad! It\'s Waluigi Time!');
+(function() {
+
+
+  var loadScript = function(url, callback) {
+
+  	var script = document.createElement("script");
+		script.type = "text/javascript";
+
+	  // If the browser is Internet Explorer.
+	  if (script.readyState){
+	    script.onreadystatechange = function() {
+	      if (script.readyState == "loaded" || script.readyState == "complete"){
+	        script.onreadystatechange = null;
+	        callback();
+	      }
+	    };
+	  // For any other browser.
+	  } else {
+	    script.onload = function() {
+	      callback();
+	    };
+	  }
+
+	  script.src = url;
+	  document.getElementsByTagName("head")[0].appendChild(script);
+
+  }
+
+	/* This is my app's JavaScript */
+	var myAppJavaScript = function($) {
+
+		var options = {
+    	"enable": "<%= @option.enable %>",
+    	"custom_css": "<%= @option.custom_css.gsub(/(?:\n\r?|\r\n?)/, '') %>",
+    	"timer_label_text": "<%= @option.timer_label_text %>",
+    	"timer_warning_message": "<%= @option.timer_warning_message %>",
+    	"timer_expired_message": "<%= @option.timer_expired_message %>",
+
+    	"header_color": "<%= @option.header_color %>",
+    	"header_font_size": "<%= @option.header_font_size %>",
+    	"header_border_color": "<%= @option.header_border_color %>",
+    	"header_background_color": "<%= @option.header_background_color %>",
+    	"header_border_radius": "<%= @option.header_border_radius %>",
+    	"header_padding": "<%= @option.header_padding %>",
+    	"header_margin": "<%= @option.header_margin %>",
+
+    	"quick_view_color": "<%= @option.quick_view_color %>",
+    	"quick_view_font_size": "<%= @option.quick_view_font_size %>",
+    	"quick_view_border_color": "<%= @option.quick_view_border_color %>",
+    	"quick_view_background_color": "<%= @option.quick_view_background_color %>",
+    	"quick_view_border_radius": "<%= @option.quick_view_border_radius %>",
+    	"quick_view_padding": "<%= @option.quick_view_padding %>",
+    	"quick_view_margin": "<%= @option.quick_view_margin %>",
+
+    	"message_color": "<%= @option.message_color %>",
+    	"message_font_size": "<%= @option.message_font_size %>",
+    	"message_border_color": "<%= @option.message_border_color %>",
+    	"message_background_color": "<%= @option.message_background_color %>",
+    	"message_border_radius": "<%= @option.message_border_radius %>",
+    	"message_padding": "<%= @option.message_padding %>",
+    	"message_margin": "<%= @option.message_margin %>",
+
+    	"button_1_text": "<%= @option.button_1_text %>",
+    	"button_1_color": "<%= @option.button_1_color %>",
+    	"button_1_font_size": "<%= @option.button_1_font_size %>",
+    	"button_1_background_color ": "<%= @option.button_1_background_color %>",
+    	"button_1_padding ": "<%= @option.button_1_padding %>",
+    	"button_1_border ": "<%= @option.button_1_border %>",
+    	"button_1_border_radius": "<%= @option.button_1_border_radius %>",
+
+    	"button_2_text": "<%= @option.button_2_text %>",
+    	"button_2_color": "<%= @option.button_2_color %>",
+    	"button_2_font_size": "<%= @option.button_2_font_size %>",
+    	"button_2_background_color ": "<%= @option.button_2_background_color %>",
+    	"button_2_padding ": "<%= @option.button_2_padding %>",
+    	"button_2_border ": "<%= @option.button_2_border %>",
+    	"button_2_border_radius": "<%= @option.button_2_border_radius %>"
+		}
+
+		if (options.enable) {
+
+			var appCSS = options.custom_css;
+
+			$('body').append('<style>'+appCSS+'</style>');
+		}
+
+	};
+
+	if ((typeof jQuery === 'undefined') || (parseFloat(jQuery.fn.jquery) < 1.7)) {
+	  loadScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function(){
+	    jQuery191 = jQuery.noConflict(true);
+	    myAppJavaScript(jQuery191);
+	  });
+	} else {
+	  myAppJavaScript(jQuery);
+	}
+
+
+})();
