@@ -32,9 +32,9 @@
 		var options = {
     	"enable": "<%= @option.enable %>",
     	"custom_css": "<%= @option.custom_css.gsub(/(?:\n\r?|\r\n?)/, '') %>",
-    	"timer_label_text": "<%= @option.timer_label_text %>",
-    	"timer_warning_message": "<%= @option.timer_warning_message %>",
-    	"timer_expired_message": "<%= @option.timer_expired_message %>",
+    	"timer_label_text": "<%= @option.timer_label_text.gsub(/(?:\n\r?|\r\n?)/, '') %>",
+    	"timer_warning_message": "<%= @option.timer_warning_message.gsub(/(?:\n\r?|\r\n?)/, '') %>",
+    	"timer_expired_message": "<%= @option.timer_expired_message.gsub(/(?:\n\r?|\r\n?)/, '') %>",
 
     	"header_color": "<%= @option.header_color %>",
     	"header_font_size": "<%= @option.header_font_size %>",
@@ -60,7 +60,7 @@
     	"message_padding": "<%= @option.message_padding %>",
     	"message_margin": "<%= @option.message_margin %>",
 
-    	"button_1_text": "<%= @option.button_1_text %>",
+    	"button_1_text": "<%= @option.button_1_text.gsub(/(?:\n\r?|\r\n?)/, '') %>",
     	"button_1_color": "<%= @option.button_1_color %>",
     	"button_1_font_size": "<%= @option.button_1_font_size %>",
     	"button_1_background_color ": "<%= @option.button_1_background_color %>",
@@ -68,18 +68,20 @@
     	"button_1_border ": "<%= @option.button_1_border %>",
     	"button_1_border_radius": "<%= @option.button_1_border_radius %>",
 
-    	"button_2_text": "<%= @option.button_2_text %>",
+    	"button_2_text": "<%= @option.button_2_text.gsub(/(?:\n\r?|\r\n?)/, '') %>",
     	"button_2_color": "<%= @option.button_2_color %>",
     	"button_2_font_size": "<%= @option.button_2_font_size %>",
     	"button_2_background_color ": "<%= @option.button_2_background_color %>",
     	"button_2_padding ": "<%= @option.button_2_padding %>",
     	"button_2_border ": "<%= @option.button_2_border %>",
     	"button_2_border_radius": "<%= @option.button_2_border_radius %>"
-		}
+		},
+				appCSS = options.custom_css;
 
 		if (options.enable) {
+			
+			$('body').append('<p>'+options.timer_warning_message+'</p>');
 
-			var appCSS = options.custom_css;
 
 			$('body').append('<style>'+appCSS+'</style>');
 		}

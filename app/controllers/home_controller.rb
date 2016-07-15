@@ -34,6 +34,7 @@ class HomeController < AuthenticatedController
     @option = @shop.option
 
     respond_to do |format|
+      format.json {render json: @option}
       format.js
     end
 
