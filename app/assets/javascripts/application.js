@@ -16,12 +16,13 @@
 //= require_tree .
 //= require jquery.minicolors
 
-$(document).ready(function() {
-
+var ready = function() {
 	$('.color_picker_visable').minicolors();
-
 	$('.color_picker_visable').change(function() {
 		var index = $(this).data('index');
 		$('.index-'+index).val($(this).val());
 	});
-});
+};
+
+$(document).ready(ready);
+$(document).on('page:change', ready);
