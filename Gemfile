@@ -46,8 +46,6 @@ gem 'jquery-minicolors-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   # new devlopment server that allows for the use of https
@@ -57,6 +55,9 @@ group :development, :test do
   # replaces Rails’ default fixtures for feeding test data to the test suite with much more preferable factories
   gem 'factory_girl_rails'
 end
+
+# Access an IRB console on exception pages or by using <%= console %> in views
+gem 'web-console', '~> 2.0', group: :development
 
 group :test do
 	# generates names, email addresses, and other placeholders for factories
