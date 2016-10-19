@@ -6,6 +6,10 @@ FactoryGirl.define do
     f.shopify_token "b09c090a3b6b5805e637b3f13659f2c1"
 	end
 
+	factory :fake_shop, parent: :shop do |f|
+    f.shopify_token { Faker::Crypto.md5 }
+	end
+
   factory :option do |f|
 		f.custom_css "css"
 		f.timer_label_text { Faker::Hacker.say_something_smart }

@@ -4,9 +4,6 @@ class HomeController < AuthenticatedController
   
   def index
     @shop = Shop.find_by_shopify_domain(@shop_session.url)
-
-    @script_tag = ShopifyAPI::ScriptTag.find(:all, :params => {:limit => 10})
-
     @option = @shop.option
   end
 

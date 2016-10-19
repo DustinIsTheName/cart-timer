@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module CartTimer
   class Application < Rails::Application
+    Dir.glob("lib/functions/*.rb").each { |f| require f.sub('lib/', '') }
+
     config.action_dispatch.default_headers['P3P'] = 'CP="Not used"'
     config.action_dispatch.default_headers.delete('X-Frame-Options')
     # Settings in config/environments/* take precedence over those specified here.
