@@ -18,8 +18,8 @@ feature 'User goes to the options page' do
   	expect(page).to have_content('A thing distinctly hard to say but a harder thing to do.')
   	expect(page).to have_content('.the_end {color: black;background: #925083;border:5px dashed #980806}')
   	# expect{
-   #    click_button 'Update Option'
-   #  }.to change(Option.find(1), :timer_label_text)
+  	#   click_button 'Update Option'
+  	# }.to change(Option.find(1), :timer_label_text)
   end
 
   def user_installs_app(shopify_url)
