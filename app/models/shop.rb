@@ -11,4 +11,8 @@ class Shop < ActiveRecord::Base
   		true
   	end
 
+  	def createScriptTag
+  		# START HERE; PERHAPS A CHECK INTO HANDLING APP-WIDE API LIMITS
+  	end
+
 end
