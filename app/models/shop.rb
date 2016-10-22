@@ -4,15 +4,34 @@ class Shop < ActiveRecord::Base
   has_one :option
   before_create :build_options_set
 
+  def createScriptTag
+    script_tags = ShopifyAPI::ScriptTag.all
+
+    script_source = 'https://localhost:3000/timer-js.js'
+
+    script_tag_found = false
+    script_tags.each do |script_tag|
+      if script_tag.src == script_source
+        script_tag_found = true
+      end
+    end
+ 
+    unless script_tag_found
+      new_script_tag = ShopifyAPI::ScriptTag.new
+      new_script_tag.event = 'onload'
+      new_script_tag.src = script_source
+      new_script_tag.save
+      puts Colorize.green('created script tag')
+    else
+      puts Colorize.cyan('script tag already created')
+    end
+  end
+
   private
 
   	def build_options_set
   		build_option
   		true
-  	end
-
-  	def createScriptTag
-  		# START HERE; PERHAPS A CHECK INTO HANDLING APP-WIDE API LIMITS
   	end
 
 end

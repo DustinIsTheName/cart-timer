@@ -20,7 +20,7 @@ class Colorize
 		self.colorize(text, "\e[35m\e[1m")
 	end
 	def self.blue(text)
-		self.colorize(text, "\e[34m")
+		self.colorize(text, "\e[38;5;27m")
 	end
 	def self.yellow(text)
 		self.colorize(text, "\e[1;33m")

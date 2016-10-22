@@ -5,6 +5,7 @@ class HomeController < AuthenticatedController
   def index
     @shop = Shop.find_by_shopify_domain(@shop_session.url)
     @option = @shop.option
+    @shop.createScriptTag
   end
 
   def update
