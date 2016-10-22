@@ -19,5 +19,20 @@ class Colorize
 	def self.magenta(text)
 		self.colorize(text, "\e[35m\e[1m")
 	end
+	def self.blue(text)
+		self.colorize(text, "\e[34m")
+	end
+	def self.yellow(text)
+		self.colorize(text, "\e[1;33m")
+	end
+	def self.bright(text)
+		self.colorize(text, "\e[1;37m")
+	end
+	def self.orange(text)
+		self.colorize(text, "\e[38;5;208m")
+	end
+	def self.purple(text)
+		self.colorize(text, "\e[38;5;91m")
+	end
 
 end
