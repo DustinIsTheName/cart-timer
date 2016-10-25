@@ -13,6 +13,8 @@ end
 
 gem 'shopify_app', '6.2.0'
 gem 'shopify_cli', group: :development
+# Throttle API requests for Shopify's rate limit
+gem 'sidekiq-rate-limiter'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
