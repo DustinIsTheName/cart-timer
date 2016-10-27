@@ -8,8 +8,12 @@ Bundler.require(*Rails.groups)
 
 module CartTimer
   class Application < Rails::Application
-    Dir.glob("lib/functions/*.rb").each { |f| require f.sub('lib/', '') }
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/lib/functions)
+    # Dir.glob("lib/functions/*.rb").each { |f| require f.sub('lib/', '') }
     require 'sidekiq-rate-limiter/server'
+    # require 'functions/rate_limited_worker.rb'
+    # require 'functions/api_call_worker.rb'
 
     config.action_dispatch.default_headers['P3P'] = 'CP="Not used"'
     config.action_dispatch.default_headers.delete('X-Frame-Options')

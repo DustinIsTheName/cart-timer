@@ -1,4 +1,7 @@
-class APICallWorker < ActiveJob::Base 
+class APICallWorker
+
+  include Sidekiq::Worker
+  include RateLimitedWorker
 
   def perform(item)
 
@@ -9,7 +12,6 @@ class APICallWorker < ActiveJob::Base
       single_product = ShopifyAPI::Product.find(id)
       puts Colorize.orange(single_product.title) + ' ' + Colorize.cyan(ShopifyAPI.credit_left)
     end
-
 
   end
 end
