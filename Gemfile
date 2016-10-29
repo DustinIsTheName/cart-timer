@@ -11,10 +11,10 @@ group :production do
   gem 'rails_12factor'
 end
 
-gem 'shopify_app', '6.2.0'
-gem 'shopify_cli', group: :development
 # Throttle API requests for Shopify's rate limit
 gem 'sidekiq-rate-limiter'
+gem 'shopify_app', '6.2.0'
+gem 'shopify_cli', group: :development
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

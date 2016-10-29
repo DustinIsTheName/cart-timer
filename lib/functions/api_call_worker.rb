@@ -3,7 +3,9 @@ class APICallWorker
   include Sidekiq::Worker
   include RateLimitedWorker
 
-  def perform(item)
+  def perform(url, page, page_size)
+
+    puts Colorize.purple(sidekiq_options_hash)
 
     products = ShopifyAPI::Product.all
 

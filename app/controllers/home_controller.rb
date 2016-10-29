@@ -5,7 +5,7 @@ class HomeController < AuthenticatedController
   def index
     @shop = Shop.find_by_shopify_domain(@shop_session.url)
     @option = @shop.option
-    APICallWorker.new.perform(@shop_session.url)
+    # APICallWorker.perform_async(@shop_session.url, 1, 250)
   end
 
   def update
@@ -24,6 +24,7 @@ class HomeController < AuthenticatedController
   end
 
   def install_instructions
+    # APICallWorker.perform_async(@shop_session.url, 1, 250)
   end
 
   def timer_js
