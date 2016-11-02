@@ -22,4 +22,13 @@ module OptionsHelper
       ['Add additional time (per added product)', '', 'show']
     ]
   end
+
+  def product_rule_more_time_options
+    [
+      ['30 seconds', '30'],
+      ['1 minute', '60'],
+      ['3 minutes', '180'],
+      ['5 minutes', '300']
+    ]
+  end
 end

@@ -20,43 +20,44 @@
           <%= o.check_box :enable_app, class: 'form-control' %>
 
           <!-- BEGIN Starting Time dynamic fields -->
-          <%= o.label :starting_time %>
           <% default_value = select_default(@option.starting_time, [180, 300, 600]) %>
+          <%= o.label :starting_time %>
 
           <select class="form-control dynamic-send conditional-send" data-condition="starting_time" data-option="starting_time">
             <%= options_for_select(starting_time_options.map{ |i| [i[0], i[1], {'data-action'=>i[2]}] }, selected: default_value) %>
           </select>
 
           <% if default_value == '' %>
-            <%= o.text_field :starting_time, class: 'dynamic-receive', data: {option: 'starting_time', condition: 'starting_time'} %>
+            <%= o.text_field :starting_time, class: 'dynamic-receive conditional-receive', data: {option: 'starting_time', condition: 'starting_time'} %>
           <% else %>
-            <%= o.text_field :starting_time, class: 'dynamic-receive', data: {option: 'starting_time', condition: 'starting_time'}, style: "display:none;" %>
+            <%= o.text_field :starting_time, class: 'dynamic-receive conditional-receive', data: {option: 'starting_time', condition: 'starting_time'}, style: "display:none;" %>
           <% end %>
-          <!-- END Starting Time dynamic fields -->
+          <!-- Starting Time dynamic fields END -->
           
           <%= o.label :timer_format %>
           <%= o.select_tag :timer_format, timer_format_options, class: 'form-control' %>
 
           <!-- BEGIN Product Rule dynamic fields -->
+          <% default_value = select_default(@option.product_rule, ['none', 'reset']) %>
           <%= o.label :product_rule %>
 
           <select class="form-control dynamic-send conditional-send" data-condition="product_rule" data-option="product_rule">
-            <% default_value = select_default(@option.product_rule, ['none', 'reset']) %>
             <%= options_for_select(product_rule_options.map{ |i| [i[0], i[1], {'data-action'=>i[2]}] }, selected: default_value) %>
           </select>
 
+          <select class="form-control dynamic-send conditional-receive" data-condition="product_rule" data-option="product_rule">
+            <%= options_for_select(product_rule_more_time_options, selected: @option.product_rule) %>
+          </select>
+
+          <%= o.hidden_field :product_rule, class: 'form-control dynamic-receive', data: {option: 'product_rule'} %>
 
 
 
-          <%= o.hidden_field :product_rule, class: 'form-control', data: {option: 'product_rule'} %>
 
 
 
 
-
-
-
-          <!-- END Product Rule dynamic fields -->
+          <!-- Product Rule dynamic fields END -->
         </div>
       </div>
 
