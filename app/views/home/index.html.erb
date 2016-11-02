@@ -16,25 +16,57 @@
       <div class="well">
         <div class="form-group">
 
-          <%= o.label :enable %>
-          <%= o.check_box :enable, class: 'form-control' %>
+          <%= o.label :enable_app %>
+          <%= o.check_box :enable_app, class: 'form-control' %>
 
-          <%= o.label :timer_label_text %>
-          <%= o.text_area :timer_label_text, class: 'form-control' %>
+          <!-- BEGIN Starting Time dynamic fields -->
+          <%= o.label :starting_time %>
+          <% default_value = select_default(@option.starting_time, [180, 300, 600]) %>
+
+          <select class="form-control dynamic-send conditional-send" data-condition="starting_time" data-option="starting_time">
+            <%= options_for_select(starting_time_options.map{ |i| [i[0], i[1], {'data-action'=>i[2]}] }, selected: default_value) %>
+          </select>
+
+          <% if default_value == '' %>
+            <%= o.text_field :starting_time, class: 'dynamic-receive', data: {option: 'starting_time', condition: 'starting_time'} %>
+          <% else %>
+            <%= o.text_field :starting_time, class: 'dynamic-receive', data: {option: 'starting_time', condition: 'starting_time'}, style: "display:none;" %>
+          <% end %>
+          <!-- END Starting Time dynamic fields -->
           
-          <%= o.label :timer_warning_message %>
-          <%= o.text_area :timer_warning_message, class: 'form-control' %>
+          <%= o.label :timer_format %>
+          <%= o.select_tag :timer_format, timer_format_options, class: 'form-control' %>
 
-          <%= o.label :timer_expired_message %>
-          <%= o.text_area :timer_expired_message, class: 'form-control' %>
+          <!-- BEGIN Product Rule dynamic fields -->
+          <%= o.label :product_rule %>
 
-          <%= o.label :custom_css %>
-          <%= o.text_area :custom_css, class: 'form-control' %>
+          <select class="form-control dynamic-send conditional-send" data-condition="product_rule" data-option="product_rule">
+            <% default_value = select_default(@option.product_rule, ['none', 'reset']) %>
+            <%= options_for_select(product_rule_options.map{ |i| [i[0], i[1], {'data-action'=>i[2]}] }, selected: default_value) %>
+          </select>
+
+
+
+
+          <%= o.hidden_field :product_rule, class: 'form-control', data: {option: 'product_rule'} %>
+
+
+
+
+
+
+
+          <!-- END Product Rule dynamic fields -->
         </div>
       </div>
 
       <div class="well">
         <div class="form-group">
+          <%= o.label :float_enable %>
+          <%= o.number_field :float_enable, class: 'form-control' %>
+
+          <%= o.label :float_enable %>
+          <%= o.number_field :float_enable, class: 'form-control' %>
 
           <%= o.label :header_color %>
           <input type="text" class="form-control color_picker_visable" value="<%= @option.header_color %>" data-index="1">
