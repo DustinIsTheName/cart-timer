@@ -35,7 +35,7 @@
           <!-- Starting Time dynamic fields END -->
           
           <%= o.label :timer_format %>
-          <%= o.select_tag :timer_format, timer_format_options, class: 'form-control' %>
+          <%= o.select :timer_format, timer_format_options, class: 'form-control' %>
 
           <!-- BEGIN Product Rule dynamic fields -->
           <% default_value = select_default(@option.product_rule, ['none', 'reset']) %>
@@ -45,73 +45,115 @@
             <%= options_for_select(product_rule_options.map{ |i| [i[0], i[1], {'data-action'=>i[2]}] }, selected: default_value) %>
           </select>
 
-          <select class="form-control dynamic-send conditional-receive" data-condition="product_rule" data-option="product_rule">
+          <select class="form-control dynamic-send conditional-receive" data-condition="product_rule" data-option="product_rule"<%= display_none?(default_value) %>>
             <%= options_for_select(product_rule_more_time_options, selected: @option.product_rule) %>
           </select>
 
           <%= o.hidden_field :product_rule, class: 'form-control dynamic-receive', data: {option: 'product_rule'} %>
-
-
-
-
-
-
-
           <!-- Product Rule dynamic fields END -->
         </div>
       </div>
 
       <div class="well">
-        <div class="form-group">
-          <%= o.label :float_enable %>
-          <%= o.number_field :float_enable, class: 'form-control' %>
-
-          <%= o.label :float_enable %>
-          <%= o.number_field :float_enable, class: 'form-control' %>
-
-          <%= o.label :header_color %>
-          <input type="text" class="form-control color_picker_visable" value="<%= @option.header_color %>" data-index="1">
-          <%= o.hidden_field :header_color, class: 'color_picker index-1' %>
-
-          <%= o.label :header_font_size %>
-          <%= o.number_field :header_font_size, class: 'form-control' %>
-          
-          <%= o.label :header_border_color %>
-          <input type="text" class="form-control color_picker_visable" value="<%= @option.header_border_color %>" data-index="2">
-          <%= o.hidden_field :header_border_color, class: 'form-control color_picker index-2' %>
-
-          <%= o.label :header_background_color %>
-          <input type="text" class="form-control color_picker_visable" value="<%= @option.header_background_color %>" data-index="3">
-          <%= o.hidden_field :header_background_color, class: 'form-control color_picker index-3' %>
-
-          <%= o.label :header_border_radius %>
-          <%= o.number_field :header_border_radius, class: 'form-control' %>
-
-          <%= o.label :header_padding %>
-          <%= o.text_field :header_padding, class: 'form-control' %>
-
-          <%= o.label :header_padding %>
-          <%= o.text_field :header_padding, class: 'form-control' %>
+        <div class="tabs">
+          <div class="col-md-6">
+            <%= o.check_box :float_enable, data: {condition: 'float_setting', scope: 'float_low_settings'} %>
+            <%= o.label :float_enable %>
+          </div>
+          <div class="col-md-6">
+            <%= o.check_box :low_time_enable, data: {condition: 'low_time_setting', scope: 'float_low_settings'} %>
+            <%= o.label :low_time_enable %>
+          </div>
         </div>
       </div>
 
-      <div class="well">
+      <div class="well conditional-receive" data-condition="float_setting" data-scope="float_low_settings">
+        <div class="form-group">
+          <%= o.label :float_text %>
+          <%= o.text_field :float_text, class: 'form-control' %>
+
+          <!-- BEGIN Float Position dynamic fields -->
+          <%= o.label :float_position, 'Position' %>
+          <select class="form-control">
+            <%= options_for_select(float_position_options) %>
+          </select>
+          <input type="number" class="form-control dynamic-send" data-option="float_position">
+          <input type="number" class="form-control dynamic-send" data-option="float_position">
+          <%= o.hidden_field :float_position, class: 'form-control dynamic-receive', data: {option: 'float_position'} %>
+          <!-- Float Position dynamic fields END -->
+
+          <%= o.label :float_bg_color %>
+          <input type="text" class="form-control color_picker_visable" value="<%= @option.float_bg_color %>" data-color="float_bg">
+          <%= o.hidden_field :float_bg_color, class: 'color_picker color-float_bg' %>
+
+          <%= o.label :float_text_color %>
+          <input type="text" class="form-control color_picker_visable" value="<%= @option.float_text_color %>" data-color="float_text">
+          <%= o.hidden_field :float_text_color, class: 'color_picker color-float_text' %>
+
+          <%= o.label :float_timer_color %>
+          <input type="text" class="form-control color_picker_visable" value="<%= @option.float_timer_color %>" data-color="float_timer">
+          <%= o.hidden_field :float_timer_color, class: 'color_picker color-float_timer' %>
+
+          <!-- BORDER -->
+          <%= o.label :float_border %>
+          <input type="text" class="form-control color_picker_visable" value="<%= @option.float_border %>" data-color="float_border">
+          <%= o.hidden_field :float_border, class: 'color_picker color-float_border' %>
+          <!-- ENDBORDER -->
+
+          <%= o.label :float_border_radius %>
+          <%= o.number_field :float_border_radius %>
+
+          <%= o.label :float_font_size %>
+          <%= o.number_field :float_font_size %>
+
+          <%= o.label :float_timer_size %>
+          <%= o.number_field :float_timer_size %>
+        </div>
+      </div>
+
+      <div class="well conditional-receive" data-condition="low_time_setting" data-scope="float_low_settings">
         <div class="form-group">
 
-          <%= o.label :quick_view_color %>
-          <input type="text" class="form-control color_picker_visable" value="<%= @option.quick_view_color %>" data-index="4">
-          <%= o.hidden_field :quick_view_color, class: 'color_picker index-4' %>
+          <!-- BEGIN Low Time Location dynamic fields -->
+          <% default_value = select_default(@option.low_time_location, ['modal']) %>
+          <%= o.label :low_time_location %>
+
+          <select class="form-control dynamic-send conditional-send" data-option="low_time_location", data-condition="low_time_location">
+            <%= options_for_select(low_time_location_options.map{ |i| [i[0], i[1], {'data-action'=>i[2]}] }, selected: default_value) %>
+          </select>
+
+          <select class="form-control dynamic-send conditional-receive" data-option="low_time_location", data-condition="low_time_location"<%= display_none?(default_value) %>>
+            <%= options_for_select(low_time_location_bar_options, selected: @option.low_time_location) %>
+          </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <%= o.hidden_field :low_time_location, class: 'form-control dynamic-receive', data: {option: 'low_time_location'} %>
+          <!-- Low Time Location dynamic fields END -->
+
+
 
           <%= o.label :quick_view_font_size %>
           <%= o.number_field :quick_view_font_size, class: 'form-control' %>
           
           <%= o.label :quick_view_border_color %>
-          <input type="text" class="form-control color_picker_visable" value="<%= @option.quick_view_border_color %>" data-index="5">
-          <%= o.hidden_field :quick_view_border_color, class: 'form-control color_picker index-5' %>
+          <input type="text" class="form-control color_picker_visable" value="<%= @option.quick_view_border_color %>" data-color="5">
+          <%= o.hidden_field :quick_view_border_color, class: 'form-control color_picker color-5' %>
 
           <%= o.label :quick_view_background_color %>
-          <input type="text" class="gform-control color_picker_visable" value="<%= @option.quick_view_background_color %>" data-index="6">
-          <%= o.hidden_field :quick_view_background_color, class: 'form-control color_picker index-6' %>
+          <input type="text" class="gform-control color_picker_visable" value="<%= @option.quick_view_background_color %>" data-color="6">
+          <%= o.hidden_field :quick_view_background_color, class: 'form-control color_picker color-6' %>
 
           <%= o.label :quick_view_border_radius %>
           <%= o.number_field :quick_view_border_radius, class: 'form-control' %>
@@ -124,23 +166,24 @@
         </div>
       </div>
 
+<% if false %>
       <div class="well">
         <div class="form-group">
 
           <%= o.label :message_color %>
-          <input type="text" class="form-control color_picker_visable" value="<%= @option.message_color %>" data-index="7">
-          <%= o.hidden_field :message_color, class: 'color_picker index-7' %>
+          <input type="text" class="form-control color_picker_visable" value="<%= @option.message_color %>" data-color="7">
+          <%= o.hidden_field :message_color, class: 'color_picker color-7' %>
 
           <%= o.label :message_font_size %>
           <%= o.number_field :message_font_size, class: 'form-control' %>
           
           <%= o.label :message_border_color %>
-          <input type="text" class="form-control color_picker_visable" value="<%= @option.message_border_color %>" data-index="8">
-          <%= o.hidden_field :message_border_color, class: 'form-control color_picker index-8' %>
+          <input type="text" class="form-control color_picker_visable" value="<%= @option.message_border_color %>" data-color="8">
+          <%= o.hidden_field :message_border_color, class: 'form-control color_picker color-8' %>
 
           <%= o.label :message_background_color %>
-          <input type="text" class="gform-control color_picker_visable" value="<%= @option.message_background_color %>" data-index="9">
-          <%= o.hidden_field :message_background_color, class: 'form-control color_picker index-9' %>
+          <input type="text" class="gform-control color_picker_visable" value="<%= @option.message_background_color %>" data-color="9">
+          <%= o.hidden_field :message_background_color, class: 'form-control color_picker color-9' %>
 
           <%= o.label :message_border_radius %>
           <%= o.number_field :message_border_radius, class: 'form-control' %>
@@ -160,22 +203,22 @@
           <%= o.text_field :button_1_text, class: 'form-control' %>
 
           <%= o.label :button_1_color %>
-          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_1_color %>" data-index="10">
-          <%= o.hidden_field :button_1_color, class: 'form-control index-10' %>
+          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_1_color %>" data-color="10">
+          <%= o.hidden_field :button_1_color, class: 'form-control color-10' %>
           
           <%= o.label :button_1_font_size %>
           <%= o.number_field :button_1_font_size, class: 'form-control' %>
 
           <%= o.label :button_1_background_color %>
-          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_1_background_color %>" data-index="11">
-          <%= o.hidden_field :button_1_background_color, class: 'form-control color_picker index-11' %>
+          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_1_background_color %>" data-color="11">
+          <%= o.hidden_field :button_1_background_color, class: 'form-control color_picker color-11' %>
 
           <%= o.label :button_1_padding %>
           <%= o.text_field :button_1_padding, class: 'form-control' %>
 
           <%= o.label :button_1_border %>
-          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_1_border %>" data-index="12">
-          <%= o.hidden_field :button_1_border, class: 'form-control color_picker index-12' %>
+          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_1_border %>" data-color="12">
+          <%= o.hidden_field :button_1_border, class: 'form-control color_picker color-12' %>
 
           <%= o.label :button_1_border_radius %>
           <%= o.number_field :button_1_border_radius, class: 'form-control' %>
@@ -189,27 +232,28 @@
           <%= o.text_field :button_2_text, class: 'form-control' %>
 
           <%= o.label :button_2_color %>
-          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_2_color %>" data-index="13">
-          <%= o.hidden_field :button_2_color, class: 'form-control index-13' %>
+          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_2_color %>" data-color="13">
+          <%= o.hidden_field :button_2_color, class: 'form-control color-13' %>
           
           <%= o.label :button_2_font_size %>
           <%= o.number_field :button_2_font_size, class: 'form-control' %>
 
           <%= o.label :button_2_background_color %>
-          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_2_background_color %>" data-index="14">
-          <%= o.hidden_field :button_2_background_color, class: 'form-control color_picker index-14' %>
+          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_2_background_color %>" data-color="14">
+          <%= o.hidden_field :button_2_background_color, class: 'form-control color_picker color-14' %>
 
           <%= o.label :button_2_padding %>
           <%= o.text_field :button_2_padding, class: 'form-control' %>
 
           <%= o.label :button_2_border %>
-          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_2_border %>" data-index="15">
-          <%= o.hidden_field :button_2_border, class: 'form-control color_picker index-15' %>
+          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_2_border %>" data-color="15">
+          <%= o.hidden_field :button_2_border, class: 'form-control color_picker color-15' %>
 
           <%= o.label :button_2_border_radius %>
           <%= o.number_field :button_2_border_radius, class: 'form-control' %>
         </div>
       </div>
+<% end %>
 
       <div class="form-group">
         <%= o.submit class: "btn btn-primary" %>

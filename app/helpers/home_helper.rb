@@ -6,4 +6,12 @@ module HomeHelper
   		return ''
   	end
   end
+
+  def display_none?(default_value)
+  	if default_value == ''
+  		''
+  	else
+  		' style="display:none;"' 
+  	end
+  end
 end

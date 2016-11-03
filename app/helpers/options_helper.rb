@@ -17,8 +17,8 @@ module OptionsHelper
 
   def product_rule_options
     [
-      ['Don’t adjust time', 'none', 'hide'], 
-      ['Reset timer to Starting Time', 'reset', 'hide'], 
+      ['Don’t adjust time', 'none', 'hide'],
+      ['Reset timer to Starting Time', 'reset', 'hide'],
       ['Add additional time (per added product)', '', 'show']
     ]
   end
@@ -29,6 +29,29 @@ module OptionsHelper
       ['1 minute', '60'],
       ['3 minutes', '180'],
       ['5 minutes', '300']
+    ]
+  end
+
+  def float_position_options
+    [
+      ['Top, Right', 'tr'],
+      ['Top, Left', 'tl'],
+      ['Bottom, Right', 'br'],
+      ['Bottom, Left', 'bl']
+    ]
+  end
+
+  def low_time_location_options
+    [
+      ['Message Bar', '', 'show'],
+      ['Modal', 'modal', 'hide']
+    ]
+  end
+
+  def low_time_location_bar_options
+    [
+      ['Top', 'top'],
+      ['Bottom', 'bottom']
     ]
   end
 end

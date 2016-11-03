@@ -19,8 +19,8 @@
 var ready = function() {
 	$('.color_picker_visable').minicolors();
 	$('.color_picker_visable').change(function() {
-		var index = $(this).data('index');
-		$('.index-'+index).val($(this).val());
+		var color = $(this).data('color');
+		$('.color-'+color).val($(this).val());
 	});
 };
 
