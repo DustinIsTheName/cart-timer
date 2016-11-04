@@ -24,7 +24,7 @@
           <%= o.label :starting_time %>
 
           <select class="form-control dynamic-send conditional-send" data-condition="starting_time" data-option="starting_time">
-            <%= options_for_select(starting_time_options.map{ |i| [i[0], i[1], {'data-action'=>i[2]}] }, selected: default_value) %>
+            <%= options_for_select(data_action_map(starting_time_options), selected: default_value) %>
           </select>
 
           <% if default_value == '' %>
@@ -42,7 +42,7 @@
           <%= o.label :product_rule %>
 
           <select class="form-control dynamic-send conditional-send" data-condition="product_rule" data-option="product_rule">
-            <%= options_for_select(product_rule_options.map{ |i| [i[0], i[1], {'data-action'=>i[2]}] }, selected: default_value) %>
+            <%= options_for_select(data_action_map(product_rule_options), selected: default_value) %>
           </select>
 
           <select class="form-control dynamic-send conditional-receive" data-condition="product_rule" data-option="product_rule"<%= display_none?(default_value) %>>
@@ -82,22 +82,14 @@
           <%= o.hidden_field :float_position, class: 'form-control dynamic-receive', data: {option: 'float_position'} %>
           <!-- Float Position dynamic fields END -->
 
-          <%= o.label :float_bg_color %>
-          <input type="text" class="form-control color_picker_visable" value="<%= @option.float_bg_color %>" data-color="float_bg">
-          <%= o.hidden_field :float_bg_color, class: 'color_picker color-float_bg' %>
+          <%= render partial: 'color_field', locals: {o: o, option_value: :float_bg_color} %>
 
-          <%= o.label :float_text_color %>
-          <input type="text" class="form-control color_picker_visable" value="<%= @option.float_text_color %>" data-color="float_text">
-          <%= o.hidden_field :float_text_color, class: 'color_picker color-float_text' %>
+          <%= render partial: 'color_field', locals: {o: o, option_value: :float_text_color} %>
 
-          <%= o.label :float_timer_color %>
-          <input type="text" class="form-control color_picker_visable" value="<%= @option.float_timer_color %>" data-color="float_timer">
-          <%= o.hidden_field :float_timer_color, class: 'color_picker color-float_timer' %>
+          <%= render partial: 'color_field', locals: {o: o, option_value: :float_timer_color} %>
 
           <!-- BORDER -->
-          <%= o.label :float_border %>
-          <input type="text" class="form-control color_picker_visable" value="<%= @option.float_border %>" data-color="float_border">
-          <%= o.hidden_field :float_border, class: 'color_picker color-float_border' %>
+          <%= render partial: 'color_field', locals: {o: o, option_value: :float_border} %>
           <!-- ENDBORDER -->
 
           <%= o.label :float_border_radius %>
@@ -119,50 +111,64 @@
           <%= o.label :low_time_location %>
 
           <select class="form-control dynamic-send conditional-send" data-option="low_time_location", data-condition="low_time_location">
-            <%= options_for_select(low_time_location_options.map{ |i| [i[0], i[1], {'data-action'=>i[2]}] }, selected: default_value) %>
+            <%= options_for_select(data_action_map(low_time_location_options), selected: default_value) %>
           </select>
 
           <select class="form-control dynamic-send conditional-receive" data-option="low_time_location", data-condition="low_time_location"<%= display_none?(default_value) %>>
             <%= options_for_select(low_time_location_bar_options, selected: @option.low_time_location) %>
           </select>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           <%= o.hidden_field :low_time_location, class: 'form-control dynamic-receive', data: {option: 'low_time_location'} %>
           <!-- Low Time Location dynamic fields END -->
 
+          <%= o.label :low_time_warning %>
+          <%= o.select :low_time_warning, low_time_warning_options, selected: @option.low_time_warning %>
 
+          <%= o.label :low_time_warning_2 %>
+          <%= o.select :low_time_warning_2, low_time_warning_2_options, selected: @option.low_time_warning_2 %>
 
-          <%= o.label :quick_view_font_size %>
-          <%= o.number_field :quick_view_font_size, class: 'form-control' %>
-          
-          <%= o.label :quick_view_border_color %>
-          <input type="text" class="form-control color_picker_visable" value="<%= @option.quick_view_border_color %>" data-color="5">
-          <%= o.hidden_field :quick_view_border_color, class: 'form-control color_picker color-5' %>
+          <%= o.label :low_time_text %>
+          <%= o.text_field :low_time_text, class: 'form-control' %>
 
-          <%= o.label :quick_view_background_color %>
-          <input type="text" class="gform-control color_picker_visable" value="<%= @option.quick_view_background_color %>" data-color="6">
-          <%= o.hidden_field :quick_view_background_color, class: 'form-control color_picker color-6' %>
+          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_bar_bg_color} %>
 
-          <%= o.label :quick_view_border_radius %>
-          <%= o.number_field :quick_view_border_radius, class: 'form-control' %>
+          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_bar_text_color} %>
 
-          <%= o.label :quick_view_padding %>
-          <%= o.text_field :quick_view_padding, class: 'form-control' %>
+          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_bar_timer_color} %>
 
-          <%= o.label :quick_view_margin %>
-          <%= o.text_field :quick_view_margin, class: 'form-control' %>
+          <!-- BORDER -->
+          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_bar_border} %>
+          <!-- ENDBORDER -->
+
+          <%= o.label :low_time_bar_border_radius %>
+          <%= o.number_field :low_time_bar_border_radius %>
+
+          <%= o.label :low_time_bar_font_size %>
+          <%= o.number_field :low_time_bar_font_size %>
+
+          <%= o.label :low_time_bar_timer_size %>
+          <%= o.number_field :low_time_bar_timer_size %>
+
+          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_view_cart_bg_color} %>
+
+          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_view_cart_text_color} %>
+
+          <!-- BORDER -->
+          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_view_cart_border} %>
+          <!-- ENDBORDER -->
+
+          <%= o.label :low_time_view_cart_border_radius %>
+          <%= o.number_field :low_time_view_cart_border_radius %>
+
+          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_checkout_bg_color} %>
+
+          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_checkout_text_color} %>
+
+          <!-- BORDER -->
+          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_checkout_border} %>
+          <!-- ENDBORDER -->
+
+          <%= o.label :low_time_checkout_border_radius %>
+          <%= o.number_field :low_time_checkout_border_radius %>
         </div>
       </div>
 

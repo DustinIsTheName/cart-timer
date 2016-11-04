@@ -14,4 +14,8 @@ module HomeHelper
   		' style="display:none;"' 
   	end
   end
+
+  def data_action_map(options)
+  	options.map{ |i| [i[0], i[1], {'data-action'=>i[2]}] }
+  end
 end

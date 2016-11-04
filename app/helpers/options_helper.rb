@@ -54,4 +54,22 @@ module OptionsHelper
       ['Bottom', 'bottom']
     ]
   end
+
+  def low_time_warning_options
+    [
+      ['30 seconds', 30],
+      ['1 minute', 60],
+      ['3 minutes', 180],
+      ['5 minutes', 300]
+    ]
+  end
+
+  def low_time_warning_2_options
+    [
+      ['Don’t show 2nd warning', -1],
+      ['30 seconds', 30],
+      ['1 minute', 60],
+      ['3 minutes', 180]
+    ]
+  end
 end
