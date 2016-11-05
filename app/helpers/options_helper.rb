@@ -72,4 +72,22 @@ module OptionsHelper
       ['3 minutes', 180]
     ]
   end
+
+  def header_low_warning_options
+    [
+      ['Same as “Show Warning” in Low Time Warning (General Settings)', '?'],
+      ['30 seconds', 30],
+      ['1 minute', 60],
+      ['3 minutes', 180],
+      ['5 minutes', 300]
+    ]
+  end
+
+  def header_low_animation_options
+    [
+      ['None', 'none'],
+      ['Pulse', 'pulse'],
+      ['Blink', 'blink']
+    ]
+  end
 end

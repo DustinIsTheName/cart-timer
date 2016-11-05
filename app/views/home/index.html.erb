@@ -57,11 +57,11 @@
       <div class="well">
         <div class="tabs">
           <div class="col-md-6">
-            <%= o.check_box :float_enable, data: {condition: 'float_setting', scope: 'float_low_settings'} %>
+            <%= o.check_box :float_enable, class: 'conditional-send', data: {condition: 'float_setting', scope: 'float_low_settings'} %>
             <%= o.label :float_enable %>
           </div>
           <div class="col-md-6">
-            <%= o.check_box :low_time_enable, data: {condition: 'low_time_setting', scope: 'float_low_settings'} %>
+            <%= o.check_box :low_time_enable, class: 'conditional-send', data: {condition: 'low_time_setting', scope: 'float_low_settings'} %>
             <%= o.label :low_time_enable %>
           </div>
         </div>
@@ -82,14 +82,12 @@
           <%= o.hidden_field :float_position, class: 'form-control dynamic-receive', data: {option: 'float_position'} %>
           <!-- Float Position dynamic fields END -->
 
-          <%= render partial: 'color_field', locals: {o: o, option_value: :float_bg_color} %>
-
-          <%= render partial: 'color_field', locals: {o: o, option_value: :float_text_color} %>
-
-          <%= render partial: 'color_field', locals: {o: o, option_value: :float_timer_color} %>
+          <%= color_field o, :float_bg_color %>
+          <%= color_field o, :float_text_color %>
+          <%= color_field o, :float_timer_color %>
 
           <!-- BORDER -->
-          <%= render partial: 'color_field', locals: {o: o, option_value: :float_border} %>
+          <%= color_field o, :float_border %>
           <!-- ENDBORDER -->
 
           <%= o.label :float_border_radius %>
@@ -129,14 +127,12 @@
           <%= o.label :low_time_text %>
           <%= o.text_field :low_time_text, class: 'form-control' %>
 
-          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_bar_bg_color} %>
-
-          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_bar_text_color} %>
-
-          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_bar_timer_color} %>
+          <%= color_field o, :low_time_bar_bg_color %>
+          <%= color_field o, :low_time_bar_text_color %>
+          <%= color_field o, :low_time_bar_timer_color %>
 
           <!-- BORDER -->
-          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_bar_border} %>
+          <%= color_field o, :low_time_bar_border %>
           <!-- ENDBORDER -->
 
           <%= o.label :low_time_bar_border_radius %>
@@ -148,23 +144,21 @@
           <%= o.label :low_time_bar_timer_size %>
           <%= o.number_field :low_time_bar_timer_size %>
 
-          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_view_cart_bg_color} %>
-
-          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_view_cart_text_color} %>
+          <%= color_field o, :low_time_view_cart_bg_color %>
+          <%= color_field o, :low_time_view_cart_text_color %>
 
           <!-- BORDER -->
-          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_view_cart_border} %>
+          <%= color_field o, :low_time_view_cart_border %>
           <!-- ENDBORDER -->
 
           <%= o.label :low_time_view_cart_border_radius %>
           <%= o.number_field :low_time_view_cart_border_radius %>
 
-          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_checkout_bg_color} %>
-
-          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_checkout_text_color} %>
+          <%= color_field o, :low_time_checkout_bg_color %>
+          <%= color_field o, :low_time_checkout_text_color %>
 
           <!-- BORDER -->
-          <%= render partial: 'color_field', locals: {o: o, option_value: :low_time_checkout_border} %>
+          <%= color_field o, :low_time_checkout_border %>
           <!-- ENDBORDER -->
 
           <%= o.label :low_time_checkout_border_radius %>
@@ -172,36 +166,124 @@
         </div>
       </div>
 
-<% if false %>
+      <%= o.label :header_enable %>
+      <%= o.check_box :header_enable, class: 'form-control' %>
       <div class="well">
         <div class="form-group">
 
-          <%= o.label :message_color %>
-          <input type="text" class="form-control color_picker_visable" value="<%= @option.message_color %>" data-color="7">
-          <%= o.hidden_field :message_color, class: 'color_picker color-7' %>
+          <%= o.radio_button :header_display, "text", class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_text'} %>
+          <%= o.label :header_display_text, "Text Only" %>
+          <%= o.radio_button :header_display, "text_icon", class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_text_icon'} %>
+          <%= o.label :header_display_text_icon, "Text w/ Icon" %>
+          <%= o.radio_button :header_display, "border_box", class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_border_box'} %>
+          <%= o.label :header_display_border_box, "Border Box" %>
+          <%= o.radio_button :header_display, "solid_box", class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_solid_box'} %>
+          <%= o.label :header_display_solid_box, "Solid Box" %>
 
-          <%= o.label :message_font_size %>
-          <%= o.number_field :message_font_size, class: 'form-control' %>
+          <%= o.label :header_low_enable, 'Change styles when timer is low' %>
+          <%= o.check_box :header_low_enable %>
+
+          <%= o.label :header_low_warning %>
+          <%= o.select :header_low_warning, header_low_warning_options, selected: @option.header_low_warning %>
+
+          <%= o.label :header_low_animation %>
+          <%= o.select :header_low_animation, header_low_animation_options, selected: @option.header_low_animation %>
+
+          <div class="conditional-receive" data-condition="header_display_text" data-scope="header_display">
+            <%= color_field o, :header_display1_text_color %>
+
+            <%= o.label :header_display1_font_size %>
+            <%= o.number_field :header_display1_font_size, class: 'form-control' %>
           
-          <%= o.label :message_border_color %>
-          <input type="text" class="form-control color_picker_visable" value="<%= @option.message_border_color %>" data-color="8">
-          <%= o.hidden_field :message_border_color, class: 'form-control color_picker color-8' %>
+            <%= margin_padding_field o, :header_display1_padding %>
+            <%= margin_padding_field o, :header_display1_margin %>
 
-          <%= o.label :message_background_color %>
-          <input type="text" class="gform-control color_picker_visable" value="<%= @option.message_background_color %>" data-color="9">
-          <%= o.hidden_field :message_background_color, class: 'form-control color_picker color-9' %>
+            <%= color_field o, :header_display1_low_text_color %>
+          </div>
 
-          <%= o.label :message_border_radius %>
-          <%= o.number_field :message_border_radius, class: 'form-control' %>
+          <div class="conditional-receive" data-condition="header_display_text_icon" data-scope="header_display">
 
-          <%= o.label :message_padding %>
-          <%= o.text_field :message_padding, class: 'form-control' %>
+            <%= color_field o, :header_display2_text_color %>
+            <%= color_field o, :header_display2_icon_color %>
 
-          <%= o.label :message_margin %>
-          <%= o.text_field :message_margin, class: 'form-control' %>
+            <%= o.label :header_display2_font_size %>
+            <%= o.number_field :header_display2_font_size, class: 'form-control' %>
+
+            <%= margin_padding_field o, :header_display2_padding %>
+            <%= margin_padding_field o, :header_display2_margin %>
+
+            <%= color_field o, :header_display2_low_text_color %>
+            <%= color_field o, :header_display2_low_icon_color %>
+
+          </div>
+
+          <div class="conditional-receive" data-condition="header_display_border_box" data-scope="header_display">
+
+            <%= color_field o, :header_display3_text_color %>
+            <%= color_field o, :header_display3_icon_color %>
+            <%= color_field o, :header_display3_bg_color %>
+
+            <!-- BORDER -->
+            <%= color_field o, :header_display3_border %>
+            <!-- ENDBORDER -->
+
+            <%= o.label :header_display3_border_radius %>
+            <%= o.number_field :header_display3_border_radius %>
+
+            <%= o.label :header_display3_font_size %>
+            <%= o.number_field :header_display3_font_size %>
+
+            <%= margin_padding_field o, :header_display3_padding %>
+            <%= margin_padding_field o, :header_display3_margin %>
+
+            <%= color_field o, :header_display3_low_text_color %>
+            <%= color_field o, :header_display3_low_icon_color %>
+            <%= color_field o, :header_display3_low_bg_color %>
+
+            <!-- BORDER -->
+            <%= color_field o, :header_display3_low_border %>
+            <!-- ENDBORDER -->
+
+            <%= o.label :header_display3_low_border_radius %>
+            <%= o.number_field :header_display3_low_border_radius %>
+
+          </div>
+
+          <div class="conditional-receive" data-condition="header_display_solid_box" data-scope="header_display">
+
+            <%= color_field o, :header_display4_text_color %>
+            <%= color_field o, :header_display4_icon_color %>
+            <%= color_field o, :header_display4_bg_color %>
+
+            <!-- BORDER -->
+            <%= color_field o, :header_display4_border %>
+            <!-- ENDBORDER -->
+
+            <%= o.label :header_display4_border_radius %>
+            <%= o.number_field :header_display4_border_radius %>
+
+            <%= o.label :header_display4_font_size %>
+            <%= o.number_field :header_display4_font_size %>
+
+            <%= margin_padding_field o, :header_display4_padding %>
+            <%= margin_padding_field o, :header_display4_margin %>
+
+            <%= color_field o, :header_display4_low_text_color %>
+            <%= color_field o, :header_display4_low_icon_color %>
+            <%= color_field o, :header_display4_low_bg_color %>
+
+            <!-- BORDER -->
+            <%= color_field o, :header_display4_low_border %>
+            <!-- ENDBORDER -->
+
+            <%= o.label :header_display4_low_border_radius %>
+            <%= o.number_field :header_display4_low_border_radius %>
+
+          </div>
         </div>
       </div>
 
+<% if false %>
       <div class="well">
         <div class="form-group">
 

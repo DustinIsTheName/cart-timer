@@ -63,8 +63,7 @@ class CreateOptions < ActiveRecord::Migration
         ######################################################
         t.boolean :header_enable
         t.integer :header_display # the set of options that will show
-        t.integer :header_warning
-        t.string :header_animation
+        t.boolean :header_low_enable
         t.integer :header_low_warning
         t.integer :header_low_animation
         # First set of display options

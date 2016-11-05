@@ -1,0 +1,10 @@
+<% option_string = option_value.to_s %>
+<% if option_string.include? 'padding' %>
+<%= label_tag '', 'Padding' %>
+<% else %>
+<%= label_tag '', 'Margin' %>
+<% end %>
+<% for i in (1..4) %>
+<input type="number" class="dynamic-send margin_padding" data-option="<%= option_string %>" data-margin-padding="<%= i %>">
+<% end %>
+<%= o.hidden_field option_value, class: 'form-control dynamic-receive', data: {option: option_string} %>
