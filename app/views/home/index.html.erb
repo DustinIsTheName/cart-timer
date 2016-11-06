@@ -283,65 +283,147 @@
         </div>
       </div>
 
-<% if false %>
+      <%= o.label :cart_enable %>
+      <%= o.check_box :cart_enable, class: 'form-control' %>
       <div class="well">
         <div class="form-group">
 
-          <%= o.label :button_1_text %>
-          <%= o.text_field :button_1_text, class: 'form-control' %>
+          <%= o.label :cart_text %>
+          <%= o.text_field :cart_text, class: 'form-control' %>
 
-          <%= o.label :button_1_color %>
-          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_1_color %>" data-color="10">
-          <%= o.hidden_field :button_1_color, class: 'form-control color-10' %>
+          <%= color_field o, :cart_bar_bg_color %>
+          <%= color_field o, :cart_bar_text_color %>
+          <%= color_field o, :cart_bar_timer_color %>
+
+          <!-- BORDER -->
+          <%= color_field o, :cart_bar_border %>
+          <!-- ENDBORDER -->
+
+          <%= o.label :cart_bar_border_radius %>
+          <%= o.number_field :cart_bar_border_radius, class: 'form-control' %>
+
+          <%= o.label :cart_bar_font_size %>
+          <%= o.number_field :cart_bar_font_size, class: 'form-control' %>
+
+          <%= o.label :cart_bar_timer_size %>
+          <%= o.number_field :cart_bar_timer_size, class: 'form-control' %>
+
+          <%= margin_padding_field o, :cart_bar_padding %>
+          <%= margin_padding_field o, :cart_bar_margin %>
+
+          <%= color_field o, :cart_continue_bg_color %>
+          <%= color_field o, :cart_continue_text_color %>
+
+          <!-- BORDER -->
+          <%= color_field o, :cart_continue_border %>
+          <!-- ENDBORDER -->
+
+          <%= o.label :cart_continue_border_radius %>
+          <%= o.number_field :cart_continue_border_radius, class: 'form-control' %>
+
+          <%= color_field o, :cart_checkout_bg_color %>
+          <%= color_field o, :cart_checkout_text_color %>
+
+          <!-- BORDER -->
+          <%= color_field o, :cart_checkout_border %>
+          <!-- ENDBORDER -->
+
+          <%= o.label :cart_checkout_border_radius %>
+          <%= o.number_field :cart_checkout_border_radius, class: 'form-control' %>
+
+          <%= o.label :cart_low_enable %>
+          <%= o.text_field :cart_low_enable, class: 'form-control' %>
+
+          <%= o.label :cart_low_warning %>
+          <%= o.select :cart_low_warning, header_low_warning_options, selected: @option.cart_low_warning %>
+
+          <%= color_field o, :cart_bar_low_bg_color %>
+          <%= color_field o, :cart_bar_low_text_color %>
+          <%= color_field o, :cart_bar_low_timer_color %>
+
+          <!-- BORDER -->
+          <%= color_field o, :cart_bar_low_border %>
+          <!-- ENDBORDER -->
+
+          <%= o.label :cart_bar_low_border_radius %>
+          <%= o.number_field :cart_bar_low_border_radius, class: 'form-control' %>
+
+          <%= color_field o, :cart_continue_low_bg_color %>
+          <%= color_field o, :cart_continue_low_text_color %>
+
+          <!-- BORDER -->
+          <%= color_field o, :cart_continue_low_border %>
+          <!-- ENDBORDER -->
+
+          <%= o.label :cart_continue_low_border_radius %>
+          <%= o.number_field :cart_continue_low_border_radius, class: 'form-control' %>
+
+          <%= color_field o, :cart_checkout_low_bg_color %>
+          <%= color_field o, :cart_checkout_low_text_color %>
+
+          <!-- BORDER -->
+          <%= color_field o, :cart_checkout_low_border %>
+          <!-- ENDBORDER -->
+
+          <%= o.label :cart_checkout_low_border_radius %>
+          <%= o.number_field :cart_checkout_low_border_radius, class: 'form-control' %>
+
+        </div>
+      </div>
+
+      <%= o.label :quick_view_enable %>
+      <%= o.check_box :quick_view_enable, class: 'form-control' %>
+      <div class="well">
+        <div class="form-group">
+
+          <%= o.label :quick_view_text %>
+          <%= o.text_field :quick_view_text, class: 'form-control' %>
+
+          <%= color_field o, :quick_view_background_color %>
+          <%= color_field o, :quick_view_text_color %>
+          <%= color_field o, :quick_view_timer_color %>
+
+          <!-- BORDER -->
+          <%= color_field o, :quick_view_border %>
+          <!-- ENDBORDER -->
           
-          <%= o.label :button_1_font_size %>
-          <%= o.number_field :button_1_font_size, class: 'form-control' %>
+          <%= o.label :quick_view_border_radius %>
+          <%= o.number_field :quick_view_border_radius, class: 'form-control' %>
 
-          <%= o.label :button_1_background_color %>
-          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_1_background_color %>" data-color="11">
-          <%= o.hidden_field :button_1_background_color, class: 'form-control color_picker color-11' %>
+          <%= o.label :quick_view_font_size %>
+          <%= o.number_field :quick_view_font_size, class: 'form-control' %>
 
-          <%= o.label :button_1_padding %>
-          <%= o.text_field :button_1_padding, class: 'form-control' %>
+          <%= o.label :quick_view_timer_size %>
+          <%= o.number_field :quick_view_timer_size, class: 'form-control' %>
 
-          <%= o.label :button_1_border %>
-          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_1_border %>" data-color="12">
-          <%= o.hidden_field :button_1_border, class: 'form-control color_picker color-12' %>
+          <%= margin_padding_field o, :quick_view_padding %>
+          <%= margin_padding_field o, :quick_view_margin %>
 
-          <%= o.label :button_1_border_radius %>
-          <%= o.number_field :button_1_border_radius, class: 'form-control' %>
+          <%= o.label :quick_view_enable %>
+          <%= o.check_box :quick_view_enable, class: 'form-control' %>
+
+          <%= o.label :quick_view_low_warning %>
+          <%= o.select :quick_view_low_warning, header_low_warning_options, selected: @option.cart_low_warning %>
+
+          <%= color_field o, :quick_view_low_background_color %>
+          <%= color_field o, :quick_view_low_text_color %>
+          <%= color_field o, :quick_view_low_timer_color %>
+
+          <!-- BORDER -->
+          <%= color_field o, :quick_view_low_border %>
+          <!-- ENDBORDER -->
+
+          <%= o.label :quick_view_low_border_radius %>
+          <%= o.number_field :quick_view_low_border_radius, class: 'form-control' %>
         </div>
       </div>
 
       <div class="well">
         <div class="form-group">
-
-          <%= o.label :button_2_text %>
-          <%= o.text_field :button_2_text, class: 'form-control' %>
-
-          <%= o.label :button_2_color %>
-          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_2_color %>" data-color="13">
-          <%= o.hidden_field :button_2_color, class: 'form-control color-13' %>
-          
-          <%= o.label :button_2_font_size %>
-          <%= o.number_field :button_2_font_size, class: 'form-control' %>
-
-          <%= o.label :button_2_background_color %>
-          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_2_background_color %>" data-color="14">
-          <%= o.hidden_field :button_2_background_color, class: 'form-control color_picker color-14' %>
-
-          <%= o.label :button_2_padding %>
-          <%= o.text_field :button_2_padding, class: 'form-control' %>
-
-          <%= o.label :button_2_border %>
-          <input type="text" class="gform-control color_picker_visable" value="<%= @option.button_2_border %>" data-color="15">
-          <%= o.hidden_field :button_2_border, class: 'form-control color_picker color-15' %>
-
-          <%= o.label :button_2_border_radius %>
-          <%= o.number_field :button_2_border_radius, class: 'form-control' %>
+          <%= o.label :custom_css %>
+          <%= o.text_area :custom_css, class: 'form-control' %>
         </div>
       </div>
-<% end %>
 
       <div class="form-group">
         <%= o.submit class: "btn btn-primary" %>
