@@ -332,7 +332,7 @@
           <%= o.number_field :cart_checkout_border_radius, class: 'form-control' %>
 
           <%= o.label :cart_low_enable %>
-          <%= o.text_field :cart_low_enable, class: 'form-control' %>
+          <%= o.check_box :cart_low_enable, class: 'form-control' %>
 
           <%= o.label :cart_low_warning %>
           <%= o.select :cart_low_warning, header_low_warning_options, selected: @option.cart_low_warning %>

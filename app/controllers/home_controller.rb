@@ -41,13 +41,29 @@ class HomeController < AuthenticatedController
 
   private
 
-		def option_params
-			params.require(:option).permit(:enable, :custom_css, :timer_label_text, :timer_warning_message, :timer_expired_message, :description,
-                                     :header_color, :header_font_size, :header_border_color, :header_background_color, :header_border_radius, :header_padding, :header_margin,
-                                     :quick_view_color, :quick_view_font_size, :quick_view_border_color, :quick_view_background_color, :quick_view_border_radius, :quick_view_padding, :quick_view_margin,
-                                     :message_color, :message_font_size, :message_border_color, :message_background_color, :message_border_radius, :message_padding, :message_margin,
-                                     :button_1_text, :button_1_color, :button_1_font_size, :button_1_background_color, :button_1_padding, :button_1_border, :button_1_border_radius,
-                                     :button_2_text, :button_2_color, :button_2_font_size, :button_2_background_color, :button_2_padding, :button_2_border, :button_2_border_radius )
-		end
+    def option_params
+      params.require(:option).permit(:options,:enable_app,:starting_time,:timer_format,:product_rule,
+                                     :float_enable,:float_text,:float_position,:float_bg_color,:float_text_color,:float_timer_color,:float_border,:float_border_radius,:float_font_size,:float_timer_size,
+                                     :low_time_enable,:low_time_location,:low_time_warning,:low_time_warning_2,:low_time_text,:low_time_bar_bg_color,:low_time_bar_text_color,:low_time_bar_timer_color,
+                                     :low_time_bar_border,:low_time_bar_border_radius,:low_time_bar_font_size,:low_time_bar_timer_size,:low_time_view_cart_bg_color,:low_time_view_cart_text_color,
+                                     :low_time_view_cart_border,:low_time_view_cart_border_radius,:low_time_checkout_bg_color,:low_time_checkout_text_color,:low_time_checkout_border,:low_time_checkout_border_radius,
+                                     :header_enable,:header_display,:header_low_enable,:header_low_warning,:header_low_animation,
+                                     :header_display1_text_color,:header_display1_font_size,:header_display1_padding,:header_display1_margin,:header_display1_low_text_color,
+                                     :header_display2_text_color,:header_display2_icon_color,:header_display2_font_size,:header_display2_padding,:header_display2_margin,:header_display2_low_text_color,:header_display2_low_icon_color,
+                                     :header_display3_text_color,:header_display3_icon_color,:header_display3_bg_color,:header_display3_border,:header_display3_border_radius,:header_display3_font_size,:header_display3_padding,:header_display3_margin,
+                                     :header_display3_low_text_color,:header_display3_low_icon_color,:header_display3_low_bg_color,:header_display3_low_border,:header_display3_low_border_radius,
+                                     :header_display4_text_color,:header_display4_icon_color,:header_display4_bg_color,:header_display4_border,:header_display4_border_radius,:header_display4_font_size,:header_display4_padding,:header_display4_margin,
+                                     :header_display4_low_text_color,:header_display4_low_icon_color,:header_display4_low_bg_color,:header_display4_low_border,:header_display4_low_border_radius,
+                                     :cart_enable,:cart_text,:cart_low_enable,:cart_low_warning,
+                                     :cart_bar_bg_color,:cart_bar_text_color,:cart_bar_timer_color,:cart_bar_border,:cart_bar_border_radius,:cart_bar_font_size,:cart_bar_timer_size,:cart_bar_padding,:cart_bar_margin,
+                                     :cart_continue_bg_color,:cart_continue_text_color,:cart_continue_border,:cart_continue_border_radius,
+                                     :cart_checkout_bg_color,:cart_checkout_text_color,:cart_checkout_border,:cart_checkout_border_radius,
+                                     :cart_bar_low_bg_color,:cart_bar_low_text_color,:cart_bar_low_timer_color,:cart_bar_low_border,:cart_bar_low_border_radius,
+                                     :cart_continue_low_bg_color,:cart_continue_low_text_color,:cart_continue_low_border,:cart_continue_low_border_radius,
+                                     :cart_checkout_low_bg_color,:cart_checkout_low_text_color,:cart_checkout_low_border,:cart_checkout_low_border_radius,
+                                     :quick_view_enable,:quick_view_text,
+                                     :quick_view_background_color,:quick_view_text_color,:quick_view_timer_color,:quick_view_border,:quick_view_border_radius,:quick_view_font_size,:quick_view_timer_size,:quick_view_padding,:quick_view_margin,
+                                     :quick_view_low_enable,:quick_view_low_warning,:quick_view_low_background_color,:quick_view_low_text_color,:quick_view_low_timer_color,:quick_view_low_border,:quick_view_low_border_radius,:custom_css)
+    end
 
 end

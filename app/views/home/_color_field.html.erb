@@ -1,4 +1,4 @@
 <% option_string = option_value.to_s %>
 <%= o.label option_value %>
-<input type="text" class="gform-control color_picker_visable" value="<%= :option_value %>" data-color="<%= option_string %>">
+<input type="text" class="gform-control color_picker_visable" value="<%= @option[option_value] %>" data-color="<%= option_string %>">
 <%= o.hidden_field option_value, class: 'form-control color_picker color-' + option_string %>

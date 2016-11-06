@@ -28,19 +28,23 @@ var ready = function() {
 				condition = $this.data('condition'),
 				scope = $this.data('scope');
 
-				if (scope) {
-					$('.conditional-receive[data-scope="' + scope + '"]').hide();
-					$('.conditional-receive[data-condition="' + condition + '"]').show();
-				} else if($this.is('select')) {
-					var value = $this.val(),
-							option = $this.find('option[value="' + value + '"]'),
-							action = option.data('action');
-							if (action === 'show') $('.conditional-receive[data-condition="' + condition + '"]').show();
-							if (action === 'hide') $('.conditional-receive[data-condition="' + condition + '"]').hide();
-				} else {
+		if (scope) {
 
-				}
+			$('.conditional-receive[data-scope="' + scope + '"]').hide();
+			$('.conditional-receive[data-condition="' + condition + '"]').show();
 
+		} else if($this.is('select')) {
+			
+			var value = $this.val(),
+					option = $this.find('option[value="' + value + '"]'),
+					action = option.data('action');
+
+			if (action === 'show') $('.conditional-receive[data-condition="' + condition + '"]').show();
+			if (action === 'hide') $('.conditional-receive[data-condition="' + condition + '"]').hide();
+
+		} else {
+
+		}
 	}
 
 	$('select.conditional-send, input.conditional-send').change(conditionalLogic);
