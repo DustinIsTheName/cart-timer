@@ -56,12 +56,12 @@
 
       <div class="well">
         <div class="tabs">
-          <div class="col-md-6">
-            <%= o.check_box :float_enable, class: 'conditional-send', data: {condition: 'float_setting', scope: 'float_low_settings'} %>
+          <div class="col-md-6 conditional-send" data-condition="float_setting" data-scope="float_low_settings">
+            <%= o.check_box :float_enable %>
             <%= o.label :float_enable %>
           </div>
-          <div class="col-md-6">
-            <%= o.check_box :low_time_enable, class: 'conditional-send', data: {condition: 'low_time_setting', scope: 'float_low_settings'} %>
+          <div class="col-md-6 conditional-send" data-condition="low_time_setting" data-scope="float_low_settings">
+            <%= o.check_box :low_time_enable %>
             <%= o.label :low_time_enable %>
           </div>
         </div>
