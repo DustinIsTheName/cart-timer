@@ -26,4 +26,8 @@ module HomeHelper
   def margin_padding_field(o, option)
     render partial: 'margin_padding_fields', locals: {o: o, option_value: option}
   end
+
+  def header_display_none?(value)
+    unless @option.header_display == value; ' style=display:none;'; end
+  end
 end

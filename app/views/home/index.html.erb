@@ -171,13 +171,15 @@
       <div class="well">
         <div class="form-group">
 
-          <%= o.radio_button :header_display, "text", class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_text'} %>
+          <h4><%= @option.header_display %></h4>
+
+          <%= o.radio_button :header_display, 1, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_text'}, :checked => 1 == @option.header_display %>
           <%= o.label :header_display_text, "Text Only" %>
-          <%= o.radio_button :header_display, "text_icon", class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_text_icon'} %>
+          <%= o.radio_button :header_display, 2, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_text_icon'}, :checked => 2 == @option.header_display %>
           <%= o.label :header_display_text_icon, "Text w/ Icon" %>
-          <%= o.radio_button :header_display, "border_box", class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_border_box'} %>
+          <%= o.radio_button :header_display, 3, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_border_box'}, :checked => 3 == @option.header_display %>
           <%= o.label :header_display_border_box, "Border Box" %>
-          <%= o.radio_button :header_display, "solid_box", class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_solid_box'} %>
+          <%= o.radio_button :header_display, 4, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_solid_box'}, :checked => 4 == @option.header_display %>
           <%= o.label :header_display_solid_box, "Solid Box" %>
 
           <%= o.label :header_low_enable, 'Change styles when timer is low' %>
@@ -189,7 +191,7 @@
           <%= o.label :header_low_animation %>
           <%= o.select :header_low_animation, header_low_animation_options, selected: @option.header_low_animation %>
 
-          <div class="conditional-receive" data-condition="header_display_text" data-scope="header_display">
+          <div class="conditional-receive" data-condition="header_display_text" data-scope="header_display"<%= header_display_none?(1) %>>
             <%= color_field o, :header_display1_text_color %>
 
             <%= o.label :header_display1_font_size %>
@@ -201,7 +203,7 @@
             <%= color_field o, :header_display1_low_text_color %>
           </div>
 
-          <div class="conditional-receive" data-condition="header_display_text_icon" data-scope="header_display">
+          <div class="conditional-receive" data-condition="header_display_text_icon" data-scope="header_display"<%= header_display_none?(2) %>>
 
             <%= color_field o, :header_display2_text_color %>
             <%= color_field o, :header_display2_icon_color %>
@@ -217,7 +219,7 @@
 
           </div>
 
-          <div class="conditional-receive" data-condition="header_display_border_box" data-scope="header_display">
+          <div class="conditional-receive" data-condition="header_display_border_box" data-scope="header_display"<%= header_display_none?(3) %>>
 
             <%= color_field o, :header_display3_text_color %>
             <%= color_field o, :header_display3_icon_color %>
@@ -249,7 +251,7 @@
 
           </div>
 
-          <div class="conditional-receive" data-condition="header_display_solid_box" data-scope="header_display">
+          <div class="conditional-receive" data-condition="header_display_solid_box" data-scope="header_display"<%= header_display_none?(4) %>>
 
             <%= color_field o, :header_display4_text_color %>
             <%= color_field o, :header_display4_icon_color %>
@@ -399,8 +401,8 @@
           <%= margin_padding_field o, :quick_view_padding %>
           <%= margin_padding_field o, :quick_view_margin %>
 
-          <%= o.label :quick_view_enable %>
-          <%= o.check_box :quick_view_enable, class: 'form-control' %>
+          <%= o.label :quick_view_low_enable %>
+          <%= o.check_box :quick_view_low_enable, class: 'form-control' %>
 
           <%= o.label :quick_view_low_warning %>
           <%= o.select :quick_view_low_warning, header_low_warning_options, selected: @option.cart_low_warning %>
