@@ -181,13 +181,18 @@
             },
             custom_css: "<%= @option.custom_css.gsub(/(?:\n\r?|\r\n?)/, '') %>"            
 		},
-		appCSS = options.custom_css;
+		customCSS = options.custom_css;
         console.log(options);
 
 		if (options.enable_app) {
 			
             function addMinutes(date, minutes) {
                 return new Date(date.getTime() + minutes*60000);
+            }
+
+            function LeadingZero(num) {
+                var s = "0" + num;
+                return s.substr(s.length-2);
             }
 
             function getTimeRemaining(endtime){
@@ -205,9 +210,37 @@
               };
             }
 
-            var expires = addMinutes(new Date(), 5);
+            function initializeClock(id, endtime) {
+              var clock = document.querySelector(id);
+              function updateClock() {
+                var t = getTimeRemaining(endtime);
+                clock.innerHTML = t.minutes + ':' + LeadingZero(t.seconds);
 
-			$('body').append('<style>'+appCSS+'</style>');
+                if (t.total <= 0) {
+                  clearInterval(timeinterval);
+                }
+              }
+
+              updateClock();
+              var timeinterval = setInterval(updateClock,1000);
+            }
+
+            var expires = addMinutes(new Date(), 5); // PLACEHOLDER!!!!!!!!
+            
+
+            if (options.float_settings.float_enable) {
+                var floatTimer = $('<div class="wittyCartTimer">');
+                floatTimer.append('<a href="#" class="close">X</a>');
+                floatTimer.append('<div class="timer_message">' + options.float_settings.float_text + '</div>');
+                floatTimer.append('<div class="wittyCountDownTimer"></div>');
+                $('body').append(floatTimer);
+
+                // options.float_position
+            }
+
+            initializeClock('.wittyCountDownTimer', expires);
+
+			$('body').append('<style>'+customCSS+'</style>');
 		}
 
 	};

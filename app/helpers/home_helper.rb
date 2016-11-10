@@ -23,6 +23,10 @@ module HomeHelper
     render partial: 'color_field', locals: {o: o, option_value: option}
   end
 
+  def pixel_field(o, option)
+    render partial: 'number_field', locals: {o: o, option_value: option}
+  end
+
   def margin_padding_field(o, option)
     render partial: 'margin_padding_fields', locals: {o: o, option_value: option}
   end

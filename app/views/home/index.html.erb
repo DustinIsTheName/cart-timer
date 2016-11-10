@@ -90,8 +90,7 @@
           <%= color_field o, :float_border %>
           <!-- ENDBORDER -->
 
-          <%= o.label :float_border_radius %>
-          <%= o.number_field :float_border_radius %>
+          <%= pixel_field o, :float_border_radius %>
 
           <%= o.label :float_font_size %>
           <%= o.number_field :float_font_size %>
@@ -170,8 +169,6 @@
       <%= o.check_box :header_enable, class: 'form-control' %>
       <div class="well">
         <div class="form-group">
-
-          <h4><%= @option.header_display %></h4>
 
           <%= o.radio_button :header_display, 1, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_text'}, :checked => 1 == @option.header_display %>
           <%= o.label :header_display_text, "Text Only" %>
