@@ -92,11 +92,10 @@
 
           <%= pixel_field o, :float_border_radius %>
 
-          <%= o.label :float_font_size %>
-          <%= o.number_field :float_font_size %>
+          <%= pixel_field o, :float_font_size %>
 
-          <%= o.label :float_timer_size %>
-          <%= o.number_field :float_timer_size %>
+          <%= pixel_field o, :float_timer_size %>
+
         </div>
       </div>
 
@@ -134,14 +133,11 @@
           <%= color_field o, :low_time_bar_border %>
           <!-- ENDBORDER -->
 
-          <%= o.label :low_time_bar_border_radius %>
-          <%= o.number_field :low_time_bar_border_radius %>
+          <%= pixel_field o, :low_time_bar_border_radius %>
 
-          <%= o.label :low_time_bar_font_size %>
-          <%= o.number_field :low_time_bar_font_size %>
+          <%= pixel_field o, :low_time_bar_font_size %>
 
-          <%= o.label :low_time_bar_timer_size %>
-          <%= o.number_field :low_time_bar_timer_size %>
+          <%= pixel_field o, :low_time_bar_timer_size %>
 
           <%= color_field o, :low_time_view_cart_bg_color %>
           <%= color_field o, :low_time_view_cart_text_color %>
@@ -150,8 +146,7 @@
           <%= color_field o, :low_time_view_cart_border %>
           <!-- ENDBORDER -->
 
-          <%= o.label :low_time_view_cart_border_radius %>
-          <%= o.number_field :low_time_view_cart_border_radius %>
+          <%= pixel_field o, :low_time_view_cart_border_radius %>
 
           <%= color_field o, :low_time_checkout_bg_color %>
           <%= color_field o, :low_time_checkout_text_color %>
@@ -160,8 +155,7 @@
           <%= color_field o, :low_time_checkout_border %>
           <!-- ENDBORDER -->
 
-          <%= o.label :low_time_checkout_border_radius %>
-          <%= o.number_field :low_time_checkout_border_radius %>
+          <%= pixel_field o, :low_time_checkout_border_radius %>
         </div>
       </div>
 
@@ -191,8 +185,7 @@
           <div class="conditional-receive" data-condition="header_display_text" data-scope="header_display"<%= header_display_none?(1) %>>
             <%= color_field o, :header_display1_text_color %>
 
-            <%= o.label :header_display1_font_size %>
-            <%= o.number_field :header_display1_font_size, class: 'form-control' %>
+            <%= pixel_field o, :header_display1_font_size %>
           
             <%= margin_padding_field o, :header_display1_padding %>
             <%= margin_padding_field o, :header_display1_margin %>
@@ -205,8 +198,7 @@
             <%= color_field o, :header_display2_text_color %>
             <%= color_field o, :header_display2_icon_color %>
 
-            <%= o.label :header_display2_font_size %>
-            <%= o.number_field :header_display2_font_size, class: 'form-control' %>
+            <%= pixel_field o, :header_display2_font_size %>
 
             <%= margin_padding_field o, :header_display2_padding %>
             <%= margin_padding_field o, :header_display2_margin %>
@@ -226,11 +218,9 @@
             <%= color_field o, :header_display3_border %>
             <!-- ENDBORDER -->
 
-            <%= o.label :header_display3_border_radius %>
-            <%= o.number_field :header_display3_border_radius %>
+            <%= pixel_field o, :header_display3_border_radius %>
 
-            <%= o.label :header_display3_font_size %>
-            <%= o.number_field :header_display3_font_size %>
+            <%= pixel_field o, :header_display3_font_size %>
 
             <%= margin_padding_field o, :header_display3_padding %>
             <%= margin_padding_field o, :header_display3_margin %>
@@ -243,8 +233,7 @@
             <%= color_field o, :header_display3_low_border %>
             <!-- ENDBORDER -->
 
-            <%= o.label :header_display3_low_border_radius %>
-            <%= o.number_field :header_display3_low_border_radius %>
+            <%= pixel_field o, :header_display3_low_border_radius %>
 
           </div>
 
@@ -258,11 +247,9 @@
             <%= color_field o, :header_display4_border %>
             <!-- ENDBORDER -->
 
-            <%= o.label :header_display4_border_radius %>
-            <%= o.number_field :header_display4_border_radius %>
+            <%= pixel_field o, :header_display4_border_radius %>
 
-            <%= o.label :header_display4_font_size %>
-            <%= o.number_field :header_display4_font_size %>
+            <%= pixel_field o, :header_display4_font_size %>
 
             <%= margin_padding_field o, :header_display4_padding %>
             <%= margin_padding_field o, :header_display4_margin %>
@@ -275,8 +262,7 @@
             <%= color_field o, :header_display4_low_border %>
             <!-- ENDBORDER -->
 
-            <%= o.label :header_display4_low_border_radius %>
-            <%= o.number_field :header_display4_low_border_radius %>
+            <%= pixel_field o, :header_display4_low_border_radius %>
 
           </div>
         </div>
@@ -298,14 +284,11 @@
           <%= color_field o, :cart_bar_border %>
           <!-- ENDBORDER -->
 
-          <%= o.label :cart_bar_border_radius %>
-          <%= o.number_field :cart_bar_border_radius, class: 'form-control' %>
+          <%= pixel_field o, :cart_bar_border_radius %>
 
-          <%= o.label :cart_bar_font_size %>
-          <%= o.number_field :cart_bar_font_size, class: 'form-control' %>
+          <%= pixel_field o, :cart_bar_font_size %>
 
-          <%= o.label :cart_bar_timer_size %>
-          <%= o.number_field :cart_bar_timer_size, class: 'form-control' %>
+          <%= pixel_field o, :cart_bar_timer_size %>
 
           <%= margin_padding_field o, :cart_bar_padding %>
           <%= margin_padding_field o, :cart_bar_margin %>
@@ -317,8 +300,7 @@
           <%= color_field o, :cart_continue_border %>
           <!-- ENDBORDER -->
 
-          <%= o.label :cart_continue_border_radius %>
-          <%= o.number_field :cart_continue_border_radius, class: 'form-control' %>
+          <%= pixel_field o, :cart_continue_border_radius %>
 
           <%= color_field o, :cart_checkout_bg_color %>
           <%= color_field o, :cart_checkout_text_color %>
@@ -327,8 +309,7 @@
           <%= color_field o, :cart_checkout_border %>
           <!-- ENDBORDER -->
 
-          <%= o.label :cart_checkout_border_radius %>
-          <%= o.number_field :cart_checkout_border_radius, class: 'form-control' %>
+          <%= pixel_field o, :cart_checkout_border_radius %>
 
           <%= o.label :cart_low_enable %>
           <%= o.check_box :cart_low_enable, class: 'form-control' %>
@@ -344,8 +325,7 @@
           <%= color_field o, :cart_bar_low_border %>
           <!-- ENDBORDER -->
 
-          <%= o.label :cart_bar_low_border_radius %>
-          <%= o.number_field :cart_bar_low_border_radius, class: 'form-control' %>
+          <%= pixel_field o, :cart_bar_low_border_radius %>
 
           <%= color_field o, :cart_continue_low_bg_color %>
           <%= color_field o, :cart_continue_low_text_color %>
@@ -354,8 +334,7 @@
           <%= color_field o, :cart_continue_low_border %>
           <!-- ENDBORDER -->
 
-          <%= o.label :cart_continue_low_border_radius %>
-          <%= o.number_field :cart_continue_low_border_radius, class: 'form-control' %>
+          <%= pixel_field o, :cart_continue_low_border_radius %>
 
           <%= color_field o, :cart_checkout_low_bg_color %>
           <%= color_field o, :cart_checkout_low_text_color %>
@@ -364,8 +343,7 @@
           <%= color_field o, :cart_checkout_low_border %>
           <!-- ENDBORDER -->
 
-          <%= o.label :cart_checkout_low_border_radius %>
-          <%= o.number_field :cart_checkout_low_border_radius, class: 'form-control' %>
+          <%= pixel_field o, :cart_checkout_low_border_radius %>
 
         </div>
       </div>
@@ -386,14 +364,11 @@
           <%= color_field o, :quick_view_border %>
           <!-- ENDBORDER -->
           
-          <%= o.label :quick_view_border_radius %>
-          <%= o.number_field :quick_view_border_radius, class: 'form-control' %>
+          <%= pixel_field o, :quick_view_border_radius %>
 
-          <%= o.label :quick_view_font_size %>
-          <%= o.number_field :quick_view_font_size, class: 'form-control' %>
+          <%= pixel_field o, :quick_view_font_size %>
 
-          <%= o.label :quick_view_timer_size %>
-          <%= o.number_field :quick_view_timer_size, class: 'form-control' %>
+          <%= pixel_field o, :quick_view_timer_size %>
 
           <%= margin_padding_field o, :quick_view_padding %>
           <%= margin_padding_field o, :quick_view_margin %>
@@ -412,8 +387,7 @@
           <%= color_field o, :quick_view_low_border %>
           <!-- ENDBORDER -->
 
-          <%= o.label :quick_view_low_border_radius %>
-          <%= o.number_field :quick_view_low_border_radius, class: 'form-control' %>
+          <%= pixel_field o, :quick_view_low_border_radius %>
         </div>
       </div>
 

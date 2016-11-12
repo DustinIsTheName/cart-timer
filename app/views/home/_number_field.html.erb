@@ -1,5 +1,12 @@
 <div class="number-field">
-  <%= o.label option_value %>
-  <%= o.number_field option_value %>
-  <div class="px">px</div>
+	<% option_string = option_value.to_s %>
+	<% unless option_string.include? 'border_radius' %>
+	  <%= o.label option_value %>
+	  <%= o.number_field option_value %>
+	  <div class="px">px</div>
+	<% else %>
+	  <%= o.number_field option_value %>
+	  <div class="px">px</div>
+	  <label class="below">Border Radius</label>
+  <% end %>
 </div>
