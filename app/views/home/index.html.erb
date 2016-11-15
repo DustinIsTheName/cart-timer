@@ -73,12 +73,23 @@
           <%= o.text_field :float_text, class: 'form-control' %>
 
           <!-- BEGIN Float Position dynamic fields -->
+          <% float_position_stats = float_position_inputs(@option.float_position) %>
           <%= o.label :float_position, 'Position' %>
-          <select class="form-control">
-            <%= options_for_select(float_position_options) %>
+          <select class="form-control float-position-select">
+            <%= options_for_select(float_position_options, selected: float_position_stats[:position]) %>
           </select>
-          <input type="number" class="form-control dynamic-send" data-option="float_position">
-          <input type="number" class="form-control dynamic-send" data-option="float_position">
+
+          <div class="number-field float-number-first">
+            <input type="number" class="form-control dynamic-send" data-option="float_position" value="<%= float_position_stats[:first] %>">
+            <div class="px">px</div>
+            <label class="below"><%= float_position_stats[:position].split('')[0] == 't' ? 'top' : 'bottom' %></label>
+          </div>
+
+          <div class="number-field float-number-last">
+            <input type="number" class="form-control dynamic-send" data-option="float_position" value="<%= float_position_stats[:last] %>">
+            <div class="px">px</div>
+            <label class="below"><%= float_position_stats[:position].split('')[1] == 'r' ? 'right' : 'left' %></label>
+          </div>
           <%= o.hidden_field :float_position, class: 'form-control dynamic-receive', data: {option: 'float_position'} %>
           <!-- Float Position dynamic fields END -->
 

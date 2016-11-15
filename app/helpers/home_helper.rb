@@ -34,4 +34,34 @@ module HomeHelper
   def header_display_none?(value)
     unless @option.header_display == value; ' style=display:none;'; end
   end
+
+  def float_position_inputs(value)
+    values = value.split(' ').map{ |i| i.gsub(';', '').gsub('px', '').gsub(/^[a-z]*:/, '') }
+    position = []
+
+    position[0] = 'b' if values[0] == 'auto'
+    position[1] = 'l' if values[1] == 'auto'
+    position[0] = 't' if values[2] == 'auto'
+    position[1] = 'r' if values[3] == 'auto'
+
+    if values[0] == 'auto'
+      first = values[2]
+    else
+      first = values[0]
+    end
+
+    if values[1] == 'auto'
+      last = values[3]
+    else
+      last = values[1]
+    end
+
+    position = position.join('')
+
+    {
+      position: position,
+      first: first,
+      last: last
+    }
+  end
 end

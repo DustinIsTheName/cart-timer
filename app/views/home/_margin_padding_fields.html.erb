@@ -1,15 +1,20 @@
 <% positions = ['top', 'right', 'bottom', 'left'] %>
+<% position_values = @option[option_value].split(' ') %>
 <% option_string = option_value.to_s %>
+
+<div class="margin-padding-container">
 <% if option_string.include? 'padding' %>
-<%= label_tag '', 'Padding' %>
+	<%= label_tag '', 'Padding' %>
 <% else %>
-<%= label_tag '', 'Margin' %>
+	<%= label_tag '', 'Margin' %>
 <% end %>
 <% for i in (0..3) %>
-<div class="number-field">
-	<input id="<%= option_string + '_' + positions[i] %>" type="number" class="dynamic-send margin_padding" data-option="<%= option_string %>" data-margin-padding="<%= i %>">
-	<div class="px">px</div>
-	<label for="<%= option_string + '_' + positions[i] %>" class="below"><%= positions[i] %></label>
-</div>
+	<% position_values[i] ||= '0' %>
+	<div class="number-field">
+		<input id="<%= option_string + '_' + positions[i] %>" type="number" value="<%= position_values[i].gsub('px', '') %>" class="dynamic-send margin_padding" data-option="<%= option_string %>" data-margin-padding="<%= i %>">
+		<div class="px">px</div>
+		<label for="<%= option_string + '_' + positions[i] %>" class="below"><%= positions[i] %></label>
+	</div>
 <% end %>
 <%= o.hidden_field option_value, class: 'form-control dynamic-receive', data: {option: option_string} %>
+</div>

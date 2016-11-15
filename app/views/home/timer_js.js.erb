@@ -229,13 +229,24 @@
             
 
             if (options.float_settings.float_enable) {
-                var floatTimer = $('<div class="wittyCartTimer">');
+                var floatCSS = '',
+                f = options.float_settings,
+                floatTimer = $('<div class="wittyCartTimer">');
                 floatTimer.append('<a href="#" class="close">X</a>');
                 floatTimer.append('<div class="timer_message">' + options.float_settings.float_text + '</div>');
                 floatTimer.append('<div class="wittyCountDownTimer"></div>');
                 $('body').append(floatTimer);
 
-                // options.float_position
+                floatCSS += '.wittyCartTimer{position:fixed;'+f.float_position;
+                floatCSS += 'background:'+f.float_bg_color+';';
+                floatCSS += 'color:'+f.float_text_color+';';
+                floatCSS += 'border: 1px solid '+f.float_border+';';
+                floatCSS += 'border-radius'+f.float_border_radius+'px;';
+                floatCSS += 'font-size:'+f.float_font_size+'px;}';
+                floatCSS += '.wittyCountDownTimer{color:'+f.float_timer_color+';';
+                floatCSS += 'font-size:'+f.float_timer_size+';}';
+
+                customCSS = floatCSS + customCSS;
             }
 
             initializeClock('.wittyCountDownTimer', expires);
