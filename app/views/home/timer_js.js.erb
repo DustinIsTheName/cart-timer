@@ -190,11 +190,13 @@
                 return new Date(date.getTime() + minutes*60000);
             }
 
+            // adds a leading zero to a one diget number
             function LeadingZero(num) {
                 var s = "0" + num;
                 return s.substr(s.length-2);
             }
 
+            // returns time in day, hour, minute, and second increments
             function getTimeRemaining(endtime){
               var t = Date.parse(endtime) - Date.parse(new Date());
               var seconds = Math.floor( (t/1000) % 60 );
@@ -210,8 +212,9 @@
               };
             }
 
-            function initializeClock(id, endtime) {
-              var clock = document.querySelector(id);
+            // sets timer based on passed timestamp
+            function initializeClock(query, endtime) {
+              var clock = document.querySelector(query);
               function updateClock() {
                 var t = getTimeRemaining(endtime);
                 clock.innerHTML = t.minutes + ':' + LeadingZero(t.seconds);
@@ -227,35 +230,38 @@
 
             var expires = addMinutes(new Date(), 5); // PLACEHOLDER!!!!!!!!
             
-
+            // creates a fixed timer element if enabled
             if (options.float_settings.float_enable) {
                 var floatCSS = '',
                 f = options.float_settings,
-                floatTimer = $('<div class="wittyCartTimer">');
+                floatTimer = $('<div class="wittyCartFloatTimer">');
                 floatTimer.append('<a href="#" class="close">X</a>');
                 floatTimer.append('<div class="timer_message">' + options.float_settings.float_text + '</div>');
                 floatTimer.append('<div class="wittyCountDownTimer"></div>');
                 $('body').append(floatTimer);
 
-                floatCSS += '.wittyCartTimer{position:fixed;'+f.float_position;
+                floatCSS += '.wittyCartFloatTimer{position:fixed;'+f.float_position;
                 floatCSS += 'background:'+f.float_bg_color+';';
                 floatCSS += 'color:'+f.float_text_color+';';
                 floatCSS += 'border: 1px solid '+f.float_border+';';
-                floatCSS += 'border-radius'+f.float_border_radius+'px;';
+                floatCSS += 'border-radius:'+f.float_border_radius+'px;';
                 floatCSS += 'font-size:'+f.float_font_size+'px;}';
                 floatCSS += '.wittyCountDownTimer{color:'+f.float_timer_color+';';
-                floatCSS += 'font-size:'+f.float_timer_size+';}';
+                floatCSS += 'font-size:'+f.float_timer_size+'px;}';
 
                 customCSS = floatCSS + customCSS;
-            }
+            } // end ENABLE FLOATING TIMER
 
             initializeClock('.wittyCountDownTimer', expires);
 
+            customCSS = '<%= CartTimer::Application.assets["timer_js.css"].to_s.gsub(/\n/, '').html_safe %>' + customCSS;
+
 			$('body').append('<style>'+customCSS+'</style>');
-		}
+		} // end ENABLE APP 
 
-	};
+	}; // myAppJavaScript() ends here; ALL CUSTOM JS IS TO BE WITHIN THIS FUNCTION!
 
+    // checks for jquery, loads it if undefined.
 	if ((typeof jQuery === 'undefined') || (parseFloat(jQuery.fn.jquery) < 1.7)) {
 	  loadScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function(){
 	    jQuery191 = jQuery.noConflict(true);
