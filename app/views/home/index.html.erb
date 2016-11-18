@@ -23,7 +23,7 @@
           <% default_value = select_default(@option.starting_time, [180, 300, 600]) %>
           <%= o.label :starting_time %>
 
-          <select class="form-control dynamic-send conditional-send" data-condition="starting_time" data-option="starting_time">
+          <select class="dynamic-send conditional-send" data-condition="starting_time" data-option="starting_time">
             <%= options_for_select(data_action_map(starting_time_options), selected: default_value) %>
           </select>
 
@@ -35,17 +35,17 @@
           <!-- Starting Time dynamic fields END -->
           
           <%= o.label :timer_format %>
-          <%= o.select :timer_format, timer_format_options, class: 'form-control' %>
+          <%= o.select :timer_format, timer_format_options %>
 
           <!-- BEGIN Product Rule dynamic fields -->
           <% default_value = select_default(@option.product_rule, ['none', 'reset']) %>
           <%= o.label :product_rule %>
 
-          <select class="form-control dynamic-send conditional-send" data-condition="product_rule" data-option="product_rule">
+          <select class="dynamic-send conditional-send" data-condition="product_rule" data-option="product_rule">
             <%= options_for_select(data_action_map(product_rule_options), selected: default_value) %>
           </select>
 
-          <select class="form-control dynamic-send conditional-receive" data-condition="product_rule" data-option="product_rule"<%= display_none?(default_value) %>>
+          <select class="dynamic-send conditional-receive" data-condition="product_rule" data-option="product_rule"<%= display_none?(default_value) %>>
             <%= options_for_select(product_rule_more_time_options, selected: @option.product_rule) %>
           </select>
 
@@ -75,7 +75,7 @@
           <!-- BEGIN Float Position dynamic fields -->
           <% float_position_stats = float_position_inputs(@option.float_position) %>
           <%= o.label :float_position, 'Position' %>
-          <select class="form-control float-position-select">
+          <select class="float-position-select">
             <%= options_for_select(float_position_options, selected: float_position_stats[:position]) %>
           </select>
 
@@ -117,11 +117,11 @@
           <% default_value = select_default(@option.low_time_location, ['modal']) %>
           <%= o.label :low_time_location %>
 
-          <select class="form-control dynamic-send conditional-send" data-option="low_time_location", data-condition="low_time_location">
+          <select class="dynamic-send conditional-send" data-option="low_time_location", data-condition="low_time_location">
             <%= options_for_select(data_action_map(low_time_location_options), selected: default_value) %>
           </select>
 
-          <select class="form-control dynamic-send conditional-receive" data-option="low_time_location", data-condition="low_time_location"<%= display_none?(default_value) %>>
+          <select class="dynamic-send conditional-receive" data-option="low_time_location", data-condition="low_time_location"<%= display_none?(default_value) %>>
             <%= options_for_select(low_time_location_bar_options, selected: @option.low_time_location) %>
           </select>
           <%= o.hidden_field :low_time_location, class: 'form-control dynamic-receive', data: {option: 'low_time_location'} %>
@@ -170,19 +170,22 @@
         </div>
       </div>
 
-      <%= o.label :header_enable %>
-      <%= o.check_box :header_enable, class: 'form-control' %>
+      <div class="form-group">
+        <%= o.label :header_enable %>
+        <%= o.check_box :header_enable, class: 'form-control' %>
+      </div>
+
       <div class="well">
         <div class="form-group">
 
           <%= o.radio_button :header_display, 1, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_text'}, :checked => 1 == @option.header_display %>
-          <%= o.label :header_display_text, "Text Only" %>
+          <%= o.label :header_display_1, "Text Only" %>
           <%= o.radio_button :header_display, 2, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_text_icon'}, :checked => 2 == @option.header_display %>
-          <%= o.label :header_display_text_icon, "Text w/ Icon" %>
+          <%= o.label :header_display_2, "Text w/ Icon" %>
           <%= o.radio_button :header_display, 3, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_border_box'}, :checked => 3 == @option.header_display %>
-          <%= o.label :header_display_border_box, "Border Box" %>
+          <%= o.label :header_display_3, "Border Box" %>
           <%= o.radio_button :header_display, 4, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_solid_box'}, :checked => 4 == @option.header_display %>
-          <%= o.label :header_display_solid_box, "Solid Box" %>
+          <%= o.label :header_display_4, "Solid Box" %>
 
           <%= o.label :header_low_enable, 'Change styles when timer is low' %>
           <%= o.check_box :header_low_enable %>
@@ -279,8 +282,11 @@
         </div>
       </div>
 
-      <%= o.label :cart_enable %>
-      <%= o.check_box :cart_enable, class: 'form-control' %>
+      <div class="form-group">
+        <%= o.label :cart_enable %>
+        <%= o.check_box :cart_enable, class: 'form-control' %>
+      </div>
+
       <div class="well">
         <div class="form-group">
 
@@ -359,8 +365,11 @@
         </div>
       </div>
 
-      <%= o.label :quick_view_enable %>
-      <%= o.check_box :quick_view_enable, class: 'form-control' %>
+      <div class="form-group">
+        <%= o.label :quick_view_enable %>
+        <%= o.check_box :quick_view_enable, class: 'form-control' %>
+      </div>
+
       <div class="well">
         <div class="form-group">
 
