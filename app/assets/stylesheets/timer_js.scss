@@ -40,6 +40,12 @@
 }
 
 #wittyCartHeaderTimer {
+  float: left;
+  line-height: 1;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  display:block;
+
   .wittyIcon {
     vertical-align: top;
   }
@@ -49,3 +55,57 @@
     margin-left: .33em;
   }
 }
+
+#wittyCartCartTimer {
+  display:block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .wittyCountDownTimerHolder {
+    align-self: stretch;
+    border-right: 1px solid #fff;
+    // padding-right: 16px;
+    display: flex;
+  }
+
+  .wittyMessage {
+    text-align: center;
+  }
+
+  .wittyCountDownTimer {
+    align-self: center;
+  }
+
+  #wittyCartpageButtons {
+    display: flex;
+
+    #wittyButtonCheckout {
+      margin-left: 10px;
+      white-space: nowrap;
+    }
+
+    #wittyButtonShopping {
+      white-space: nowrap;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

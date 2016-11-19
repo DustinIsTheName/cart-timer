@@ -309,6 +309,44 @@
                 $('#wittyCartHeaderTimer').remove();
             }
 
+            if (options.cart_settings.cart_enable) {
+                var cartCSS = '',
+                    c =  options.cart_settings,
+                    padding_array = c.cart_bar_padding.split(' ');
+
+                $('#wittyCartCartTimer .wittyMessage').html(c.cart_text);
+                cartCSS += '#wittyCartCartTimer{background:'+c.cart_bar_bg_color+';';
+                cartCSS += 'color:'+c.cart_bar_text_color+';';
+                cartCSS += 'border: 1px solid '+c.cart_bar_border+';';
+                cartCSS += 'border-radius:'+c.cart_bar_border_radius+'px;';
+                cartCSS += 'font-size:'+c.cart_bar_font_size+'px;';
+                cartCSS += 'padding:'+c.cart_bar_padding+';';
+                cartCSS += 'margin:'+c.cart_bar_margin+';}';
+                cartCSS += '#wittyCartCartTimer .wittyCountDownTimerHolder{margin-top: -'+padding_array[0]+';';
+                cartCSS += 'margin-right: '+padding_array[3]+';';
+                cartCSS += 'margin-bottom: -'+padding_array[2]+';';
+                cartCSS += 'padding-top:'+padding_array[0]+';';
+                cartCSS += 'padding-right:'+padding_array[3]+';';
+                cartCSS += 'padding-bottom:'+padding_array[2]+';}';
+                cartCSS += '#wittyCartCartTimer .wittyCountDownTimer{color:'+c.cart_bar_timer_color+';';
+                cartCSS += 'font-size:'+c.cart_bar_timer_size+'px;}';
+                cartCSS += '#wittyCartpageButtons{margin-left:'+padding_array[1]+';}';
+                cartCSS += '#wittyCartCartTimer #wittyButtonShopping{background:'+c.cart_continue_bg_color+';';
+                cartCSS += 'color:'+c.cart_continue_text_color+';';
+                cartCSS += 'border: 1px solid'+c.cart_continue_border+';';
+                cartCSS += 'border-radius:'+c.cart_continue_border_radius+'px;}';
+                cartCSS += '#wittyCartCartTimer #wittyButtonCheckout{background:'+c.cart_checkout_bg_color+';';
+                cartCSS += 'color:'+c.cart_checkout_text_color+';';
+                cartCSS += 'border: 1px solid '+c.cart_checkout_border+';';
+                cartCSS += 'border-radius:'+c.cart_checkout_border_radius+'px;';
+
+                customCSS = cartCSS + customCSS;
+
+            } else {
+                $('#wittyCartCartTimer').remove();
+
+            }
+
             initializeClock('.wittyCountDownTimer', expires);
 
             customCSS = '<%= CartTimer::Application.assets["timer_js.css"].to_s.gsub(/\n/, '').html_safe %>' + customCSS;
