@@ -1,3 +1,24 @@
+.wittyIcon {
+  display: inline-block;
+  height: 1em; /* default icon height */
+  position: relative;
+  user-select: none;
+}
+
+.wittyIcon-canvas {
+  display: block;
+  height: 100%;
+  visibility: hidden;
+}
+
+.wittyIcon svg {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
 #wittyCartFloatTimer {
 	z-index: 99999;
 	padding: 10px;
@@ -18,23 +39,13 @@
   }
 }
 
-.wittyIcon {
-  display: inline-block;
-  height: 1em; /* default icon height */
-  position: relative;
-  user-select: none;
-}
+#wittyCartHeaderTimer {
+  .wittyIcon {
+    vertical-align: top;
+  }
 
-.wittyIcon-canvas {
-  display: block;
-  height: 100%;
-  visibility: hidden;
-}
-
-.wittyIcon svg {
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
+  .wittyCountDownTimer {
+    vertical-align: top;
+    margin-left: .33em;
+  }
 }

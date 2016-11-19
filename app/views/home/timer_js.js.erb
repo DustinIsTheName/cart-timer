@@ -219,14 +219,14 @@
 
             // sets and formats timer based on passed timestamp
             function initializeClock(query, endtime) {
-              var clock = document.querySelector(query);
+              var clock = $(query);
               function updateClock() {
                 var t = getTimeRemaining(endtime);
                 if (clock) {
                     if (options.timer_format == 'clock') {
-                        clock.innerHTML = t.minutes + ':' + LeadingZero(t.seconds);
+                        clock.text( t.minutes + ':' + LeadingZero(t.seconds) );
                     } else {
-                        clock.innerHTML = t.minutes + 'm ' + t.seconds + 's';
+                        clock.text( t.minutes + 'm ' + t.seconds + 's' );
                     }
                 }
 
@@ -269,32 +269,39 @@
                     h =  options.header_settings;
 
                 switch (h.header_display) {
-                    case 1:
+                    case '1':
                         headerCSS += '#wittyCartHeaderTimer{color:'+h.header_display1_text_color+';';
-                        headerCSS += 'font-size:'+h.header_display1_font_size+';';
+                        headerCSS += 'font-size:'+h.header_display1_font_size+'px;';
                         headerCSS += 'padding:'+h.header_display1_padding+';';
                         headerCSS += 'margin:'+h.header_display1_margin+';}';
                         headerCSS += '#wittyCartHeaderTimer .wittyIcon{display:none;}';
                         break;
-                    case 2:
+                    case '2':
                         headerCSS += '#wittyCartHeaderTimer{color:'+h.header_display2_text_color+';';
-                        headerCSS += 'font-size:'+h.header_display2_font_size+';';
+                        headerCSS += 'font-size:'+h.header_display2_font_size+'px;';
                         headerCSS += 'padding:'+h.header_display2_padding+';';
                         headerCSS += 'margin:'+h.header_display2_margin+';}';
                         headerCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display2_icon_color+'}';
                         break;
-                    case 3:
+                    case '3':
                         headerCSS += '#wittyCartHeaderTimer{color:'+h.header_display3_text_color+';';
                         headerCSS += 'background:'+h.header_display3_bg_color+';';
                         headerCSS += 'border:1px solid '+h.header_display3_border+';';
-                        headerCSS += 'border-radius:'+h.header_display3_border_radius+';';
-                        headerCSS += 'font-size:'+h.header_display3_font_size+';';
+                        headerCSS += 'border-radius:'+h.header_display3_border_radius+'px;';
+                        headerCSS += 'font-size:'+h.header_display3_font_size+'px;';
                         headerCSS += 'padding:'+h.header_display3_padding+';';
                         headerCSS += 'margin:'+h.header_display3_margin+';}';
                         headerCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display3_icon_color+'}';
                         break;
-                    case 4:
-
+                    case '4':
+                        headerCSS += '#wittyCartHeaderTimer{color:'+h.header_display4_text_color+';';
+                        headerCSS += 'background:'+h.header_display4_bg_color+';';
+                        headerCSS += 'border:1px solid '+h.header_display4_border+';';
+                        headerCSS += 'border-radius:'+h.header_display4_border_radius+'px;';
+                        headerCSS += 'font-size:'+h.header_display4_font_size+'px;';
+                        headerCSS += 'padding:'+h.header_display4_padding+';';
+                        headerCSS += 'margin:'+h.header_display4_margin+';}';
+                        headerCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display4_icon_color+'}';
                         break;
                 }
                 customCSS = headerCSS + customCSS;
