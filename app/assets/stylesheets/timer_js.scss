@@ -57,20 +57,26 @@
 }
 
 #wittyCartCartTimer {
-  display:block;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
+  .wittyMessageButtonsHolder {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   .wittyCountDownTimerHolder {
     align-self: stretch;
-    border-right: 1px solid #fff;
-    // padding-right: 16px;
     display: flex;
   }
 
   .wittyMessage {
     text-align: center;
+    flex-basis: 50%;
+    flex-grow: 1;
   }
 
   .wittyCountDownTimer {
@@ -78,14 +84,21 @@
   }
 
   #wittyCartpageButtons {
+    // flex-grow: 1;
+    // flex-basis: 1%;
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 -5px;
 
     #wittyButtonCheckout {
-      margin-left: 10px;
+      // margin-left: 10px;
+      margin: 0 5px;
       white-space: nowrap;
     }
 
     #wittyButtonShopping {
+      margin: 0 5px;
       white-space: nowrap;
     }
   }
