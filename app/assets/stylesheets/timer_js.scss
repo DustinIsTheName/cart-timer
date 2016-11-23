@@ -71,6 +71,8 @@
   .wittyCountDownTimerHolder {
     align-self: stretch;
     display: flex;
+    flex-basis: 4em;
+    justify-content: center;
   }
 
   .wittyMessage {
@@ -104,7 +106,25 @@
   }
 }
 
+#wittyCartQuickView {
+  display: flex;
+  text-align: center;
+  line-height: 1.25;
 
+  .wittyQuickMessage {
+    text-align: center;
+  }
+
+  .wittyCountDownTimerHolder {
+    display: flex;
+    flex-basis: 4em;
+    justify-content: center;
+
+    .wittyCountDownTimer {
+      align-self: center;
+    }
+  }
+}
 
 
 

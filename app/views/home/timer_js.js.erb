@@ -324,13 +324,13 @@
                 cartCSS += 'margin:'+c.cart_bar_margin+';}';
                 cartCSS += '#wittyCartCartTimer .wittyCountDownTimerHolder{';
                 cartCSS += 'border-right: 1px solid '+c.cart_bar_border+';'
+                cartCSS += 'font-size:'+c.cart_bar_timer_size+'px;';
                 cartCSS += 'margin-right: '+padding_array[3]+';';
                 cartCSS += 'margin-bottom: -'+padding_array[2]+';';
                 cartCSS += 'padding-top:'+padding_array[0]+';';
                 cartCSS += 'padding-right:'+padding_array[3]+';';
                 cartCSS += 'padding-bottom:'+padding_array[2]+';}';
-                cartCSS += '#wittyCartCartTimer .wittyCountDownTimer{color:'+c.cart_bar_timer_color+';';
-                cartCSS += 'font-size:'+c.cart_bar_timer_size+'px;}';
+                cartCSS += '#wittyCartCartTimer .wittyCountDownTimer{color:'+c.cart_bar_timer_color+';}';
                 cartCSS += '#wittyCartCartTimer .wittyMessageButtonsHolder{margin:0 -'+(parseInt(padding_array[1])/2)+'px 0 -'+(parseInt(padding_array[3])/2)+'px;}';
                 cartCSS += '#wittyCartCartTimer .wittyMessage{';
                 cartCSS += 'padding:'+padding_array[0]+' '+(parseInt(padding_array[3])/2)+'px 0 '+(parseInt(padding_array[1])/2)+'px;}';
@@ -351,7 +351,29 @@
                 $('#wittyCartCartTimer').remove();
             }
 
+            if (options.quick_view_settings.quick_view_enable) {
+                var quickCSS = '',
+                    q = options.quick_view_settings,
+                    padding_array = q.quick_view_padding.split(' ');
 
+                $('#wittyCartQuickView .wittyQuickMessage').html(q.quick_view_text);
+                quickCSS += '#wittyCartQuickView {background:'+q.quick_view_background_color+';';
+                quickCSS += 'color:'+q.quick_view_text_color+';';
+                quickCSS += 'border:1px solid '+q.quick_view_border+';';
+                quickCSS += 'border-radius:'+q.quick_view_border_radius+'px;';
+                quickCSS += 'font-size:'+q.quick_view_font_size+'px;';
+                quickCSS += 'margin:'+q.quick_view_margin+';';
+                quickCSS += 'padding:'+q.quick_view_padding+';}';
+                quickCSS += '#wittyCartQuickView .wittyCountDownTimerHolder {margin:-'+padding_array[0]+' 0 -'+padding_array[2]+' '+padding_array[1]+';';
+                quickCSS += 'color:'+q.quick_view_timer_color+';';
+                quickCSS += 'padding-left:'+padding_array[1]+';';
+                quickCSS += 'border-left:1px solid '+q.quick_view_border+';';
+                quickCSS += 'font-size:'+q.quick_view_timer_size+'px;}';
+
+                customCSS = quickCSS + customCSS;
+            } else {
+                $('#wittyCartQuickView').remove();
+            }
 
             initializeClock('.wittyCountDownTimer', expires);
 
