@@ -181,7 +181,8 @@
             },
             custom_css: "<%= @option.custom_css.gsub(/(?:\n\r?|\r\n?)/, '') %>"            
 		},
-		customCSS = options.custom_css;
+		customCSS = options.custom_css,
+        clockSizes = {};
         console.log(options);
 
 		if (options.enable_app) {
@@ -217,17 +218,91 @@
               };
             }
 
+            function setGlobalSize() {
+
+                var timerFormat = (options.timer_format === 'clock') ? '00:00' : '00m 00s' ;
+
+                if (options.header_settings.header_enable) {
+                    switch (options.header_settings.header_display) {
+                        case '1':
+                            var headerFontSize = options.header_settings.header_display1_font_size;
+                            break;
+                        case '2':
+                            headerFontSize = options.header_settings.header_display2_font_size;
+                            break;
+                        case '3':
+                            headerFontSize = options.header_settings.header_display3_font_size;
+                            break;
+                        case '4':
+                            headerFontSize = options.header_settings.header_display4_font_size;
+                            break;
+                    }
+
+                    $('#wittyCartHeaderTimer').append('<div class="clock-measurement" style="font-size:'+headerFontSize+'px;">'+timerFormat+'</div>');
+                }
+
+                if (options.cart_settings.cart_enable) $('#wittyCartCartTimer').append('<div class="clock-measurement" style="font-size:'+options.cart_settings.cart_bar_timer_size+'px;">'+timerFormat+'</div>');
+
+                if (options.quick_view_settings.quick_view_enable) $('#wittyCartQuickView').append('<div class="clock-measurement" style="font-size:'+options.quick_view_settings.quick_view_timer_size+'px;">'+timerFormat+'</div>');
+                
+                setTimeout(function() {
+                    $('.clock-measurement').each(function() {
+                        var id = $(this).parent()[0].id;
+
+                        clockSizes[id] = $(this).width();
+                    });
+                    $.each(clockSizes, function(index, value) {
+                        $('#'+index+' .wittyCountDownTimer').width(value);
+                    });
+                    $('.clock-measurement').remove();
+                }, 00);
+            }
+
+            setGlobalSize();
+
             // sets and formats timer based on passed timestamp
             function initializeClock(query, endtime) {
               var clock = $(query);
+              var text;
+              var letterSize = [];
+
+              function setSize() {
+                
+                clock.each(function() {
+                    var sizes = [];
+                    largestWidth = 0;
+
+                    $(this).find('span').each(function() {
+                        sizes.push($(this).width());
+                        if ($(this).width() > largestWidth) {
+                            largestWidth = $(this).width();
+                        }
+                    });
+
+                    var sum = 0;
+                    for( var i = 0; i < sizes.length; i++ ){
+                        sum += parseInt( sizes[i], 10 ); //don't forget to add the base
+                    }
+
+                    letterSize.push((sum/sizes.length)+2);
+                    
+                });
+              }
+
               function updateClock() {
                 var t = getTimeRemaining(endtime);
                 if (clock) {
                     if (options.timer_format == 'clock') {
-                        clock.text( t.minutes + ':' + LeadingZero(t.seconds) );
+                        text = t.minutes + ':' + LeadingZero(t.seconds);
                     } else {
-                        clock.text( t.minutes + 'm ' + t.seconds + 's' );
+                        text =  t.minutes + 'm ' + t.seconds + 's';
                     }
+                    // text = text.split('');
+                    // text = text.join('</span><span>');
+                    // text = '<span>' + text + '</span>';
+                    text.replace(' ', '');
+                    clock.html( text );  
+                    
                 }
 
                 if (t.total <= 0) {
@@ -236,10 +311,11 @@
               }
 
               updateClock();
+
               var timeinterval = setInterval(updateClock,1000);
             }
 
-            var expires = addMinutes(new Date(), 5); // PLACEHOLDER!!!!!!!!
+            var expires = addMinutes(new Date(), 12); // PLACEHOLDER!!!!!!!!
             
             // creates a fixed timer element if enabled
             if (options.float_settings.float_enable) {
@@ -259,7 +335,6 @@
                 floatCSS += 'font-size:'+f.float_font_size+'px;}';
                 floatCSS += '#wittyCartFloatTimer .wittyCountDownTimer{color:'+f.float_timer_color+';';
                 floatCSS += 'font-size:'+f.float_timer_size+'px;}';
-
                 customCSS = floatCSS + customCSS;
             } // end ENABLE FLOATING TIMER
 
@@ -344,7 +419,7 @@
                 cartCSS += 'color:'+c.cart_checkout_text_color+';';
                 cartCSS += 'margin-top:'+padding_array[0]+';';
                 cartCSS += 'border: 1px solid '+c.cart_checkout_border+';';
-                cartCSS += 'border-radius:'+c.cart_checkout_border_radius+'px;';
+                cartCSS += 'border-radius:'+c.cart_checkout_border_radius+'px;}';
 
                 customCSS = cartCSS + customCSS;
             } else {

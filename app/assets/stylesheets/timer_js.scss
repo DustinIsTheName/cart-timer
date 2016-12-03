@@ -53,6 +53,8 @@
   .wittyCountDownTimer {
     vertical-align: top;
     margin-left: .33em;
+    display: inline-block;
+    text-align: center;
   }
 }
 
@@ -83,6 +85,9 @@
 
   .wittyCountDownTimer {
     align-self: center;
+    display: flex;
+    white-space: nowrap;
+    justify-content: center;
   }
 
   #wittyCartpageButtons {
@@ -122,12 +127,19 @@
 
     .wittyCountDownTimer {
       align-self: center;
+      display: flex;
+      white-space: nowrap;
+      justify-content: center;
     }
   }
 }
 
 
-
+.clock-measurement {
+  position: absolute;
+  // visibility: hidden;
+  z-index: -99999999;
+}
 
 
 
