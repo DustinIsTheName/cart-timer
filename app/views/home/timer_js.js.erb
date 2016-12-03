@@ -48,7 +48,7 @@
             low_time_settings: {
                 low_time_enable: <%= @option.low_time_enable %>,
                 low_time_location: "<%= @option.low_time_location %>",
-                low_time_warning: "<%= @option.low_time_warning %>",
+                low_time_warning: <%= @option.low_time_warning %>,
                 low_time_warning_2: "<%= @option.low_time_warning_2 %>",
                 low_time_text: "<%= h(@option.low_time_text).gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>",
 
@@ -74,7 +74,7 @@
                 header_enable: <%= @option.header_enable %>,
                 header_display: "<%= @option.header_display %>",
                 header_low_enable: <%= @option.header_low_enable %>,
-                header_low_warning: "<%= @option.header_low_warning %>",
+                header_low_warning: <%= @option.header_low_warning %>,
                 header_low_animation: "<%= @option.header_low_animation %>",
 
                 header_display1_text_color: "<%= @option.header_display1_text_color %>",
@@ -143,7 +143,7 @@
                 cart_checkout_border_radius: "<%= @option.cart_checkout_border_radius %>",
 
                 cart_low_enable: <%= @option.cart_low_enable %>,
-                cart_low_warning: "<%= @option.cart_low_warning %>",
+                cart_low_warning: <%= @option.cart_low_warning %>,
                 cart_bar_low_bg_color: "<%= @option.cart_bar_low_bg_color %>",
                 cart_bar_low_text_color: "<%= @option.cart_bar_low_text_color %>",
                 cart_bar_low_timer_color: "<%= @option.cart_bar_low_timer_color %>",
@@ -182,6 +182,9 @@
             custom_css: "<%= @option.custom_css.gsub(/(?:\n\r?|\r\n?)/, '') %>"            
 		},
 		customCSS = options.custom_css,
+        headerLowCSS = '',
+        cartLowCSS = '',
+        quickLowCSS = '',
         clockSizes = {};
         console.log(options);
 
@@ -297,6 +300,29 @@
                     } else {
                         text =  t.minutes + 'm ' + t.seconds + 's';
                     }
+
+                    totalSeconds = t.minutes*60 + t.seconds;
+
+                    console.log(totalSeconds);
+
+                    if (totalSeconds <= options.header_settings.header_low_warning) {
+                        if ($('#wittyCartHeaderLowTimeStyles').length == 0) $('body').append('<style id="wittyCartHeaderLowTimeStyles">'+headerLowCSS+'</style>');
+                    } else {
+                        $('#wittyCartHeaderLowTimeStyles').remove();
+                    }
+
+                    if (totalSeconds <= options.cart_settings.cart_low_warning) {
+                        if ($('#wittyCartCartLowTimeStyles').length == 0) $('body').append('<style id="wittyCartCartLowTimeStyles">'+cartLowCSS+'</style>');
+                    } else {
+                        $('#wittyCartCartLowTimeStyles').remove();
+                    }
+
+                    if (totalSeconds <= options.quick_view_settings.quick_view_low_warning) {
+                        if ($('#wittyCartQuickLowTimeStyles').length == 0) $('body').append('<style id="wittyCartQuickLowTimeStyles">'+quickLowCSS+'</style>');
+                    } else {
+                        $('#wittyCartQuickLowTimeStyles').remove();
+                    }
+
                     // text = text.split('');
                     // text = text.join('</span><span>');
                     // text = '<span>' + text + '</span>';
@@ -315,7 +341,7 @@
               var timeinterval = setInterval(updateClock,1000);
             }
 
-            var expires = addMinutes(new Date(), 12); // PLACEHOLDER!!!!!!!!
+            var expires = addMinutes(new Date(), .6); // PLACEHOLDER!!!!!!!!
             
             // creates a fixed timer element if enabled
             if (options.float_settings.float_enable) {
@@ -341,6 +367,7 @@
             // shows timer in the header (manually installed snippet) if enabled
             if (options.header_settings.header_enable) {
                 var headerCSS = '',
+                    headerLowCSS = '',
                     h =  options.header_settings;
 
                 switch (h.header_display) {
@@ -350,6 +377,8 @@
                         headerCSS += 'padding:'+h.header_display1_padding+';';
                         headerCSS += 'margin:'+h.header_display1_margin+';}';
                         headerCSS += '#wittyCartHeaderTimer .wittyIcon{display:none;}';
+
+                        headerLowCSS += '#wittyCartHeaderTimer{color:'+h.header_display1_low_text_color+';}';
                         break;
                     case '2':
                         headerCSS += '#wittyCartHeaderTimer{color:'+h.header_display2_text_color+';';
@@ -357,6 +386,9 @@
                         headerCSS += 'padding:'+h.header_display2_padding+';';
                         headerCSS += 'margin:'+h.header_display2_margin+';}';
                         headerCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display2_icon_color+'}';
+
+                        headerLowCSS += '#wittyCartHeaderTimer{color:'+h.header_display2_low_text_color+';}';
+                        headerLowCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display2_low_icon_color+';}';
                         break;
                     case '3':
                         headerCSS += '#wittyCartHeaderTimer{color:'+h.header_display3_text_color+';';
@@ -367,6 +399,12 @@
                         headerCSS += 'padding:'+h.header_display3_padding+';';
                         headerCSS += 'margin:'+h.header_display3_margin+';}';
                         headerCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display3_icon_color+'}';
+
+                        headerLowCSS += '#wittyCartHeaderTimer{color:'+h.header_display3_low_text_color+';';
+                        headerLowCSS += 'background:'+h.header_display3_low_bg_color+';';
+                        headerLowCSS += 'border:1px solid '+h.header_display3_low_border+';';
+                        headerLowCSS += 'border-radius:'+h.header_display3_low_border_radius+'px;}';
+                        headerLowCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display3_low_icon_color+';}';
                         break;
                     case '4':
                         headerCSS += '#wittyCartHeaderTimer{color:'+h.header_display4_text_color+';';
@@ -377,6 +415,12 @@
                         headerCSS += 'padding:'+h.header_display4_padding+';';
                         headerCSS += 'margin:'+h.header_display4_margin+';}';
                         headerCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display4_icon_color+'}';
+
+                        headerLowCSS += '#wittyCartHeaderTimer{color:'+h.header_display4_low_text_color+';';
+                        headerLowCSS += 'background:'+h.header_display4_low_bg_color+';';
+                        headerLowCSS += 'border:1px solid '+h.header_display4_low_border+';';
+                        headerLowCSS += 'border-radius:'+h.header_display4_low_border_radius+'px;}';
+                        headerLowCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display4_low_icon_color+';}';
                         break;
                 }
                 customCSS = headerCSS + customCSS;
@@ -413,13 +457,27 @@
                 cartCSS += '#wittyCartCartTimer #wittyCartpageButtons #wittyButtonShopping{background:'+c.cart_continue_bg_color+';';
                 cartCSS += 'color:'+c.cart_continue_text_color+';';
                 cartCSS += 'margin-top:'+padding_array[0]+';';
-                cartCSS += 'border: 1px solid'+c.cart_continue_border+';';
+                cartCSS += 'border: 1px solid '+c.cart_continue_border+';';
                 cartCSS += 'border-radius:'+c.cart_continue_border_radius+'px;}';
                 cartCSS += '#wittyCartCartTimer #wittyCartpageButtons #wittyButtonCheckout{background:'+c.cart_checkout_bg_color+';';
                 cartCSS += 'color:'+c.cart_checkout_text_color+';';
                 cartCSS += 'margin-top:'+padding_array[0]+';';
                 cartCSS += 'border: 1px solid '+c.cart_checkout_border+';';
                 cartCSS += 'border-radius:'+c.cart_checkout_border_radius+'px;}';
+
+                cartLowCSS += '#wittyCartCartTimer{background:'+c.cart_bar_low_bg_color+';';
+                cartLowCSS += 'color:'+c.cart_bar_low_text_color+';';
+                cartLowCSS += 'border: 1px solid '+c.cart_bar_low_border+';';
+                cartLowCSS += 'border-radius:'+c.cart_bar_low_border_radius+'px;}';
+                cartLowCSS += '#wittyCartCartTimer .wittyCountDownTimer{color:'+c.cart_bar_low_timer_color+';}';
+                cartLowCSS += '#wittyCartCartTimer #wittyCartpageButtons #wittyButtonShopping{background:'+c.cart_continue_low_bg_color+';';
+                cartLowCSS += 'color:'+c.cart_continue_low_text_color+';';
+                cartLowCSS += 'border: 1px solid '+c.cart_continue_low_border+';';
+                cartLowCSS += 'border-radius:'+c.cart_continue_low_border_radius+';}';
+                cartLowCSS += '#wittyCartCartTimer #wittyCartpageButtons #wittyButtonCheckout{background:'+c.cart_checkout_low_bg_color+';';
+                cartLowCSS += 'color:'+c.cart_checkout_low_text_color+';';
+                cartLowCSS += 'border: 1px solid '+c.cart_checkout_low_border+';';
+                cartLowCSS += 'border-radius:'+c.cart_checkout_low_border_radius+';}';
 
                 customCSS = cartCSS + customCSS;
             } else {
@@ -445,16 +503,21 @@
                 quickCSS += 'border-left:1px solid '+q.quick_view_border+';';
                 quickCSS += 'font-size:'+q.quick_view_timer_size+'px;}';
 
+                quickLowCSS += '#wittyCartQuickView {background:'+q.quick_view_low_background_color+';';
+                quickLowCSS += 'color:'+q.quick_view_low_text_color+';';
+                quickLowCSS += 'border:1px solid '+q.quick_view_low_border+';';
+                quickLowCSS += 'border-radius:'+q.quick_view_low_border_radius+';}';
+                quickLowCSS += '#wittyCartQuickView .wittyCountDownTimerHolder {color:'+q.quick_view_low_timer_color+';}';
+
                 customCSS = quickCSS + customCSS;
             } else {
                 $('#wittyCartQuickView').remove();
             }
 
-            initializeClock('.wittyCountDownTimer', expires);
-
             customCSS = '<%= CartTimer::Application.assets["timer_js.css"].to_s.gsub(/\n/, '').html_safe %>' + customCSS;
+            $('body').append('<style>'+customCSS+'</style>');
 
-			$('body').append('<style>'+customCSS+'</style>');
+            initializeClock('.wittyCountDownTimer', expires);
 		} // end ENABLE APP 
 
 	}; // myAppJavaScript() ends here; ALL CUSTOM JS IS TO BE WITHIN THIS FUNCTION!
