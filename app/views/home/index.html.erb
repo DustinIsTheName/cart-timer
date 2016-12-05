@@ -72,39 +72,37 @@
           <%= o.label :float_text %>
           <%= o.text_field :float_text, class: 'form-control' %>
 
-          <!-- BEGIN Float Position dynamic fields -->
-          <% float_position_stats = float_position_inputs(@option.float_position) %>
-          <%= o.label :float_position, 'Position' %>
-          <select class="float-position-select">
-            <%= options_for_select(float_position_options, selected: float_position_stats[:position]) %>
-          </select>
+          <div class="float-position-container">
+            <% float_position_stats = float_position_inputs(@option.float_position) %>
+            <%= o.label :float_position, 'Position' %>
+            <select class="float-position-select">
+              <%= options_for_select(float_position_options, selected: float_position_stats[:position]) %>
+            </select>
 
-          <div class="number-field float-number-first">
-            <input type="number" class="form-control dynamic-send" data-option="float_position" value="<%= float_position_stats[:first] %>">
-            <div class="px">px</div>
-            <label class="below"><%= float_position_stats[:position].split('')[0] == 't' ? 'top' : 'bottom' %></label>
-          </div>
+            <div class="number-field float-number-first">
+              <input type="number" class="form-control dynamic-send" data-option="float_position" value="<%= float_position_stats[:first] %>">
+              <div class="px">px</div>
+              <label class="below"><%= float_position_stats[:position].split('')[0] == 't' ? 'top' : 'bottom' %></label>
+            </div>
 
-          <div class="number-field float-number-last">
-            <input type="number" class="form-control dynamic-send" data-option="float_position" value="<%= float_position_stats[:last] %>">
-            <div class="px">px</div>
-            <label class="below"><%= float_position_stats[:position].split('')[1] == 'r' ? 'right' : 'left' %></label>
+            <div class="number-field float-number-last">
+              <input type="number" class="form-control dynamic-send" data-option="float_position" value="<%= float_position_stats[:last] %>">
+              <div class="px">px</div>
+              <label class="below"><%= float_position_stats[:position].split('')[1] == 'r' ? 'right' : 'left' %></label>
+            </div>
+            <%= o.hidden_field :float_position, class: 'form-control dynamic-receive', data: {option: 'float_position'} %>
           </div>
-          <%= o.hidden_field :float_position, class: 'form-control dynamic-receive', data: {option: 'float_position'} %>
-          <!-- Float Position dynamic fields END -->
 
           <%= color_field o, :float_bg_color %>
           <%= color_field o, :float_text_color %>
           <%= color_field o, :float_timer_color %>
 
-          <!-- BORDER -->
-          <%= color_field o, :float_border %>
-          <!-- ENDBORDER -->
-
-          <%= pixel_field o, :float_border_radius %>
+          <div class="border-attr">
+            <%= color_field o, :float_border %>
+            <%= pixel_field o, :float_border_radius %>
+          </div>
 
           <%= pixel_field o, :float_font_size %>
-
           <%= pixel_field o, :float_timer_size %>
 
         </div>
@@ -140,11 +138,10 @@
           <%= color_field o, :low_time_bar_text_color %>
           <%= color_field o, :low_time_bar_timer_color %>
 
-          <!-- BORDER -->
-          <%= color_field o, :low_time_bar_border %>
-          <!-- ENDBORDER -->
-
-          <%= pixel_field o, :low_time_bar_border_radius %>
+          <div class="border-attr">
+            <%= color_field o, :low_time_bar_border %>
+            <%= pixel_field o, :low_time_bar_border_radius %>
+          </div>
 
           <%= pixel_field o, :low_time_bar_font_size %>
 
@@ -153,20 +150,18 @@
           <%= color_field o, :low_time_view_cart_bg_color %>
           <%= color_field o, :low_time_view_cart_text_color %>
 
-          <!-- BORDER -->
-          <%= color_field o, :low_time_view_cart_border %>
-          <!-- ENDBORDER -->
-
-          <%= pixel_field o, :low_time_view_cart_border_radius %>
+          <div class="border-attr">
+            <%= color_field o, :low_time_view_cart_border %>
+            <%= pixel_field o, :low_time_view_cart_border_radius %>
+          </div>
 
           <%= color_field o, :low_time_checkout_bg_color %>
           <%= color_field o, :low_time_checkout_text_color %>
 
-          <!-- BORDER -->
-          <%= color_field o, :low_time_checkout_border %>
-          <!-- ENDBORDER -->
-
-          <%= pixel_field o, :low_time_checkout_border_radius %>
+          <div class="border-attr">
+            <%= color_field o, :low_time_checkout_border %>
+            <%= pixel_field o, :low_time_checkout_border_radius %>
+          </div>
         </div>
       </div>
 
@@ -228,11 +223,10 @@
             <%= color_field o, :header_display3_icon_color %>
             <%= color_field o, :header_display3_bg_color %>
 
-            <!-- BORDER -->
-            <%= color_field o, :header_display3_border %>
-            <!-- ENDBORDER -->
-
-            <%= pixel_field o, :header_display3_border_radius %>
+            <div class="border-attr">
+              <%= color_field o, :header_display3_border %>
+              <%= pixel_field o, :header_display3_border_radius %>
+            </div>
 
             <%= pixel_field o, :header_display3_font_size %>
 
@@ -243,11 +237,10 @@
             <%= color_field o, :header_display3_low_icon_color %>
             <%= color_field o, :header_display3_low_bg_color %>
 
-            <!-- BORDER -->
-            <%= color_field o, :header_display3_low_border %>
-            <!-- ENDBORDER -->
-
-            <%= pixel_field o, :header_display3_low_border_radius %>
+            <div class="border-attr">
+              <%= color_field o, :header_display3_low_border %>
+              <%= pixel_field o, :header_display3_low_border_radius %>
+            </div>
 
           </div>
 
@@ -257,11 +250,10 @@
             <%= color_field o, :header_display4_icon_color %>
             <%= color_field o, :header_display4_bg_color %>
 
-            <!-- BORDER -->
-            <%= color_field o, :header_display4_border %>
-            <!-- ENDBORDER -->
-
-            <%= pixel_field o, :header_display4_border_radius %>
+            <div class="border-attr">
+              <%= color_field o, :header_display4_border %>
+              <%= pixel_field o, :header_display4_border_radius %>
+            </div>
 
             <%= pixel_field o, :header_display4_font_size %>
 
@@ -272,11 +264,10 @@
             <%= color_field o, :header_display4_low_icon_color %>
             <%= color_field o, :header_display4_low_bg_color %>
 
-            <!-- BORDER -->
-            <%= color_field o, :header_display4_low_border %>
-            <!-- ENDBORDER -->
-
-            <%= pixel_field o, :header_display4_low_border_radius %>
+            <div class="border-attr">
+              <%= color_field o, :header_display4_low_border %>
+              <%= pixel_field o, :header_display4_low_border_radius %>
+            </div>
 
           </div>
         </div>
@@ -297,11 +288,10 @@
           <%= color_field o, :cart_bar_text_color %>
           <%= color_field o, :cart_bar_timer_color %>
 
-          <!-- BORDER -->
-          <%= color_field o, :cart_bar_border %>
-          <!-- ENDBORDER -->
-
-          <%= pixel_field o, :cart_bar_border_radius %>
+          <div class="border-attr">
+            <%= color_field o, :cart_bar_border %>
+            <%= pixel_field o, :cart_bar_border_radius %>
+          </div>
 
           <%= pixel_field o, :cart_bar_font_size %>
 
@@ -313,20 +303,18 @@
           <%= color_field o, :cart_continue_bg_color %>
           <%= color_field o, :cart_continue_text_color %>
 
-          <!-- BORDER -->
-          <%= color_field o, :cart_continue_border %>
-          <!-- ENDBORDER -->
-
-          <%= pixel_field o, :cart_continue_border_radius %>
+          <div class="border-attr">
+            <%= color_field o, :cart_continue_border %>
+            <%= pixel_field o, :cart_continue_border_radius %>
+          </div>
 
           <%= color_field o, :cart_checkout_bg_color %>
           <%= color_field o, :cart_checkout_text_color %>
 
-          <!-- BORDER -->
-          <%= color_field o, :cart_checkout_border %>
-          <!-- ENDBORDER -->
-
-          <%= pixel_field o, :cart_checkout_border_radius %>
+          <div class="border-attr">
+            <%= color_field o, :cart_checkout_border %>
+            <%= pixel_field o, :cart_checkout_border_radius %>
+          </div>
 
           <%= o.label :cart_low_enable %>
           <%= o.check_box :cart_low_enable, class: 'form-control' %>
@@ -338,29 +326,26 @@
           <%= color_field o, :cart_bar_low_text_color %>
           <%= color_field o, :cart_bar_low_timer_color %>
 
-          <!-- BORDER -->
-          <%= color_field o, :cart_bar_low_border %>
-          <!-- ENDBORDER -->
-
-          <%= pixel_field o, :cart_bar_low_border_radius %>
+          <div class="border-attr">
+            <%= color_field o, :cart_bar_low_border %>
+            <%= pixel_field o, :cart_bar_low_border_radius %>
+          </div>
 
           <%= color_field o, :cart_continue_low_bg_color %>
           <%= color_field o, :cart_continue_low_text_color %>
 
-          <!-- BORDER -->
-          <%= color_field o, :cart_continue_low_border %>
-          <!-- ENDBORDER -->
-
-          <%= pixel_field o, :cart_continue_low_border_radius %>
+          <div class="border-attr">
+            <%= color_field o, :cart_continue_low_border %>
+            <%= pixel_field o, :cart_continue_low_border_radius %>
+          </div>
 
           <%= color_field o, :cart_checkout_low_bg_color %>
           <%= color_field o, :cart_checkout_low_text_color %>
 
-          <!-- BORDER -->
-          <%= color_field o, :cart_checkout_low_border %>
-          <!-- ENDBORDER -->
-
-          <%= pixel_field o, :cart_checkout_low_border_radius %>
+          <div class="border-attr">
+            <%= color_field o, :cart_checkout_low_border %>
+            <%= pixel_field o, :cart_checkout_low_border_radius %>
+          </div>
 
         </div>
       </div>
@@ -380,11 +365,10 @@
           <%= color_field o, :quick_view_text_color %>
           <%= color_field o, :quick_view_timer_color %>
 
-          <!-- BORDER -->
-          <%= color_field o, :quick_view_border %>
-          <!-- ENDBORDER -->
-          
-          <%= pixel_field o, :quick_view_border_radius %>
+          <div class="border-attr">
+            <%= color_field o, :quick_view_border %>         
+            <%= pixel_field o, :quick_view_border_radius %>
+          </div>
 
           <%= pixel_field o, :quick_view_font_size %>
 
@@ -403,11 +387,10 @@
           <%= color_field o, :quick_view_low_text_color %>
           <%= color_field o, :quick_view_low_timer_color %>
 
-          <!-- BORDER -->
-          <%= color_field o, :quick_view_low_border %>
-          <!-- ENDBORDER -->
-
-          <%= pixel_field o, :quick_view_low_border_radius %>
+          <div class="border-attr">
+            <%= color_field o, :quick_view_low_border %>
+            <%= pixel_field o, :quick_view_low_border_radius %>
+          </div>
         </div>
       </div>
 
