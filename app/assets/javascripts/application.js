@@ -63,6 +63,15 @@ var ready = function() {
 		$('.dynamic-receive[data-option="'+option+'"]').val(top+'px '+right+'px '+bottom+'px '+left+'px');
 	});
 
+	$('.dynamic-send[data-option="low_time_location"]').change(function() {
+		if ($('.type[data-option="low_time_location"]').val() === 'modal') {
+			$('.dynamic-receive[data-option="low_time_location"]').val('modal');
+		} else {
+			var position = $('.position[data-option="low_time_location"]').val();
+			$('.dynamic-receive[data-option="low_time_location"]').val(position);
+		}
+	});
+
 	function adjustPositionValue() {
 		var position = $('.float-position-select').val().split('');
 		var values = {

@@ -1,7 +1,16 @@
 <div class="number-field">
 	<% option_string = option_value.to_s %>
 	<% unless option_string.include? 'border_radius' %>
-	  <%= o.label option_value %>
+
+		<% if option_string.include? 'font_size' %>
+			<%= o.label option_value, 'Font Size' %>
+		<% elsif option_string.include? 'timer_size' %>
+		  <%= o.label option_value, 'Timer Size' %>
+		<% else %>
+		  <%= o.label option_value %>
+	  <% end %>
+
+
 	  <%= o.number_field option_value %>
 	  <div class="px">px</div>
 	<% else %>

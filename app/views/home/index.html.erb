@@ -115,11 +115,11 @@
           <% default_value = select_default(@option.low_time_location, ['modal']) %>
           <%= o.label :low_time_location %>
 
-          <select class="dynamic-send conditional-send" data-option="low_time_location", data-condition="low_time_location">
+          <select class="dynamic-send conditional-send type" data-option="low_time_location", data-condition="low_time_location">
             <%= options_for_select(data_action_map(low_time_location_options), selected: default_value) %>
           </select>
 
-          <select class="dynamic-send conditional-receive" data-option="low_time_location", data-condition="low_time_location"<%= display_none?(default_value) %>>
+          <select class="dynamic-send conditional-receive position" data-option="low_time_location", data-condition="low_time_location"<%= display_none?(default_value) %>>
             <%= options_for_select(low_time_location_bar_options, selected: @option.low_time_location) %>
           </select>
           <%= o.hidden_field :low_time_location, class: 'form-control dynamic-receive', data: {option: 'low_time_location'} %>
@@ -165,9 +165,10 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <%= o.label :header_enable %>
+      <div class="form-group header-label">
+        <h2>Header Timer Settings</h2>
         <%= o.check_box :header_enable, class: 'form-control' %>
+        <%= o.label :header_enable, class: 'enable-label' %>
       </div>
 
       <div class="well">
@@ -273,9 +274,10 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <%= o.label :cart_enable %>
+      <div class="form-group header-label">
+        <h2>Cart Page Timer Settings</h2>
         <%= o.check_box :cart_enable, class: 'form-control' %>
+        <%= o.label :cart_enable, class: 'enable-label' %>
       </div>
 
       <div class="well">
@@ -350,10 +352,11 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <%= o.label :quick_view_enable %>
+      <div class="form-group header-label">
+        <h2>Cart Page Timer Settings</h2>
         <%= o.check_box :quick_view_enable, class: 'form-control' %>
-      </div>
+        <%= o.label :quick_view_enable, class: 'enable-label' %>
+      </div> 
 
       <div class="well">
         <div class="form-group">

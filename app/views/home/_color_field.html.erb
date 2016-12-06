@@ -4,10 +4,12 @@
 <% end %>
 <div class="color-field">
 	<% if option_string.include? 'border' %>
-	<% elsif option_string.include? 'bg' %>
+	<% elsif option_string.include? 'bg' or option_string.include? 'background' %>
 		<%= o.label option_value, 'Background' %>
 	<% elsif option_string.include? 'text_color' %>
 		<%= o.label option_value, 'Text Color' %>
+	<% elsif option_string.include? 'icon_color' %>
+		<%= o.label option_value, 'Icon Color' %>
 	<% elsif option_string.include? 'timer_color' %>
 		<%= o.label option_value, 'Timer Color' %>
 	<% else %>

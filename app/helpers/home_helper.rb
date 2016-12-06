@@ -11,7 +11,7 @@ module HomeHelper
   	if default_value == ''
   		''
   	else
-  		' style="display:none;"' 
+  		' style=display:none;'
   	end
   end
 
