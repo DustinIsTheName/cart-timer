@@ -19,38 +19,48 @@
           <%= o.label :enable_app %>
           <%= o.check_box :enable_app, class: 'form-control' %>
 
-          <!-- BEGIN Starting Time dynamic fields -->
-          <% default_value = select_default(@option.starting_time, [180, 300, 600]) %>
-          <%= o.label :starting_time %>
+          <div class="select-container">
+            <%= o.label :starting_time %>
+            <div class="select-group">
+              <% default_value = select_default(@option.starting_time, [180, 300, 600]) %>
 
-          <select class="dynamic-send conditional-send" data-condition="starting_time" data-option="starting_time">
-            <%= options_for_select(data_action_map(starting_time_options), selected: default_value) %>
-          </select>
+              <select class="dynamic-send conditional-send" data-condition="starting_time" data-option="starting_time">
+                <%= options_for_select(data_action_map(starting_time_options), selected: default_value) %>
+              </select>
 
-          <% if default_value == '' %>
-            <%= o.text_field :starting_time, class: 'dynamic-receive conditional-receive', data: {option: 'starting_time', condition: 'starting_time'} %>
-          <% else %>
-            <%= o.text_field :starting_time, class: 'dynamic-receive conditional-receive', data: {option: 'starting_time', condition: 'starting_time'}, style: "display:none;" %>
-          <% end %>
-          <!-- Starting Time dynamic fields END -->
+              <div class="styled-select conditional-receive" data-condition="starting_time"<%= display_none?(default_value) %>>
+                <label>How much time?</label>
+                <%= o.text_field :starting_time, class: 'dynamic-receive', data: {option: 'starting_time'} %>              
+              </div>
+            </div>
+          </div>
           
-          <%= o.label :timer_format %>
-          <%= o.select :timer_format, timer_format_options %>
+          <div class="select-container">
+            <%= o.label :timer_format %>
+            <%= o.select :timer_format, timer_format_options %>
+          </div>
 
-          <!-- BEGIN Product Rule dynamic fields -->
-          <% default_value = select_default(@option.product_rule, ['none', 'reset']) %>
-          <%= o.label :product_rule %>
+          <div class="select-container">
+            <!-- BEGIN Product Rule dynamic fields -->
+            <%= o.label :product_rule %>
+            <div class="select-group">
+              <% default_value = select_default(@option.product_rule, ['none', 'reset']) %>
 
-          <select class="dynamic-send conditional-send" data-condition="product_rule" data-option="product_rule">
-            <%= options_for_select(data_action_map(product_rule_options), selected: default_value) %>
-          </select>
+              <select class="dynamic-send conditional-send" data-condition="product_rule" data-option="product_rule">
+                <%= options_for_select(data_action_map(product_rule_options), selected: default_value) %>
+              </select>
 
-          <select class="dynamic-send conditional-receive" data-condition="product_rule" data-option="product_rule"<%= display_none?(default_value) %>>
-            <%= options_for_select(product_rule_more_time_options, selected: @option.product_rule) %>
-          </select>
+              <div class="styled-select conditional-receive" data-condition="product_rule"<%= display_none?(default_value) %>>
+                <label>How much time?</label>
+                <select class="dynamic-send" data-option="product_rule">
+                  <%= options_for_select(product_rule_more_time_options, selected: @option.product_rule) %>
+                </select>
+              </div>
 
-          <%= o.hidden_field :product_rule, class: 'form-control dynamic-receive', data: {option: 'product_rule'} %>
-          <!-- Product Rule dynamic fields END -->
+              <%= o.hidden_field :product_rule, class: 'form-control dynamic-receive', data: {option: 'product_rule'} %>
+            </div>
+            <!-- Product Rule dynamic fields END -->
+          </div>
         </div>
       </div>
 
@@ -69,41 +79,48 @@
 
       <div class="well conditional-receive" data-condition="float_setting" data-scope="float_low_settings">
         <div class="form-group">
-          <%= o.label :float_text %>
-          <%= o.text_field :float_text, class: 'form-control' %>
 
-          <div class="float-position-container">
-            <% float_position_stats = float_position_inputs(@option.float_position) %>
-            <%= o.label :float_position, 'Position' %>
-            <select class="float-position-select">
-              <%= options_for_select(float_position_options, selected: float_position_stats[:position]) %>
-            </select>
-
-            <div class="number-field float-number-first">
-              <input type="number" class="form-control dynamic-send" data-option="float_position" value="<%= float_position_stats[:first] %>">
-              <div class="px">px</div>
-              <label class="below"><%= float_position_stats[:position].split('')[0] == 't' ? 'top' : 'bottom' %></label>
-            </div>
-
-            <div class="number-field float-number-last">
-              <input type="number" class="form-control dynamic-send" data-option="float_position" value="<%= float_position_stats[:last] %>">
-              <div class="px">px</div>
-              <label class="below"><%= float_position_stats[:position].split('')[1] == 'r' ? 'right' : 'left' %></label>
-            </div>
-            <%= o.hidden_field :float_position, class: 'form-control dynamic-receive', data: {option: 'float_position'} %>
+          <div class="options-row">
+            <%= o.label :float_text %>
+            <%= o.text_field :float_text, class: 'form-control' %>
           </div>
 
-          <%= color_field o, :float_bg_color %>
-          <%= color_field o, :float_text_color %>
-          <%= color_field o, :float_timer_color %>
+          <div class="options-row">
+            <div class="float-position-container">
+              <% float_position_stats = float_position_inputs(@option.float_position) %>
+              <%= o.label :float_position, 'Position' %>
+              <select class="float-position-select">
+                <%= options_for_select(float_position_options, selected: float_position_stats[:position]) %>
+              </select>
 
-          <div class="border-attr">
-            <%= color_field o, :float_border %>
-            <%= pixel_field o, :float_border_radius %>
+              <div class="number-field float-number-first">
+                <input type="number" class="form-control dynamic-send" data-option="float_position" value="<%= float_position_stats[:first] %>">
+                <div class="px">px</div>
+                <label class="below"><%= float_position_stats[:position].split('')[0] == 't' ? 'top' : 'bottom' %></label>
+              </div>
+
+              <div class="number-field float-number-last">
+                <input type="number" class="form-control dynamic-send" data-option="float_position" value="<%= float_position_stats[:last] %>">
+                <div class="px">px</div>
+                <label class="below"><%= float_position_stats[:position].split('')[1] == 'r' ? 'right' : 'left' %></label>
+              </div>
+              <%= o.hidden_field :float_position, class: 'form-control dynamic-receive', data: {option: 'float_position'} %>
+            </div>
           </div>
 
-          <%= pixel_field o, :float_font_size %>
-          <%= pixel_field o, :float_timer_size %>
+          <div class="options-row">
+            <%= color_field o, :float_bg_color %>
+            <%= color_field o, :float_text_color %>
+            <%= color_field o, :float_timer_color %>
+
+            <div class="border-attr">
+              <%= color_field o, :float_border %>
+              <%= pixel_field o, :float_border_radius %>
+            </div>
+
+            <%= pixel_field o, :float_font_size %>
+            <%= pixel_field o, :float_timer_size %>
+          </div>
 
         </div>
       </div>
@@ -111,57 +128,80 @@
       <div class="well conditional-receive" data-condition="low_time_setting" data-scope="float_low_settings">
         <div class="form-group">
 
-          <!-- BEGIN Low Time Location dynamic fields -->
-          <% default_value = select_default(@option.low_time_location, ['modal']) %>
-          <%= o.label :low_time_location %>
+          <div class="options-row">
+            <div class="select-container">
+              <%= o.label :low_time_location, 'Display Options' %>
+              <div class="select-group">
+                <% default_value = select_default(@option.low_time_location, ['modal']) %>
 
-          <select class="dynamic-send conditional-send type" data-option="low_time_location", data-condition="low_time_location">
-            <%= options_for_select(data_action_map(low_time_location_options), selected: default_value) %>
-          </select>
+                <select class="dynamic-send conditional-send type" data-option="low_time_location", data-condition="low_time_location">
+                  <%= options_for_select(data_action_map(low_time_location_options), selected: default_value) %>
+                </select>
 
-          <select class="dynamic-send conditional-receive position" data-option="low_time_location", data-condition="low_time_location"<%= display_none?(default_value) %>>
-            <%= options_for_select(low_time_location_bar_options, selected: @option.low_time_location) %>
-          </select>
-          <%= o.hidden_field :low_time_location, class: 'form-control dynamic-receive', data: {option: 'low_time_location'} %>
-          <!-- Low Time Location dynamic fields END -->
+                <div class="styled-select conditional-receive" data-condition="low_time_location"<%= display_none?(default_value) %>>
+                  <label>Location</label>
+                  <select class="dynamic-send position" data-option="low_time_location">
+                    <%= options_for_select(low_time_location_bar_options, selected: @option.low_time_location) %>
+                  </select>
+                </div>
+                <%= o.hidden_field :low_time_location, class: 'form-control dynamic-receive', data: {option: 'low_time_location'} %>
+                <div style="clear:both;"></div>
+              </div>
+            </div>
 
-          <%= o.label :low_time_warning %>
-          <%= o.select :low_time_warning, low_time_warning_options, selected: @option.low_time_warning %>
+            <div class="select-container">
+              <%= o.label :low_time_warning, 'Show Warning' %>
+              <%= o.select :low_time_warning, low_time_warning_options, selected: @option.low_time_warning %>
+            </div>
 
-          <%= o.label :low_time_warning_2 %>
-          <%= o.select :low_time_warning_2, low_time_warning_2_options, selected: @option.low_time_warning_2 %>
-
-          <%= o.label :low_time_text %>
-          <%= o.text_field :low_time_text, class: 'form-control' %>
-
-          <%= color_field o, :low_time_bar_bg_color %>
-          <%= color_field o, :low_time_bar_text_color %>
-          <%= color_field o, :low_time_bar_timer_color %>
-
-          <div class="border-attr">
-            <%= color_field o, :low_time_bar_border %>
-            <%= pixel_field o, :low_time_bar_border_radius %>
+            <div class="select-container">
+              <%= o.label :low_time_warning_2, 'Show 2nd Warning (Opt.)' %>
+              <%= o.select :low_time_warning_2, low_time_warning_2_options, selected: @option.low_time_warning_2 %>
+            </div>
           </div>
 
-          <%= pixel_field o, :low_time_bar_font_size %>
-
-          <%= pixel_field o, :low_time_bar_timer_size %>
-
-          <%= color_field o, :low_time_view_cart_bg_color %>
-          <%= color_field o, :low_time_view_cart_text_color %>
-
-          <div class="border-attr">
-            <%= color_field o, :low_time_view_cart_border %>
-            <%= pixel_field o, :low_time_view_cart_border_radius %>
+          <div class="options-row">
+            <%= o.label :low_time_text %>
+            <%= o.text_field :low_time_text, class: 'form-control' %>
           </div>
 
-          <%= color_field o, :low_time_checkout_bg_color %>
-          <%= color_field o, :low_time_checkout_text_color %>
+          <div class="options-row">
+            <label class="major">Message Bar / Popup</label>
+            <%= color_field o, :low_time_bar_bg_color %>
+            <%= color_field o, :low_time_bar_text_color %>
+            <%= color_field o, :low_time_bar_timer_color %>
 
-          <div class="border-attr">
-            <%= color_field o, :low_time_checkout_border %>
-            <%= pixel_field o, :low_time_checkout_border_radius %>
+            <div class="border-attr">
+              <%= color_field o, :low_time_bar_border %>
+              <%= pixel_field o, :low_time_bar_border_radius %>
+            </div>
+
+            <%= pixel_field o, :low_time_bar_font_size %>
+            <%= pixel_field o, :low_time_bar_timer_size %>
           </div>
+
+          <div class="options-row">
+            <label class="major">View Cart Button</label>
+            <%= color_field o, :low_time_view_cart_bg_color %>
+            <%= color_field o, :low_time_view_cart_text_color %>
+
+            <div class="border-attr">
+              <%= color_field o, :low_time_view_cart_border %>
+              <%= pixel_field o, :low_time_view_cart_border_radius %>
+            </div>
+          </div>
+
+          <div class="options-row">
+            <label class="major">Checkout Button</label>
+            <%= color_field o, :low_time_checkout_bg_color %>
+            <%= color_field o, :low_time_checkout_text_color %>
+
+            <div class="border-attr">
+              <%= color_field o, :low_time_checkout_border %>
+              <%= pixel_field o, :low_time_checkout_border_radius %>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -174,100 +214,135 @@
       <div class="well">
         <div class="form-group">
 
-          <%= o.radio_button :header_display, 1, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_text'}, :checked => 1 == @option.header_display %>
-          <%= o.label :header_display_1, "Text Only" %>
-          <%= o.radio_button :header_display, 2, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_text_icon'}, :checked => 2 == @option.header_display %>
-          <%= o.label :header_display_2, "Text w/ Icon" %>
-          <%= o.radio_button :header_display, 3, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_border_box'}, :checked => 3 == @option.header_display %>
-          <%= o.label :header_display_3, "Border Box" %>
-          <%= o.radio_button :header_display, 4, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_solid_box'}, :checked => 4 == @option.header_display %>
-          <%= o.label :header_display_4, "Solid Box" %>
+          <div class="options-row">
+            <%= o.radio_button :header_display, 1, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_text'}, :checked => 1 == @option.header_display %>
+            <%= o.label :header_display_1, "Text Only" %>
+            <%= o.radio_button :header_display, 2, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_text_icon'}, :checked => 2 == @option.header_display %>
+            <%= o.label :header_display_2, "Text w/ Icon" %>
+            <%= o.radio_button :header_display, 3, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_border_box'}, :checked => 3 == @option.header_display %>
+            <%= o.label :header_display_3, "Border Box" %>
+            <%= o.radio_button :header_display, 4, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_solid_box'}, :checked => 4 == @option.header_display %>
+            <%= o.label :header_display_4, "Solid Box" %>
+          </div>
 
-          <%= o.label :header_low_enable, 'Change styles when timer is low' %>
-          <%= o.check_box :header_low_enable %>
+          <div class="options-row">
+            <%= o.label :header_low_enable, 'Change styles when timer is low' %>
+            <%= o.check_box :header_low_enable %>
+          </div>
 
-          <%= o.label :header_low_warning %>
-          <%= o.select :header_low_warning, header_low_warning_options, selected: @option.header_low_warning %>
+          <div class="options-row">
+            <div class="select-container">
+              <%= o.label :header_low_warning %>
+              <%= o.select :header_low_warning, header_low_warning_options, selected: @option.header_low_warning %>
+            </div>
 
-          <%= o.label :header_low_animation %>
-          <%= o.select :header_low_animation, header_low_animation_options, selected: @option.header_low_animation %>
+            <div class="select-container">
+              <%= o.label :header_low_animation %>
+              <%= o.select :header_low_animation, header_low_animation_options, selected: @option.header_low_animation %>
+            </div>
+          </div>
 
           <div class="conditional-receive" data-condition="header_display_text" data-scope="header_display"<%= header_display_none?(1) %>>
-            <%= color_field o, :header_display1_text_color %>
 
-            <%= pixel_field o, :header_display1_font_size %>
+            <div class="options-row">
+              <%= color_field o, :header_display1_text_color %>
+              <%= pixel_field o, :header_display1_font_size %>
+            </div>
           
-            <%= margin_padding_field o, :header_display1_padding %>
-            <%= margin_padding_field o, :header_display1_margin %>
+            <div class="options-row">
+              <%= margin_padding_field o, :header_display1_padding %>
+              <%= margin_padding_field o, :header_display1_margin %>
+            </div>
 
-            <%= color_field o, :header_display1_low_text_color %>
+            <div class="options-row">
+              <%= color_field o, :header_display1_low_text_color %>
+            </div>
           </div>
 
           <div class="conditional-receive" data-condition="header_display_text_icon" data-scope="header_display"<%= header_display_none?(2) %>>
 
-            <%= color_field o, :header_display2_text_color %>
-            <%= color_field o, :header_display2_icon_color %>
+            <div class="options-row">
+              <%= color_field o, :header_display2_text_color %>
+              <%= color_field o, :header_display2_icon_color %>
 
-            <%= pixel_field o, :header_display2_font_size %>
+              <%= pixel_field o, :header_display2_font_size %>
+            </div>
 
-            <%= margin_padding_field o, :header_display2_padding %>
-            <%= margin_padding_field o, :header_display2_margin %>
+            <div class="options-row">
+              <%= margin_padding_field o, :header_display2_padding %>
+              <%= margin_padding_field o, :header_display2_margin %>
+            </div>
 
-            <%= color_field o, :header_display2_low_text_color %>
-            <%= color_field o, :header_display2_low_icon_color %>
+            <div class="options-row">
+              <%= color_field o, :header_display2_low_text_color %>
+              <%= color_field o, :header_display2_low_icon_color %>
+            </div>
 
           </div>
 
           <div class="conditional-receive" data-condition="header_display_border_box" data-scope="header_display"<%= header_display_none?(3) %>>
 
-            <%= color_field o, :header_display3_text_color %>
-            <%= color_field o, :header_display3_icon_color %>
-            <%= color_field o, :header_display3_bg_color %>
+            <div class="options-row">
+              <%= color_field o, :header_display3_text_color %>
+              <%= color_field o, :header_display3_icon_color %>
+              <%= color_field o, :header_display3_bg_color %>
 
-            <div class="border-attr">
-              <%= color_field o, :header_display3_border %>
-              <%= pixel_field o, :header_display3_border_radius %>
+              <div class="border-attr">
+                <%= color_field o, :header_display3_border %>
+                <%= pixel_field o, :header_display3_border_radius %>
+              </div>
+
+              <%= pixel_field o, :header_display3_font_size %>
             </div>
 
-            <%= pixel_field o, :header_display3_font_size %>
-
-            <%= margin_padding_field o, :header_display3_padding %>
-            <%= margin_padding_field o, :header_display3_margin %>
-
-            <%= color_field o, :header_display3_low_text_color %>
-            <%= color_field o, :header_display3_low_icon_color %>
-            <%= color_field o, :header_display3_low_bg_color %>
-
-            <div class="border-attr">
-              <%= color_field o, :header_display3_low_border %>
-              <%= pixel_field o, :header_display3_low_border_radius %>
+            <div class="options-row">
+              <%= margin_padding_field o, :header_display3_padding %>
+              <%= margin_padding_field o, :header_display3_margin %>
             </div>
+
+            <div class="options-row">
+              <%= color_field o, :header_display3_low_text_color %>
+              <%= color_field o, :header_display3_low_icon_color %>
+              <%= color_field o, :header_display3_low_bg_color %>
+
+              <div class="border-attr">
+                <%= color_field o, :header_display3_low_border %>
+                <%= pixel_field o, :header_display3_low_border_radius %>
+              </div>
+            </div>
+
 
           </div>
 
           <div class="conditional-receive" data-condition="header_display_solid_box" data-scope="header_display"<%= header_display_none?(4) %>>
 
-            <%= color_field o, :header_display4_text_color %>
-            <%= color_field o, :header_display4_icon_color %>
-            <%= color_field o, :header_display4_bg_color %>
+            <div class="options-row">
+              <%= color_field o, :header_display4_text_color %>
+              <%= color_field o, :header_display4_icon_color %>
+              <%= color_field o, :header_display4_bg_color %>
 
-            <div class="border-attr">
-              <%= color_field o, :header_display4_border %>
-              <%= pixel_field o, :header_display4_border_radius %>
+              <div class="border-attr">
+                <%= color_field o, :header_display4_border %>
+                <%= pixel_field o, :header_display4_border_radius %>
+              </div>
+
+              <%= pixel_field o, :header_display4_font_size %>
             </div>
 
-            <%= pixel_field o, :header_display4_font_size %>
+            <div class="options-row">
+              <%= margin_padding_field o, :header_display4_padding %>
+              <%= margin_padding_field o, :header_display4_margin %>
+            </div>
 
-            <%= margin_padding_field o, :header_display4_padding %>
-            <%= margin_padding_field o, :header_display4_margin %>
+            <div class="options-row">
+              <%= color_field o, :header_display4_low_text_color %>
+              <%= color_field o, :header_display4_low_icon_color %>
+              <%= color_field o, :header_display4_low_bg_color %>
 
-            <%= color_field o, :header_display4_low_text_color %>
-            <%= color_field o, :header_display4_low_icon_color %>
-            <%= color_field o, :header_display4_low_bg_color %>
-
-            <div class="border-attr">
-              <%= color_field o, :header_display4_low_border %>
-              <%= pixel_field o, :header_display4_low_border_radius %>
+              <div class="border-attr">
+                <%= color_field o, :header_display4_low_border %>
+                <%= pixel_field o, :header_display4_low_border_radius %>
+              </div>
             </div>
 
           </div>
@@ -283,70 +358,92 @@
       <div class="well">
         <div class="form-group">
 
-          <%= o.label :cart_text %>
-          <%= o.text_field :cart_text, class: 'form-control' %>
-
-          <%= color_field o, :cart_bar_bg_color %>
-          <%= color_field o, :cart_bar_text_color %>
-          <%= color_field o, :cart_bar_timer_color %>
-
-          <div class="border-attr">
-            <%= color_field o, :cart_bar_border %>
-            <%= pixel_field o, :cart_bar_border_radius %>
+          <div class="options-row">
+            <%= o.label :cart_text %>
+            <%= o.text_field :cart_text, class: 'form-control' %>
           </div>
 
-          <%= pixel_field o, :cart_bar_font_size %>
+          <div class="options-row">
+            <label class="major">Message Bar</label>
+            <%= color_field o, :cart_bar_bg_color %>
+            <%= color_field o, :cart_bar_text_color %>
+            <%= color_field o, :cart_bar_timer_color %>
 
-          <%= pixel_field o, :cart_bar_timer_size %>
+            <div class="border-attr">
+              <%= color_field o, :cart_bar_border %>
+              <%= pixel_field o, :cart_bar_border_radius %>
+            </div>
 
-          <%= margin_padding_field o, :cart_bar_padding %>
-          <%= margin_padding_field o, :cart_bar_margin %>
+            <%= pixel_field o, :cart_bar_font_size %>
+            <%= pixel_field o, :cart_bar_timer_size %>
 
-          <%= color_field o, :cart_continue_bg_color %>
-          <%= color_field o, :cart_continue_text_color %>
-
-          <div class="border-attr">
-            <%= color_field o, :cart_continue_border %>
-            <%= pixel_field o, :cart_continue_border_radius %>
+            <%= margin_padding_field o, :cart_bar_padding %>
+            <%= margin_padding_field o, :cart_bar_margin %>
           </div>
 
-          <%= color_field o, :cart_checkout_bg_color %>
-          <%= color_field o, :cart_checkout_text_color %>
+          <div class="options-row">
+            <label class="major">Continue Shopping Button</label>
+            <%= color_field o, :cart_continue_bg_color %>
+            <%= color_field o, :cart_continue_text_color %>
 
-          <div class="border-attr">
-            <%= color_field o, :cart_checkout_border %>
-            <%= pixel_field o, :cart_checkout_border_radius %>
+            <div class="border-attr">
+              <%= color_field o, :cart_continue_border %>
+              <%= pixel_field o, :cart_continue_border_radius %>
+            </div>
           </div>
 
-          <%= o.label :cart_low_enable %>
-          <%= o.check_box :cart_low_enable, class: 'form-control' %>
+          <div class="options-row">
+            <label class="major">Checkout Button</label>
+            <%= color_field o, :cart_checkout_bg_color %>
+            <%= color_field o, :cart_checkout_text_color %>
 
-          <%= o.label :cart_low_warning %>
-          <%= o.select :cart_low_warning, header_low_warning_options, selected: @option.cart_low_warning %>
-
-          <%= color_field o, :cart_bar_low_bg_color %>
-          <%= color_field o, :cart_bar_low_text_color %>
-          <%= color_field o, :cart_bar_low_timer_color %>
-
-          <div class="border-attr">
-            <%= color_field o, :cart_bar_low_border %>
-            <%= pixel_field o, :cart_bar_low_border_radius %>
+            <div class="border-attr">
+              <%= color_field o, :cart_checkout_border %>
+              <%= pixel_field o, :cart_checkout_border_radius %>
+            </div>
           </div>
 
-          <%= color_field o, :cart_continue_low_bg_color %>
-          <%= color_field o, :cart_continue_low_text_color %>
-
-          <div class="border-attr">
-            <%= color_field o, :cart_continue_low_border %>
-            <%= pixel_field o, :cart_continue_low_border_radius %>
+          <div class="options-row">
+            <%= o.label :cart_low_enable %>
+            <%= o.check_box :cart_low_enable, class: 'form-control' %>
           </div>
 
-          <%= color_field o, :cart_checkout_low_bg_color %>
-          <%= color_field o, :cart_checkout_low_text_color %>
+          <div class="options-row">
+            <div class="select-container">
+              <%= o.label :cart_low_warning %>
+              <%= o.select :cart_low_warning, header_low_warning_options, selected: @option.cart_low_warning %>
+            </div>
+          </div>
 
-          <div class="border-attr">
-            <%= color_field o, :cart_checkout_low_border %>
-            <%= pixel_field o, :cart_checkout_low_border_radius %>
+          <div class="options-row">
+            <%= color_field o, :cart_bar_low_bg_color %>
+            <%= color_field o, :cart_bar_low_text_color %>
+            <%= color_field o, :cart_bar_low_timer_color %>
+
+            <div class="border-attr">
+              <%= color_field o, :cart_bar_low_border %>
+              <%= pixel_field o, :cart_bar_low_border_radius %>
+            </div>
+          </div>
+
+          <div class="options-row">
+            <%= color_field o, :cart_continue_low_bg_color %>
+            <%= color_field o, :cart_continue_low_text_color %>
+
+            <div class="border-attr">
+              <%= color_field o, :cart_continue_low_border %>
+              <%= pixel_field o, :cart_continue_low_border_radius %>
+            </div>
+          </div>
+
+          <div class="options-row">
+            <%= color_field o, :cart_checkout_low_bg_color %>
+            <%= color_field o, :cart_checkout_low_text_color %>
+
+            <div class="border-attr">
+              <%= color_field o, :cart_checkout_low_border %>
+              <%= pixel_field o, :cart_checkout_low_border_radius %>
+            </div>
           </div>
 
         </div>
@@ -361,39 +458,53 @@
       <div class="well">
         <div class="form-group">
 
-          <%= o.label :quick_view_text %>
-          <%= o.text_field :quick_view_text, class: 'form-control' %>
-
-          <%= color_field o, :quick_view_background_color %>
-          <%= color_field o, :quick_view_text_color %>
-          <%= color_field o, :quick_view_timer_color %>
-
-          <div class="border-attr">
-            <%= color_field o, :quick_view_border %>         
-            <%= pixel_field o, :quick_view_border_radius %>
+          <div class="options-row">
+            <%= o.label :quick_view_text %>
+            <%= o.text_field :quick_view_text, class: 'form-control' %>
           </div>
 
-          <%= pixel_field o, :quick_view_font_size %>
+          <div class="options-row">
+            <%= color_field o, :quick_view_background_color %>
+            <%= color_field o, :quick_view_text_color %>
+            <%= color_field o, :quick_view_timer_color %>
 
-          <%= pixel_field o, :quick_view_timer_size %>
+            <div class="border-attr">
+              <%= color_field o, :quick_view_border %>
+              <%= pixel_field o, :quick_view_border_radius %>
+            </div>
 
-          <%= margin_padding_field o, :quick_view_padding %>
-          <%= margin_padding_field o, :quick_view_margin %>
-
-          <%= o.label :quick_view_low_enable %>
-          <%= o.check_box :quick_view_low_enable, class: 'form-control' %>
-
-          <%= o.label :quick_view_low_warning %>
-          <%= o.select :quick_view_low_warning, header_low_warning_options, selected: @option.cart_low_warning %>
-
-          <%= color_field o, :quick_view_low_background_color %>
-          <%= color_field o, :quick_view_low_text_color %>
-          <%= color_field o, :quick_view_low_timer_color %>
-
-          <div class="border-attr">
-            <%= color_field o, :quick_view_low_border %>
-            <%= pixel_field o, :quick_view_low_border_radius %>
+            <%= pixel_field o, :quick_view_font_size %>
+            <%= pixel_field o, :quick_view_timer_size %>
           </div>
+
+          <div class="options-row">
+            <%= margin_padding_field o, :quick_view_padding %>
+            <%= margin_padding_field o, :quick_view_margin %>
+          </div>
+
+          <div class="options-row">
+            <%= o.label :quick_view_low_enable %>
+            <%= o.check_box :quick_view_low_enable, class: 'form-control' %>
+          </div>
+
+          <div class="options-row">
+            <div class="select-container">
+              <%= o.label :quick_view_low_warning %>
+              <%= o.select :quick_view_low_warning, header_low_warning_options, selected: @option.cart_low_warning %>
+            </div>
+          </div>
+
+          <div class="options-row">
+            <%= color_field o, :quick_view_low_background_color %>
+            <%= color_field o, :quick_view_low_text_color %>
+            <%= color_field o, :quick_view_low_timer_color %>
+
+            <div class="border-attr">
+              <%= color_field o, :quick_view_low_border %>
+              <%= pixel_field o, :quick_view_low_border_radius %>
+            </div>
+          </div>
+
         </div>
       </div>
 

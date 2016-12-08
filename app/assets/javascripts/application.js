@@ -39,8 +39,8 @@ var ready = function() {
 					option = $this.find('option[value="' + value + '"]'),
 					action = option.data('action');
 
-			if (action === 'show') $('.conditional-receive[data-condition="' + condition + '"]').show();
-			if (action === 'hide') $('.conditional-receive[data-condition="' + condition + '"]').hide();
+			if (action === 'show') $('.conditional-receive[data-condition="' + condition + '"]').slideDown();
+			if (action === 'hide') $('.conditional-receive[data-condition="' + condition + '"]').slideUp();
 
 		} else {
 
