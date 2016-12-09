@@ -14,10 +14,13 @@
     <%= form_for @option do |o| %>
       
       <div class="well">
-        <div class="form-group">
+        <div class="form-group main-settings">
 
-          <%= o.label :enable_app %>
-          <%= o.check_box :enable_app, class: 'form-control' %>
+          <%= o.check_box :enable_app, class: 'form-control enable-app-checkbox' %>
+          <div class="form-group header-label enable-app">
+            <label>Timers</label>
+            <%= o.label :enable_app, class: 'enable-label', data: {text: 'on&nbsp;&nbsp;&nbsp;&nbsp;off'.html_safe} %>
+          </div>
 
           <div class="select-container">
             <%= o.label :starting_time %>

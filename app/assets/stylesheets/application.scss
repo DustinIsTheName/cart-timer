@@ -87,6 +87,10 @@ label {
 
 .form-group {
 	margin: 0;
+
+	&.main-settings {
+		display: flex;
+	}
 }
 
 .well {background: #fff;padding:50px;}
@@ -229,6 +233,10 @@ select {
 	}
 }
 
+input[type="checkbox"].enable-app-checkbox {
+	display: none;
+}
+
 .header-label {
 	text-align: center;
 
@@ -273,7 +281,61 @@ select {
 
 	input[type="checkbox"]:checked + .enable-label:before {
 		left: 24px;
-		// right: 6px;
+	}
+
+	&.enable-app {
+		background: #FF0010;
+		display: flex;
+    margin: -50px 50px -50px -50px;
+    padding: 0 52px;
+		flex-direction: column;
+    justify-content: center;
+    transition: background .3s linear;
+
+    label {
+	    color: #fff;
+	    margin-bottom: 0;
+    }
+
+		.enable-label {
+			background: #fff;
+			margin-left: 0;
+	    border-radius: 30px;
+	    height: 50px;
+	    width: 93px;
+		}
+
+		.enable-label:before {
+			width: 42px;
+	    height: 42px;
+	    border-radius: 50%;
+	    background: #FF0010;
+	    transition: left .4s linear, background .4s;
+	  }
+
+		.enable-label:after {
+			content: attr(data-text);
+	    color: #FF0010;
+	    position: absolute;
+	    right: 10px;
+	    top: 15px;
+      text-indent: 0;
+      text-transform: uppercase;
+      transition: color .4s;
+	  }
+
+		.enable-app-checkbox:checked + & {
+			background: #00EB54;
+
+			.enable-label:before {
+				left: 45px;
+				background: #00EB54;
+			}
+
+			.enable-label:after {
+				color: #00EB54;
+			}
+		}
 	}
 }
 
