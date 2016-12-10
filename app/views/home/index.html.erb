@@ -18,7 +18,7 @@
 
           <%= o.check_box :enable_app, class: 'form-control enable-app-checkbox' %>
           <div class="form-group header-label enable-app">
-            <label>Timers</label>
+            <label for="option_enable_app">Timers</label>
             <%= o.label :enable_app, class: 'enable-label', data: {text: 'on&nbsp;&nbsp;&nbsp;&nbsp;off'.html_safe} %>
           </div>
 
@@ -67,18 +67,20 @@
         </div>
       </div>
 
-      <div class="well">
-        <div class="tabs">
-          <div class="col-md-6 conditional-send" data-condition="float_setting" data-scope="float_low_settings">
-            <%= o.check_box :float_enable %>
-            <%= o.label :float_enable %>
-          </div>
-          <div class="col-md-6 conditional-send" data-condition="low_time_setting" data-scope="float_low_settings">
-            <%= o.check_box :low_time_enable %>
-            <%= o.label :low_time_enable %>
-          </div>
+      
+      <div class="tabs">
+        <div class="conditional-send well cssarrow" data-condition="float_setting" data-scope="float_low_settings">
+          <%= o.check_box :float_enable %>
+          <%= o.label :float_enable, class: 'major' %>
+          <div class="obstruction"></div>
+        </div>
+        <div class="conditional-send well" data-condition="low_time_setting" data-scope="float_low_settings">
+          <%= o.check_box :low_time_enable %>
+          <%= o.label :low_time_enable, class: 'major' %>
+          <div class="obstruction"></div>
         </div>
       </div>
+      
 
       <div class="well conditional-receive" data-condition="float_setting" data-scope="float_low_settings">
         <div class="form-group">
@@ -128,7 +130,7 @@
         </div>
       </div>
 
-      <div class="well conditional-receive" data-condition="low_time_setting" data-scope="float_low_settings">
+      <div class="well conditional-receive" data-condition="low_time_setting" data-scope="float_low_settings" style="display:none;">
         <div class="form-group">
 
           <div class="options-row">
@@ -217,15 +219,30 @@
       <div class="well">
         <div class="form-group">
 
-          <div class="options-row">
+          <div class="options-row header-display-options-container">
             <%= o.radio_button :header_display, 1, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_text'}, :checked => 1 == @option.header_display %>
-            <%= o.label :header_display_1, "Text Only" %>
+            <%= o.label :header_display_1 do %>
+              <span class="timer">4:17</span>
+              <span class="exposition">Text Only</span>
+            <% end %>
+
             <%= o.radio_button :header_display, 2, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_text_icon'}, :checked => 2 == @option.header_display %>
-            <%= o.label :header_display_2, "Text w/ Icon" %>
+            <%= o.label :header_display_2 do %>
+              <span class="timer"><%= render partial: 'timer_svg' %>4:17</span>
+              <span class="exposition">Text w/ Icon</span>
+            <% end %>
+
             <%= o.radio_button :header_display, 3, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_border_box'}, :checked => 3 == @option.header_display %>
-            <%= o.label :header_display_3, "Border Box" %>
+            <%= o.label :header_display_3 do %>
+              <span class="timer"><%= render partial: 'timer_svg' %>4:17</span>
+              <span class="exposition">Border Box</span>
+            <% end %>
+
             <%= o.radio_button :header_display, 4, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_solid_box'}, :checked => 4 == @option.header_display %>
-            <%= o.label :header_display_4, "Solid Box" %>
+            <%= o.label :header_display_4 do %>
+              <span class="timer"><%= render partial: 'timer_svg' %>4:17</span>
+              <span class="exposition">Solid Box</span>
+            <% end %>
           </div>
 
           <div class="options-row">

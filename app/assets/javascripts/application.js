@@ -118,6 +118,11 @@ var ready = function() {
 
 	$('select.conditional-send, input.conditional-send').change(conditionalLogic);
 	$('div.conditional-send').click(conditionalLogic);
+
+	$('.tabs .well').click(function() {
+		$('.tabs .well').removeClass('cssarrow');
+		$(this).addClass('cssarrow');
+	});
 };
 
 $(document).ready(ready);
