@@ -23,7 +23,7 @@
           </div>
 
           <div class="select-container">
-            <%= o.label :starting_time %>
+            <%= o.label :starting_time, 'Starting Time', class: 'major' %>
             <div class="select-group">
               <% default_value = select_default(@option.starting_time, [180, 300, 600]) %>
 
@@ -39,13 +39,13 @@
           </div>
           
           <div class="select-container">
-            <%= o.label :timer_format %>
+            <%= o.label :timer_format, 'Display Options', class: 'major' %>
             <%= o.select :timer_format, timer_format_options %>
           </div>
 
           <div class="select-container">
             <!-- BEGIN Product Rule dynamic fields -->
-            <%= o.label :product_rule %>
+            <%= o.label :product_rule, 'Additional Product Rule', class: 'major' %>
             <div class="select-group">
               <% default_value = select_default(@option.product_rule, ['none', 'reset']) %>
 
@@ -86,7 +86,7 @@
         <div class="form-group">
 
           <div class="options-row">
-            <%= o.label :float_text %>
+            <%= o.label :float_text, 'Text' %>
             <%= o.text_field :float_text, class: 'form-control' %>
           </div>
 
@@ -166,7 +166,7 @@
           </div>
 
           <div class="options-row">
-            <%= o.label :low_time_text %>
+            <%= o.label :low_time_text, 'Text' %>
             <%= o.text_field :low_time_text, class: 'form-control' %>
           </div>
 
@@ -220,6 +220,8 @@
         <div class="form-group">
 
           <div class="options-row header-display-options-container">
+            <label class="major">Display Options</label>
+
             <%= o.radio_button :header_display, 1, class: 'conditional-send', data: {scope: 'header_display', condition: 'header_display_text'}, :checked => 1 == @option.header_display %>
             <%= o.label :header_display_1 do %>
               <span class="timer">4:17</span>
@@ -246,12 +248,12 @@
           </div>
 
           <div class="options-row">
-            <%= o.label :header_low_enable, 'Change styles when timer is low' %>
             <%= o.check_box :header_low_enable %>
+            <%= o.label :header_low_enable, 'Change styles when timer is low', class: 'minor' %>
           </div>
 
           <div class="options-row">
-            <div class="select-container">
+            <div class="select-container low-time-select">
               <%= o.label :header_low_warning %>
               <%= o.select :header_low_warning, header_low_warning_options, selected: @option.header_low_warning %>
             </div>
@@ -379,7 +381,7 @@
         <div class="form-group">
 
           <div class="options-row">
-            <%= o.label :cart_text %>
+            <%= o.label :cart_text, 'Text' %>
             <%= o.text_field :cart_text, class: 'form-control' %>
           </div>
 
@@ -424,18 +426,20 @@
           </div>
 
           <div class="options-row">
-            <%= o.label :cart_low_enable %>
             <%= o.check_box :cart_low_enable, class: 'form-control' %>
+            <%= o.label :cart_low_enable, 'Change styles when timer is low', class: 'minor' %>
           </div>
 
           <div class="options-row">
-            <div class="select-container">
-              <%= o.label :cart_low_warning %>
+            <div class="select-container low-time-select">
+              <%= o.label :cart_low_warning, 'Show Warning' %>
               <%= o.select :cart_low_warning, header_low_warning_options, selected: @option.cart_low_warning %>
             </div>
           </div>
 
           <div class="options-row">
+            <label class="major">Message Bar</label>
+
             <%= color_field o, :cart_bar_low_bg_color %>
             <%= color_field o, :cart_bar_low_text_color %>
             <%= color_field o, :cart_bar_low_timer_color %>
@@ -447,6 +451,8 @@
           </div>
 
           <div class="options-row">
+            <label class="major">Continue Shopping Button</label>
+
             <%= color_field o, :cart_continue_low_bg_color %>
             <%= color_field o, :cart_continue_low_text_color %>
 
@@ -457,6 +463,8 @@
           </div>
 
           <div class="options-row">
+            <label class="major">Checkout Button</label>
+
             <%= color_field o, :cart_checkout_low_bg_color %>
             <%= color_field o, :cart_checkout_low_text_color %>
 
@@ -470,7 +478,7 @@
       </div>
 
       <div class="form-group header-label">
-        <h2>Cart Page Timer Settings</h2>
+        <h2>Cart Quick View Timer Settings</h2>
         <%= o.check_box :quick_view_enable, class: 'form-control' %>
         <%= o.label :quick_view_enable, class: 'enable-label' %>
       </div> 
@@ -479,7 +487,7 @@
         <div class="form-group">
 
           <div class="options-row">
-            <%= o.label :quick_view_text %>
+            <%= o.label :quick_view_text, 'Text' %>
             <%= o.text_field :quick_view_text, class: 'form-control' %>
           </div>
 
@@ -503,13 +511,13 @@
           </div>
 
           <div class="options-row">
-            <%= o.label :quick_view_low_enable %>
             <%= o.check_box :quick_view_low_enable, class: 'form-control' %>
+            <%= o.label :quick_view_low_enable, 'Change styles when timer is low', class: 'minor' %>
           </div>
 
           <div class="options-row">
-            <div class="select-container">
-              <%= o.label :quick_view_low_warning %>
+            <div class="select-container low-time-select">
+              <%= o.label :quick_view_low_warning, 'Show Warning' %>
               <%= o.select :quick_view_low_warning, header_low_warning_options, selected: @option.cart_low_warning %>
             </div>
           </div>

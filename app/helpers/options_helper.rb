@@ -75,7 +75,7 @@ module OptionsHelper
 
   def header_low_warning_options
     [
-      ['Same as “Show Warning” in Low Time Warning (General Settings)', '?'],
+      ['Same as “Show Warning” in Low Time Warning (General Settings)', @option.low_time_warning],
       ['30 seconds', 30],
       ['1 minute', 60],
       ['3 minutes', 180],

@@ -82,7 +82,8 @@ select {height:40px;}
 label {
 	color: #9B9B9B;
 
-	&.major {color:#404041;}
+	&.major,
+	&.minor {color:#404041;}
 }
 
 .form-group {
@@ -90,6 +91,11 @@ label {
 
 	&.main-settings {
 		display: flex;
+
+		.select-container {
+			margin-left: 25px;
+			flex-basis: 30%;
+		}
 	}
 }
 
@@ -312,7 +318,7 @@ input[type="checkbox"].enable-app-checkbox {
 	&.enable-app {
 		background: #FF0010;
 		display: flex;
-    margin: -50px 50px -50px -50px;
+    margin: -50px 0px -50px -50px;
     border-radius: 4px 0 0 4px;
     padding: 0 52px;
 		flex-direction: column;
@@ -379,9 +385,9 @@ input[type="checkbox"].enable-app-checkbox {
 
 	.styled-select {
     border-top: 1px solid #E0E0E0;
+    display: flex;
 
 		label {
-			width: 50%;
 	    float: left;
 	    margin: 0;
 	    color: #9B9B9B;
@@ -391,11 +397,11 @@ input[type="checkbox"].enable-app-checkbox {
 	    border-radius: 0 0 0 4px;
 	    padding: 14px;
 	    line-height: 1;
+	    white-space: nowrap;
 		}
 
 		select,
 		input {
-			width: 50%;
 	    float: left;
 	    border-radius: 0 0 4px 0;
 	    border: 0;
@@ -408,6 +414,8 @@ input[type="checkbox"].enable-app-checkbox {
 .options-row {
 
 	label.major {display: block;}
+
+	label.minor {margin-left: 10px;}
 
 	&> * + div {
 		margin-left: 22px;
@@ -507,7 +515,7 @@ input[type="checkbox"].enable-app-checkbox {
 		}
 	}
 
-	label {
+	label:not(.major) {
 		border: 1px solid #E0E0E0;
 		width: 120px;
 		height: 85px;
@@ -516,6 +524,10 @@ input[type="checkbox"].enable-app-checkbox {
 		border-radius: 4px;
 		position: relative;
 		cursor: pointer;
+
+		&+ label {
+			margin-left: 20px;
+		}
 
 		.timer {
 			position: absolute;

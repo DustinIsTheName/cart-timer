@@ -123,6 +123,12 @@ var ready = function() {
 		$('.tabs .well').removeClass('cssarrow');
 		$(this).addClass('cssarrow');
 	});
+
+	$('#option_low_time_warning').change(function() {
+		var time = $(this).val();
+
+		$('.low-time-select select option:first-child').attr('value', time);
+	});
 };
 
 $(document).ready(ready);
