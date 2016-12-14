@@ -473,11 +473,11 @@
                 cartLowCSS += '#wittyCartCartTimer #wittyCartpageButtons #wittyButtonShopping{background:'+c.cart_continue_low_bg_color+';';
                 cartLowCSS += 'color:'+c.cart_continue_low_text_color+';';
                 cartLowCSS += 'border: 1px solid '+c.cart_continue_low_border+';';
-                cartLowCSS += 'border-radius:'+c.cart_continue_low_border_radius+';}';
+                cartLowCSS += 'border-radius:'+c.cart_continue_low_border_radius+'px;}';
                 cartLowCSS += '#wittyCartCartTimer #wittyCartpageButtons #wittyButtonCheckout{background:'+c.cart_checkout_low_bg_color+';';
                 cartLowCSS += 'color:'+c.cart_checkout_low_text_color+';';
                 cartLowCSS += 'border: 1px solid '+c.cart_checkout_low_border+';';
-                cartLowCSS += 'border-radius:'+c.cart_checkout_low_border_radius+';}';
+                cartLowCSS += 'border-radius:'+c.cart_checkout_low_border_radius+'px;}';
 
                 customCSS = cartCSS + customCSS;
             } else {
@@ -506,12 +506,50 @@
                 quickLowCSS += '#wittyCartQuickView {background:'+q.quick_view_low_background_color+';';
                 quickLowCSS += 'color:'+q.quick_view_low_text_color+';';
                 quickLowCSS += 'border:1px solid '+q.quick_view_low_border+';';
-                quickLowCSS += 'border-radius:'+q.quick_view_low_border_radius+';}';
+                quickLowCSS += 'border-radius:'+q.quick_view_low_border_radius+'px;}';
                 quickLowCSS += '#wittyCartQuickView .wittyCountDownTimerHolder {color:'+q.quick_view_low_timer_color+';}';
 
                 customCSS = quickCSS + customCSS;
             } else {
                 $('#wittyCartQuickView').remove();
+            }
+
+            if (options.low_time_settings.low_time_enable) {
+                var lowCSS = '',
+                    l = options.low_time_settings,
+                    lowWarning = $('<div id="wittyCartLowBarTimer">');
+                lowWarning.append('<a href="#" class="wittyClose">X</a>');
+                lowWarning.append('<div class="wittyCountDownTimerHolder"><div class="wittyCountDownTimer"></div></div>');
+                lowWarning.append('<div class="wittyCountTimerMessage">' + l.low_time_text + '</div>');
+                lowWarning.append('<div id="wittyCartLowTimerButtons"><a class="btn button" id="wittyButtonLowCart" href="/cart">View Cart</a><a class="btn button" id="wittyButtonLowCheckout" href="/checkout">Checkout</a></div>');
+
+                lowWarning.addClass(l.low_time_location);
+
+                $('body').append(lowWarning);
+
+                lowCSS += '#wittyCartLowBarTimer{display:flex;background:'+l.low_time_bar_bg_color+';';
+                lowCSS += 'color:'+l.low_time_bar_text_color+';';
+                lowCSS += 'border: 1px solid '+l.low_time_bar_border+';';
+                lowCSS += 'border-radius:'+l.low_time_bar_border_radius+'px;';
+                lowCSS += 'font-size:'+l.low_time_bar_font_size+'px;}';
+                lowCSS += '#wittyCartLowBarTimer .wittyCountDownTimerHolder{border-right: 2px solid '+l.low_time_bar_border+';}';
+                lowCSS += '#wittyCartLowBarTimer .wittyCountDownTimer{font-size:'+l.low_time_bar_timer_size+'px;';
+                lowCSS += 'color:'+l.low_time_bar_timer_color+';}';
+
+                lowCSS += '#wittyCartLowBarTimer #wittyButtonLowCart{background:'+l.low_time_view_cart_bg_color+';';
+                lowCSS += 'color:'+l.low_time_view_cart_text_color+';';
+                // lowCSS += 'font-size:'+l.low_time_bar_font_size+'px;';
+                lowCSS += 'border: 1px solid '+l.low_time_view_cart_border+';';
+                lowCSS += 'border-radius:'+l.low_time_view_cart_border_radius+'px;}';
+
+                lowCSS += '#wittyCartLowBarTimer #wittyButtonLowCheckout{background:'+l.low_time_checkout_bg_color+';';
+                lowCSS += 'color:'+l.low_time_checkout_text_color+';';
+                // lowCSS += 'font-size:'+l.low_time_bar_font_size+'px;';
+                lowCSS += 'border: 1px solid '+l.low_time_checkout_border+';';
+                lowCSS += 'border-radius:'+l.low_time_checkout_border_radius+'px;}';
+
+                customCSS = lowCSS + customCSS;
+
             }
 
             customCSS = '<%= CartTimer::Application.assets["timer_js.css"].to_s.gsub(/\n/, '').html_safe %>' + customCSS;
