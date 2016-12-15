@@ -194,6 +194,16 @@
                 e.preventDefault();
                 $(this).parent().hide();
             });
+
+            $(document).on('click', '.wittyLowTimeClose', function(e) {
+                e.preventDefault();
+
+                if ( $(this).parent().hasClass('wittyCartLowWarningRemoved') ) {
+                    $(this).parent().addClass('wittyCartLowWarning2Removed');
+                } else {
+                    $(this).parent().addClass('wittyCartLowWarningRemoved');
+                }
+            });
 			
             function addMinutes(date, minutes) {
                 return new Date(date.getTime() + minutes*60000);
@@ -323,9 +333,20 @@
                         $('#wittyCartQuickLowTimeStyles').remove();
                     }
 
-                    // text = text.split('');
-                    // text = text.join('</span><span>');
-                    // text = '<span>' + text + '</span>';
+                    if (totalSeconds <= options.quick_view_settings.quick_view_low_warning) {
+                        if ($('#wittyCartQuickLowTimeStyles').length == 0) $('body').append('<style id="wittyCartQuickLowTimeStyles">'+quickLowCSS+'</style>');
+                    } else {
+                        $('#wittyCartQuickLowTimeStyles').remove();
+                    }
+
+                    if (totalSeconds <= options.low_time_settings.low_time_warning) {
+                        $('#wittyCartLowBarTimer').removeClass('wittyCartHidden');
+                    } else {
+                        $('#wittyCartLowBarTimer').addClass('wittyCartHidden').removeClass('wittyCartLowWarningRemoved');
+                    }
+
+                    // display:flex;
+
                     text.replace(' ', '');
                     clock.html( text );  
                     
@@ -517,8 +538,8 @@
             if (options.low_time_settings.low_time_enable) {
                 var lowCSS = '',
                     l = options.low_time_settings,
-                    lowWarning = $('<div id="wittyCartLowBarTimer">');
-                lowWarning.append('<a href="#" class="wittyClose">X</a>');
+                    lowWarning = $('<div id="wittyCartLowBarTimer" class="wittyCartHidden">');
+                lowWarning.append('<a href="#" class="wittyLowTimeClose">X</a>');
                 lowWarning.append('<div class="wittyCountDownTimerHolder"><div class="wittyCountDownTimer"></div></div>');
                 lowWarning.append('<div class="wittyCountTimerMessage">' + l.low_time_text + '</div>');
                 lowWarning.append('<div id="wittyCartLowTimerButtons"><a class="btn button" id="wittyButtonLowCart" href="/cart">View Cart</a><a class="btn button" id="wittyButtonLowCheckout" href="/checkout">Checkout</a></div>');
@@ -527,7 +548,7 @@
 
                 $('body').append(lowWarning);
 
-                lowCSS += '#wittyCartLowBarTimer{display:flex;background:'+l.low_time_bar_bg_color+';';
+                lowCSS += '#wittyCartLowBarTimer{background:'+l.low_time_bar_bg_color+';';
                 lowCSS += 'color:'+l.low_time_bar_text_color+';';
                 lowCSS += 'border: 1px solid '+l.low_time_bar_border+';';
                 lowCSS += 'border-radius:'+l.low_time_bar_border_radius+'px;';

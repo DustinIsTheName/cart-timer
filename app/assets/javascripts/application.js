@@ -129,8 +129,39 @@ var ready = function() {
 
 		$('.low-time-select select option:first-child').attr('value', time);
 	});
+
+	$('#option_low_time_warning').change(function() {
+		var seconds = parseInt( $(this).val() );
+
+		$('#option_low_time_warning_2 option').each(function() {
+			console.log($(this).val(), seconds);
+			if (parseInt( $(this).val() ) < seconds) {
+				$(this).show();
+			} else {
+				$(this).hide();
+			}
+		});
+	});
 };
 
 $(document).ready(ready);
 $(document).on('page:change', ready);
 $(document).on('turbolinks:load', ready);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
