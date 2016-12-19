@@ -49,7 +49,7 @@
                 low_time_enable: <%= @option.low_time_enable %>,
                 low_time_location: "<%= @option.low_time_location %>",
                 low_time_warning: <%= @option.low_time_warning %>,
-                low_time_warning_2: "<%= @option.low_time_warning_2 %>",
+                low_time_warning_2: <%= @option.low_time_warning_2 %>,
                 low_time_text: "<%= h(@option.low_time_text).gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>",
 
                 low_time_bar_bg_color: "<%= @option.low_time_bar_bg_color %>",
@@ -198,7 +198,7 @@
             $(document).on('click', '.wittyLowTimeClose', function(e) {
                 e.preventDefault();
 
-                if ( $(this).parent().hasClass('wittyCartLowWarningRemoved') ) {
+                if ( $(this).parent().hasClass('wittyCartLowWarning2Show') ) {
                     $(this).parent().addClass('wittyCartLowWarning2Removed');
                 } else {
                     $(this).parent().addClass('wittyCartLowWarningRemoved');
@@ -345,6 +345,12 @@
                         $('#wittyCartLowBarTimer').addClass('wittyCartHidden').removeClass('wittyCartLowWarningRemoved');
                     }
 
+                    if (totalSeconds <= options.low_time_settings.low_time_warning_2) {
+                        $('#wittyCartLowBarTimer').addClass('wittyCartLowWarning2Show');
+                    } else {
+                        $('#wittyCartLowBarTimer').removeClass('wittyCartLowWarning2Show').removeClass('wittyCartLowWarning2Removed');
+                    }             
+
                     // display:flex;
 
                     text.replace(' ', '');
@@ -362,7 +368,7 @@
               var timeinterval = setInterval(updateClock,1000);
             }
 
-            var expires = addMinutes(new Date(), .6); // PLACEHOLDER!!!!!!!!
+            var expires = addMinutes(new Date(), 1.1); // PLACEHOLDER!!!!!!!!
             
             // creates a fixed timer element if enabled
             if (options.float_settings.float_enable) {

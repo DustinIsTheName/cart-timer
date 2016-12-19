@@ -131,17 +131,24 @@ var ready = function() {
 	});
 
 	$('#option_low_time_warning').change(function() {
-		var seconds = parseInt( $(this).val() );
+		var values = [-1];
+		var mainSeconds = parseInt( $(this).val() );
+		var subSeconds = parseInt( $('#option_low_time_warning_2').val() );
 
 		$('#option_low_time_warning_2 option').each(function() {
-			console.log($(this).val(), seconds);
-			if (parseInt( $(this).val() ) < seconds) {
-				$(this).show();
+			if (parseInt( $(this).val() ) < mainSeconds) {
+				$(this).show().prop('disabled', false);
 			} else {
-				$(this).hide();
+				$(this).hide().prop('disabled', true);
 			}
 		});
-	});
+
+		if (subSeconds >= mainSeconds) {
+			var newValue = $('#option_low_time_warning_2 option:not(:disabled)').last().val();
+			$('#option_low_time_warning_2').val(newValue);
+		}
+
+	}).change();
 };
 
 $(document).ready(ready);

@@ -175,6 +175,14 @@
     display: none;
   }
 
+  &.wittyCartLowWarning2Show {
+    display: flex;
+
+    &.wittyCartLowWarning2Removed {
+      display: none;
+    }
+  }
+
   .wittyClose,
   .wittyLowTimeClose {
     position: absolute;
