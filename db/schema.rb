@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615172810) do
+ActiveRecord::Schema.define(version: 20161216133800) do
 
   create_table "options", force: :cascade do |t|
     t.boolean  "enable_app"
@@ -145,8 +145,60 @@ ActiveRecord::Schema.define(version: 20160615172810) do
     t.integer  "quick_view_low_border_radius"
     t.text     "custom_css"
     t.integer  "shop_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.integer  "product_all_border_radius"
+    t.integer  "product_all_font_size_top"
+    t.integer  "product_all_font_size_bottom"
+    t.integer  "product_all_opacity"
+    t.string   "product_all_padding"
+    t.string   "product_all_margin"
+    t.string   "product_reserved_text_top"
+    t.string   "product_reserved_text_bottom"
+    t.string   "product_reserved_background"
+    t.string   "product_reserved_text_color_top"
+    t.string   "product_reserved_text_color_bottom"
+    t.string   "product_reserved_border"
+    t.string   "product_readd_text_top"
+    t.string   "product_readd_text_bottom"
+    t.string   "product_readd_background"
+    t.string   "product_readd_text_color_top"
+    t.string   "product_readd_text_color_bottom"
+    t.string   "product_readd_border"
+    t.string   "product_no_readd_text_top"
+    t.string   "product_no_readd_text_bottom"
+    t.string   "product_no_readd_background"
+    t.string   "product_no_readd_text_color_top"
+    t.string   "product_no_readd_text_color_bottom"
+    t.string   "product_no_readd_timer_color"
+    t.string   "product_no_readd_border"
+    t.string   "product_no_readd_link"
+    t.string   "product_no_readd_link_color"
+    t.integer  "product_no_readd_link_font_size"
+    t.string   "product_another_reserved_text_top"
+    t.string   "product_another_reserved_text_bottom"
+    t.string   "product_another_reserved_background"
+    t.string   "product_another_reserved_text_color_top"
+    t.string   "product_another_reserved_text_color_bottom"
+    t.string   "product_another_reserved_timer_color"
+    t.string   "product_another_reserved_border"
+    t.string   "product_another_reserved_link"
+    t.string   "product_another_reserved_link_color"
+    t.integer  "product_another_reserved_link_font_size"
+    t.string   "product_grid_text"
+    t.string   "product_grid_background"
+    t.string   "product_grid_text_color"
+    t.string   "product_grid_border"
+    t.integer  "product_grid_border_radius"
+    t.string   "product_grid_padding"
+    t.string   "product_grid_margin"
+    t.string   "product_grid_reserved_background"
+    t.string   "product_grid_reserved_text_color"
+    t.integer  "product_grid_reserved_border_radius"
+    t.string   "product_grid_sold_text"
+    t.string   "product_grid_sold_background"
+    t.string   "product_grid_sold_text_color"
+    t.integer  "product_grid_sold_border_radius"
   end
 
   create_table "shops", force: :cascade do |t|

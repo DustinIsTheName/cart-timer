@@ -138,6 +138,10 @@ input[type=number]::-webkit-inner-spin-button {
   margin: 0;
 }
 
+input[type="text"] {
+	height: 40px;
+}
+
 .margin-padding-container {
   display: inline-block;
 
@@ -182,6 +186,8 @@ input[type=number]::-webkit-inner-spin-button {
 		border-radius: 4px 0 0 4px;
 	}
 
+	&.no-pixel input[type="number"] {border-radius: 4px;}
+
 	.px {
 		content: 'px';
 		color: #9B9B9B;
@@ -220,6 +226,10 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 .list-group {margin-left:0;}
+
+.contained-text {
+	display: inline-block;
+}
 
 .border-attr {
 	display: inline-block;
@@ -424,6 +434,10 @@ input[type="checkbox"].enable-app-checkbox {
 	&+ .options-row {
 		margin-top: 35px;
 	}
+
+	.options-row {
+		margin-top: 20px;
+	}
 }
 
 .tabs {
@@ -552,7 +566,6 @@ input[type="checkbox"].enable-app-checkbox {
 	    font-size: 10px;
 		}
 	}
-
 }
 
 

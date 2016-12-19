@@ -13,6 +13,9 @@
 
 	  <%= o.number_field option_value %>
 	  <div class="px">px</div>
+	  <% if option_string.include? 'link' %>
+		  <label class="below">Link</label>
+	  <% end %>
 	<% else %>
 	  <%= o.number_field option_value %>
 	  <div class="px">px</div>

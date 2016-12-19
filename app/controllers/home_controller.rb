@@ -63,7 +63,14 @@ class HomeController < AuthenticatedController
                                      :cart_checkout_low_bg_color,:cart_checkout_low_text_color,:cart_checkout_low_border,:cart_checkout_low_border_radius,
                                      :quick_view_enable,:quick_view_text,
                                      :quick_view_background_color,:quick_view_text_color,:quick_view_timer_color,:quick_view_border,:quick_view_border_radius,:quick_view_font_size,:quick_view_timer_size,:quick_view_padding,:quick_view_margin,
-                                     :quick_view_low_enable,:quick_view_low_warning,:quick_view_low_background_color,:quick_view_low_text_color,:quick_view_low_timer_color,:quick_view_low_border,:quick_view_low_border_radius,:custom_css)
+                                     :quick_view_low_enable,:quick_view_low_warning,:quick_view_low_background_color,:quick_view_low_text_color,:quick_view_low_timer_color,:quick_view_low_border,:quick_view_low_border_radius,
+                                     :product_all_border_radius, :product_all_font_size_top, :product_all_font_size_bottom, :product_all_opacity, :product_all_padding, :product_all_margin,
+                                     :product_reserved_text_top, :product_reserved_text_bottom, :product_reserved_background, :product_reserved_text_color_top, :product_reserved_text_color_bottom, :product_reserved_border,
+                                     :product_readd_text_top, :product_readd_text_bottom, :product_readd_background, :product_readd_text_color_top, :product_readd_text_color_bottom, :product_readd_border,
+                                     :product_no_readd_text_top, :product_no_readd_text_bottom, :product_no_readd_background, :product_no_readd_text_color_top, :product_no_readd_text_color_bottom, :product_no_readd_timer_color, :product_no_readd_border, :product_no_readd_link, :product_no_readd_link_color, :product_no_readd_link_font_size,
+                                     :product_another_reserved_text_top, :product_another_reserved_text_bottom, :product_another_reserved_background, :product_another_reserved_text_color_top, :product_another_reserved_text_color_bottom, :product_another_reserved_timer_color, :product_another_reserved_border, :product_another_reserved_link, :product_another_reserved_link_color, :product_another_reserved_link_font_size,
+                                     :product_grid_text, :product_grid_background, :product_grid_text_color, :product_grid_border, :product_grid_border_radius, :product_grid_padding, :product_grid_margin, :product_grid_reserved_background, :product_grid_reserved_text_color, :product_grid_reserved_border_radius, :product_grid_sold_text, :product_grid_sold_background, :product_grid_sold_text_color, :product_grid_sold_border_radius,
+                                     :custom_css)
     end
 
 end

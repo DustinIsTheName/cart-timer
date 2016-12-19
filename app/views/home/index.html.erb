@@ -538,6 +538,192 @@
 
       <div class="well">
         <div class="form-group">
+
+          <div class="options-row">
+            <label class="major">All Buttons</label>
+            <div class="border-attr">
+              <%= o.label :product_all_border_radius, 'Border' %>
+              <%= pixel_field o, :product_all_border_radius %>
+            </div>
+
+            <%= pixel_field o, :product_all_font_size_top %>
+            <%= pixel_field o, :product_all_font_size_bottom %>
+            <div class="number-field no-pixel">
+              <%= o.label :product_all_opacity, 'Opacity' %>
+              <%= o.number_field :product_all_opacity %>
+            </div>
+
+            <br>
+
+            <%= margin_padding_field o, :product_all_padding %>
+            <%= margin_padding_field o, :product_all_margin %>
+          </div>
+
+          <div class="options-row">
+            <label class="major">Reserved Button</label>
+
+            <div class="contained-text">
+              <%= o.label :product_reserved_text_top, 'Text (Top)' %>
+              <%= o.text_field :product_reserved_text_top, class: 'form-control' %>
+            </div>
+
+            <div class="contained-text">
+              <%= o.label :product_reserved_text_bottom, 'Text (Bottom)' %>
+              <%= o.text_field :product_reserved_text_bottom, class: 'form-control' %>
+            </div>
+
+            <br>
+
+            <%= color_field o, :product_reserved_background %>
+            <%= color_field o, :product_reserved_text_color_top %>
+            <%= color_field o, :product_reserved_text_color_bottom %>
+            <div class="border-attr">
+              <%= color_field o, :product_reserved_border %>
+            </div>
+          </div>
+
+          <div class="options-row">
+            <label class="major">Time Expired &#47; Re-Add Button</label>
+
+            <div class="contained-text">
+              <%= o.label :product_readd_text_top, 'Text (Top)' %>
+              <%= o.text_field :product_readd_text_top, class: 'form-control' %>
+            </div>
+
+            <div class="contained-text">
+              <%= o.label :product_readd_text_bottom, 'Text (Bottom)' %>
+              <%= o.text_field :product_readd_text_bottom, class: 'form-control' %>
+            </div>
+
+            <br>
+
+            <%= color_field o, :product_readd_background %>
+            <%= color_field o, :product_readd_text_color_top %>
+            <%= color_field o, :product_readd_text_color_bottom %>
+            <div class="border-attr">
+              <%= color_field o, :product_readd_border %>
+            </div>
+          </div>
+
+          <div class="options-row">
+            <label class="major">Time Expired &#47; No Re-Add Button</label>
+
+            <div class="contained-text">
+              <%= o.label :product_no_readd_text_top, 'Text (Top)' %>
+              <%= o.text_field :product_no_readd_text_top, class: 'form-control' %>
+            </div>
+
+            <div class="contained-text">
+              <%= o.label :product_no_readd_text_bottom, 'Text (Bottom)' %>
+              <%= o.text_field :product_no_readd_text_bottom, class: 'form-control' %>
+            </div>
+
+            <br>
+
+            <%= color_field o, :product_no_readd_background %>
+            <%= color_field o, :product_no_readd_text_color_top %>
+            <%= color_field o, :product_no_readd_text_color_bottom %>
+            <%= color_field o, :product_no_readd_timer_color %>
+            <div class="border-attr">
+              <%= color_field o, :product_no_readd_border %>
+            </div>
+
+            <br>
+
+            <div class="contained-text">
+              <%= o.label :product_no_readd_link, 'Link' %>
+              <%= o.text_field :product_no_readd_link, class: 'form-control' %>
+            </div>
+            <%= color_field o, :product_no_readd_link_color %>
+            <%= pixel_field o, :product_no_readd_link_font_size %>
+          </div>
+
+          <div class="options-row">
+            <label class="major">Reserved (by Another Customer) Button</label>
+
+            <div class="contained-text">
+              <%= o.label :product_another_reserved_text_top, 'Text (Top)' %>
+              <%= o.text_field :product_another_reserved_text_top, class: 'form-control' %>
+            </div>
+
+            <div class="contained-text">
+              <%= o.label :product_another_reserved_text_bottom, 'Text (Bottom)' %>
+              <%= o.text_field :product_another_reserved_text_bottom, class: 'form-control' %>
+            </div>
+
+            <br>
+
+            <%= color_field o, :product_another_reserved_background %>
+            <%= color_field o, :product_another_reserved_text_color_top %>
+            <%= color_field o, :product_another_reserved_text_color_bottom %>
+            <%= color_field o, :product_another_reserved_timer_color %>
+            <div class="border-attr">
+              <%= color_field o, :product_another_reserved_border %>
+            </div>
+
+            <br>
+
+            <div class="contained-text">
+              <%= o.label :product_another_reserved_link, 'Link' %>
+              <%= o.text_field :product_another_reserved_link, class: 'form-control' %>
+            </div>
+            <%= color_field o, :product_another_reserved_link_color %>
+            <%= pixel_field o, :product_another_reserved_link_font_size %>
+          </div>
+
+          <div class="options-row">
+            <label class="major">Reserved Products Grid</label>
+
+            <div>
+              <%= o.label :product_grid_text, 'Text' %>
+              <%= o.text_field :product_grid_text, class: 'form-control' %>
+            </div>
+
+            <%= color_field o, :product_grid_background %>
+            <%= color_field o, :product_grid_text_color %>
+            <div class="border-attr">
+              <%= color_field o, :product_grid_border %>
+              <%= pixel_field o, :product_grid_border_radius %>
+            </div>
+
+            <br>
+
+            <%= margin_padding_field o, :product_grid_padding %>
+            <%= margin_padding_field o, :product_grid_margin %>
+
+            <div class="options-row">
+              <label class="major">Reserved Boxes</label>
+
+              <%= color_field o, :product_grid_reserved_background %>
+              <%= color_field o, :product_grid_reserved_text_color %>
+              <div class="border-attr">
+                <%= o.label :product_grid_reserved_border_radius, 'Border' %>
+                <%= pixel_field o, :product_grid_reserved_border_radius %>
+              </div>
+            </div>
+
+            <div class="options-row">
+              <label class="major">Sold Boxes</label>
+
+              <div class="contained-text">
+                <%= o.label :product_grid_sold_text, 'Sold' %>
+                <%= o.text_field :product_grid_sold_text, class: 'form-control' %>
+              </div>
+              <%= color_field o, :product_grid_sold_background %>
+              <%= color_field o, :product_grid_sold_text_color %>
+              <div class="border-attr">
+                <%= o.label :product_grid_sold_border_radius, 'Border' %>
+                <%= pixel_field o, :product_grid_sold_border_radius %>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="well">
+        <div class="form-group">
           <%= o.label :custom_css %>
           <%= o.text_area :custom_css, class: 'form-control' %>
         </div>
