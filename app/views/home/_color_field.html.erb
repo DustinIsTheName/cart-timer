@@ -1,0 +1,22 @@
+<% option_string = option_value.to_s %>
+<% if option_string.include? 'border' %>
+	<%= o.label option_value, 'Border' %>
+<% end %>
+<div class="color-field">
+	<% if option_string.include? 'border' %>
+	<% elsif option_string.include? 'bg' or option_string.include? 'background' %>
+		<%= o.label option_value, 'Background' %>
+	<% elsif option_string.include? 'text_color' %>
+		<%= o.label option_value, 'Text Color' %>
+	<% elsif option_string.include? 'icon_color' %>
+		<%= o.label option_value, 'Icon Color' %>
+	<% elsif option_string.include? 'timer_color' %>
+		<%= o.label option_value, 'Timer Color' %>
+	<% elsif option_string.include? 'link_color' %>
+		<%= o.label option_value, 'Link Color' %>
+	<% else %>
+		<%= o.label option_value %>
+	<% end %>
+	<input type="text" class="gform-control color_picker_visable" value="<%= @option[option_value] %>" data-color="<%= option_string %>">
+	<%= o.hidden_field option_value, class: 'form-control color_picker color-' + option_string %>
+</div>

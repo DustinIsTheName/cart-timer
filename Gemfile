@@ -11,7 +11,10 @@ group :production do
   gem 'rails_12factor'
 end
 
+# Throttle API requests for Shopify's rate limit
+gem 'sidekiq-rate-limiter'
 gem 'shopify_app', '6.2.0'
+gem 'shopify_cli', group: :development
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -46,11 +49,26 @@ gem 'jquery-minicolors-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  # new devlopment server that allows for the use of https
+  gem 'thin'
+  # includes RSpec itself in a wrapper to make it play nicely with Rails 3; hoping it does the same in rails 4
+  gem 'rspec-rails'
+  # replaces Rails’ default fixtures for feeding test data to the test suite with much more preferable factories
+  gem 'factory_girl_rails'
 end
 
+# Access an IRB console on exception pages or by using <%= console %> in views
+gem 'web-console', '~> 2.0', group: :development
+
+group :test do
+	# generates names, email addresses, and other placeholders for factories
+  gem 'faker'
+  # makes it easy to programatically simulate your users’ interactions with your application
+  gem 'capybara'
+  # watches your application and tests and runs specs for you automatically when it detects changes
+  gem 'guard-rspec'
+  # does one thing, but does it well: It opens your default web browser upon failed integration specs to show you what your application is rendering
+  gem 'launchy'
+end

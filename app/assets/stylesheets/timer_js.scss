@@ -1,0 +1,246 @@
+.wittyIcon {
+  display: inline-block;
+  height: 1em; /* default icon height */
+  position: relative;
+  user-select: none;
+}
+
+.wittyIcon-canvas {
+  display: block;
+  height: 100%;
+  visibility: hidden;
+}
+
+.wittyIcon svg {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+#wittyCartFloatTimer {
+	z-index: 99999;
+	padding: 10px;
+	width: 205px;
+  text-align: center;
+  line-height: 1.25;
+
+	.wittyCountDownTimer {
+		margin-top: 5px;
+	}
+
+  .wittyClose {
+  	position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 12px;
+    color: #bbb;
+  }
+}
+
+#wittyCartHeaderTimer {
+  float: left;
+  line-height: 1;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  display:block;
+
+  .wittyIcon {
+    vertical-align: top;
+  }
+
+  .wittyCountDownTimer {
+    vertical-align: top;
+    // margin-left: .33em;
+    display: inline-block;
+    text-align: center;
+  }
+}
+
+#wittyCartCartTimer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .wittyMessageButtonsHolder {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .wittyCountDownTimerHolder {
+    align-self: stretch;
+    display: flex;
+    flex-basis: 4em;
+    justify-content: center;
+  }
+
+  .wittyMessage {
+    text-align: center;
+    flex-basis: 50%;
+    flex-grow: 1;
+  }
+
+  .wittyCountDownTimer {
+    align-self: center;
+    display: flex;
+    white-space: nowrap;
+    justify-content: center;
+  }
+
+  #wittyCartpageButtons {
+    // flex-grow: 1;
+    // flex-basis: 1%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 -5px;
+
+    #wittyButtonCheckout {
+      // margin-left: 10px;
+      margin: 0 5px;
+      white-space: nowrap;
+    }
+
+    #wittyButtonShopping {
+      margin: 0 5px;
+      white-space: nowrap;
+    }
+  }
+}
+
+#wittyCartQuickView {
+  display: flex;
+  text-align: center;
+  line-height: 1.25;
+
+  .wittyQuickMessage {
+    text-align: center;
+  }
+
+  .wittyCountDownTimerHolder {
+    display: flex;
+    flex-basis: 4em;
+    justify-content: center;
+
+    .wittyCountDownTimer {
+      align-self: center;
+      display: flex;
+      white-space: nowrap;
+      justify-content: center;
+    }
+  }
+}
+
+#wittyCartLowBarTimer {
+  position: fixed;
+  z-index: 9999;
+  padding: 50px;
+  text-align: center;
+  line-height: 1.25;
+  align-items: center;
+  display: flex;
+
+  &.top {
+    top: 0;
+    bottom: auto;
+    right: auto;
+    left: auto;
+  }
+
+  &.bottom {
+    top: auto;
+    bottom: 0;
+    right: auto;
+    left: auto;
+  }
+
+  &.modal {
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  &.wittyCartHidden {
+    display: none;
+  }
+
+  &.wittyCartLowWarningRemoved {
+    display: none;
+  }
+
+  &.wittyCartLowWarning2Show {
+    display: flex;
+
+    &.wittyCartLowWarning2Removed {
+      display: none;
+    }
+  }
+
+  .wittyClose,
+  .wittyLowTimeClose {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    color: rgba(255,255,255,.2);
+  }
+  .wittyCountDownTimerHolder {
+    display: flex;
+    padding: 0 25px 0 0;
+    margin: 0 25px 0 0;
+    align-self: stretch;
+
+    .wittyCountDownTimer {
+      font-weight: bold;
+      align-self: center;
+    }
+  }
+  .wittyCountTimerMessage {
+    flex-basis: 50%;
+    flex-grow: 1;
+  }
+  #wittyCartLowTimerButtons {
+    margin-left: 25px;
+
+    a {
+      padding: 10px 20px;
+      line-height: 1;
+      height: auto;
+
+      &:hover {
+        opacity: .8;
+      }
+    }
+
+    #wittyButtonLowCheckout {
+      margin-left: 10px;
+    }
+  }
+}
+
+.clock-measurement {
+  position: absolute;
+  // visibility: hidden;
+  z-index: -99999999;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

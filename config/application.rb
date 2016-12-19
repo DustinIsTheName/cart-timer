@@ -8,6 +8,11 @@ Bundler.require(*Rails.groups)
 
 module CartTimer
   class Application < Rails::Application
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/lib/functions)
+    # Dir.glob("lib/functions/*.rb").each { |f| require f.sub('lib/', '') }
+    require 'sidekiq-rate-limiter/server'
+
     config.action_dispatch.default_headers['P3P'] = 'CP="Not used"'
     config.action_dispatch.default_headers.delete('X-Frame-Options')
     # Settings in config/environments/* take precedence over those specified here.
@@ -30,6 +35,17 @@ module CartTimer
       YAML.load(File.open(env_file)).each do |key, value|
         ENV[key.to_s] = value
       end if File.exists?(env_file)
+    end
+    
+    config.generators do |g|
+      g.test_framework :rspec,
+        :fixtures => true,
+        :view_specs => false,
+        :helper_specs => false,
+        :routing_specs => false,
+        :controller_specs => true,
+        :request_specs => true
+      g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
     
   end

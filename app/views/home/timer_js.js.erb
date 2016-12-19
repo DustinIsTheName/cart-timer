@@ -1,0 +1,601 @@
+(function() {
+
+
+  var loadScript = function(url, callback) {
+
+  	var script = document.createElement("script");
+		script.type = "text/javascript";
+
+	  // If the browser is Internet Explorer.
+	  if (script.readyState){
+	    script.onreadystatechange = function() {
+	      if (script.readyState == "loaded" || script.readyState == "complete"){
+	        script.onreadystatechange = null;
+	        callback();
+	      }
+	    };
+	  // For any other browser.
+	  } else {
+	    script.onload = function() {
+	      callback();
+	    };
+	  }
+
+	  script.src = url;
+	  document.getElementsByTagName("head")[0].appendChild(script);
+
+  }
+
+	/* This is my app's JavaScript */
+	var myAppJavaScript = function($) {
+
+		var options = {
+        	enable_app: <%= @option.enable_app %>,
+            timer_format: "<%= @option.timer_format %>",
+            product_rule: "<%= @option.product_rule %>",
+            float_settings: {
+                float_enable: <%= @option.float_enable %>,
+                float_text: "<%= h(@option.float_text).gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>",
+                float_position: "<%= @option.float_position %>",
+                float_bg_color: "<%= @option.float_bg_color %>",
+                float_text_color: "<%= @option.float_text_color %>",
+                float_timer_color: "<%= @option.float_timer_color %>",
+                float_border: "<%= @option.float_border %>",
+                float_border_radius: "<%= @option.float_border_radius %>",
+                float_font_size: "<%= @option.float_font_size %>",
+                float_timer_size: "<%= @option.float_timer_size %>"
+            },
+            low_time_settings: {
+                low_time_enable: <%= @option.low_time_enable %>,
+                low_time_location: "<%= @option.low_time_location %>",
+                low_time_warning: <%= @option.low_time_warning %>,
+                low_time_warning_2: <%= @option.low_time_warning_2 %>,
+                low_time_text: "<%= h(@option.low_time_text).gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>",
+
+                low_time_bar_bg_color: "<%= @option.low_time_bar_bg_color %>",
+                low_time_bar_text_color: "<%= @option.low_time_bar_text_color %>",
+                low_time_bar_timer_color: "<%= @option.low_time_bar_timer_color %>",
+                low_time_bar_border: "<%= @option.low_time_bar_border %>",
+                low_time_bar_border_radius: "<%= @option.low_time_bar_border_radius %>",
+                low_time_bar_font_size: "<%= @option.low_time_bar_font_size %>",
+                low_time_bar_timer_size: "<%= @option.low_time_bar_timer_size %>",
+
+                low_time_view_cart_bg_color: "<%= @option.low_time_view_cart_bg_color %>",
+                low_time_view_cart_text_color: "<%= @option.low_time_view_cart_text_color %>",
+                low_time_view_cart_border: "<%= @option.low_time_view_cart_border %>",
+                low_time_view_cart_border_radius: "<%= @option.low_time_view_cart_border_radius %>",
+
+                low_time_checkout_bg_color: "<%= @option.low_time_checkout_bg_color %>",
+                low_time_checkout_text_color: "<%= @option.low_time_checkout_text_color %>",
+                low_time_checkout_border: "<%= @option.low_time_checkout_border %>",
+                low_time_checkout_border_radius: "<%= @option.low_time_checkout_border_radius %>"
+            },
+            header_settings: {
+                header_enable: <%= @option.header_enable %>,
+                header_display: "<%= @option.header_display %>",
+                header_low_enable: <%= @option.header_low_enable %>,
+                header_low_warning: <%= @option.header_low_warning %>,
+                header_low_animation: "<%= @option.header_low_animation %>",
+
+                header_display1_text_color: "<%= @option.header_display1_text_color %>",
+                header_display1_font_size: "<%= @option.header_display1_font_size %>",
+                header_display1_padding: "<%= @option.header_display1_padding %>",
+                header_display1_margin: "<%= @option.header_display1_margin %>",
+                header_display1_low_text_color: "<%= @option.header_display1_low_text_color %>",
+
+                header_display2_text_color: "<%= @option.header_display2_text_color %>",
+                header_display2_icon_color: "<%= @option.header_display2_icon_color %>",
+                header_display2_font_size: "<%= @option.header_display2_font_size %>",
+                header_display2_padding: "<%= @option.header_display2_padding %>",
+                header_display2_margin: "<%= @option.header_display2_margin %>",
+                header_display2_low_text_color: "<%= @option.header_display2_low_text_color %>",
+                header_display2_low_icon_color: "<%= @option.header_display2_low_icon_color %>",
+
+                header_display3_text_color: "<%= @option.header_display3_text_color %>",
+                header_display3_icon_color: "<%= @option.header_display3_icon_color %>",
+                header_display3_bg_color: "<%= @option.header_display3_bg_color %>",
+                header_display3_border: "<%= @option.header_display3_border %>",
+                header_display3_border_radius: "<%= @option.header_display3_border_radius %>",
+                header_display3_font_size: "<%= @option.header_display3_font_size %>",
+                header_display3_padding: "<%= @option.header_display3_padding %>",
+                header_display3_margin: "<%= @option.header_display3_margin %>",
+                header_display3_low_text_color: "<%= @option.header_display3_low_text_color %>",
+                header_display3_low_icon_color: "<%= @option.header_display3_low_icon_color %>",
+                header_display3_low_bg_color: "<%= @option.header_display3_low_bg_color %>",
+                header_display3_low_border: "<%= @option.header_display3_low_border %>",
+                header_display3_low_border_radius: "<%= @option.header_display3_low_border_radius %>",
+
+                header_display4_text_color: "<%= @option.header_display4_text_color %>",
+                header_display4_icon_color: "<%= @option.header_display4_icon_color %>",
+                header_display4_bg_color: "<%= @option.header_display4_bg_color %>",
+                header_display4_border: "<%= @option.header_display4_border %>",
+                header_display4_border_radius: "<%= @option.header_display4_border_radius %>",
+                header_display4_font_size: "<%= @option.header_display4_font_size %>",
+                header_display4_padding: "<%= @option.header_display4_padding %>",
+                header_display4_margin: "<%= @option.header_display4_margin %>",
+                header_display4_low_text_color: "<%= @option.header_display4_low_text_color %>",
+                header_display4_low_icon_color: "<%= @option.header_display4_low_icon_color %>",
+                header_display4_low_bg_color: "<%= @option.header_display4_low_bg_color %>",
+                header_display4_low_border: "<%= @option.header_display4_low_border %>",
+                header_display4_low_border_radius: "<%= @option.header_display4_low_border_radius %>"
+            },
+            cart_settings: {
+                cart_enable: <%= @option.cart_enable %>,
+                cart_text: "<%= h(@option.cart_text).gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>",
+
+                cart_bar_bg_color: "<%= @option.cart_bar_bg_color %>",
+                cart_bar_text_color: "<%= @option.cart_bar_text_color %>",
+                cart_bar_timer_color: "<%= @option.cart_bar_timer_color %>",
+                cart_bar_border: "<%= @option.cart_bar_border %>",
+                cart_bar_border_radius: "<%= @option.cart_bar_border_radius %>",
+                cart_bar_font_size: "<%= @option.cart_bar_font_size %>",
+                cart_bar_timer_size: "<%= @option.cart_bar_timer_size %>",
+                cart_bar_padding: "<%= @option.cart_bar_padding %>",
+                cart_bar_margin: "<%= @option.cart_bar_margin %>",
+
+                cart_continue_bg_color: "<%= @option.cart_continue_bg_color %>",
+                cart_continue_text_color: "<%= @option.cart_continue_text_color %>",
+                cart_continue_border: "<%= @option.cart_continue_border %>",
+                cart_continue_border_radius: "<%= @option.cart_continue_border_radius %>",
+                cart_checkout_bg_color: "<%= @option.cart_checkout_bg_color %>",
+                cart_checkout_text_color: "<%= @option.cart_checkout_text_color %>",
+                cart_checkout_border: "<%= @option.cart_checkout_border %>",
+                cart_checkout_border_radius: "<%= @option.cart_checkout_border_radius %>",
+
+                cart_low_enable: <%= @option.cart_low_enable %>,
+                cart_low_warning: <%= @option.cart_low_warning %>,
+                cart_bar_low_bg_color: "<%= @option.cart_bar_low_bg_color %>",
+                cart_bar_low_text_color: "<%= @option.cart_bar_low_text_color %>",
+                cart_bar_low_timer_color: "<%= @option.cart_bar_low_timer_color %>",
+                cart_bar_low_border: "<%= @option.cart_bar_low_border %>",
+                cart_bar_low_border_radius: "<%= @option.cart_bar_low_border_radius %>",
+
+                cart_continue_low_bg_color: "<%= @option.cart_continue_low_bg_color %>",
+                cart_continue_low_text_color: "<%= @option.cart_continue_low_text_color %>",
+                cart_continue_low_border: "<%= @option.cart_continue_low_border %>",
+                cart_continue_low_border_radius: "<%= @option.cart_continue_low_border_radius %>",
+                cart_checkout_low_bg_color: "<%= @option.cart_checkout_low_bg_color %>",
+                cart_checkout_low_text_color: "<%= @option.cart_checkout_low_text_color %>",
+                cart_checkout_low_border: "<%= @option.cart_checkout_low_border %>",
+                cart_checkout_low_border_radius: "<%= @option.cart_checkout_low_border_radius %>"
+            },
+            quick_view_settings: {
+                quick_view_enable: <%= @option.quick_view_enable %>,
+                quick_view_text: "<%= h(@option.quick_view_text).gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>",
+                quick_view_background_color: "<%= @option.quick_view_background_color %>",
+                quick_view_text_color: "<%= @option.quick_view_text_color %>",
+                quick_view_timer_color: "<%= @option.quick_view_timer_color %>",
+                quick_view_border: "<%= @option.quick_view_border %>",
+                quick_view_border_radius: "<%= @option.quick_view_border_radius %>",
+                quick_view_font_size: "<%= @option.quick_view_font_size %>",
+                quick_view_timer_size: "<%= @option.quick_view_timer_size %>",
+                quick_view_padding: "<%= @option.quick_view_padding %>",
+                quick_view_margin: "<%= @option.quick_view_margin %>",
+                quick_view_low_enable: <%= @option.quick_view_low_enable %>,
+                quick_view_low_warning: "<%= @option.quick_view_low_warning %>",
+                quick_view_low_background_color: "<%= @option.quick_view_low_background_color %>",
+                quick_view_low_text_color: "<%= @option.quick_view_low_text_color %>",
+                quick_view_low_timer_color: "<%= @option.quick_view_low_timer_color %>",
+                quick_view_low_border: "<%= @option.quick_view_low_border %>",
+                quick_view_low_border_radius: "<%= @option.quick_view_low_border_radius %>",
+            },
+            custom_css: "<%= @option.custom_css.gsub(/(?:\n\r?|\r\n?)/, '') %>"            
+		},
+		customCSS = options.custom_css,
+        headerLowCSS = '',
+        cartLowCSS = '',
+        quickLowCSS = '',
+        clockSizes = {};
+        console.log(options);
+
+		if (options.enable_app) {
+
+            $(document).on('click', '.wittyClose', function(e) {
+                e.preventDefault();
+                $(this).parent().hide();
+            });
+
+            $(document).on('click', '.wittyLowTimeClose', function(e) {
+                e.preventDefault();
+
+                if ( $(this).parent().hasClass('wittyCartLowWarning2Show') ) {
+                    $(this).parent().addClass('wittyCartLowWarning2Removed');
+                } else {
+                    $(this).parent().addClass('wittyCartLowWarningRemoved');
+                }
+            });
+			
+            function addMinutes(date, minutes) {
+                return new Date(date.getTime() + minutes*60000);
+            }
+
+            // adds a leading zero to a one diget number
+            function LeadingZero(num) {
+                var s = "0" + num;
+                return s.substr(s.length-2);
+            }
+
+            // returns time in day, hour, minute, and second increments
+            function getTimeRemaining(endtime){
+              var t = Date.parse(endtime) - Date.parse(new Date());
+              var seconds = Math.floor( (t/1000) % 60 );
+              var minutes = Math.floor( (t/1000/60) % 60 );
+              var hours = Math.floor( (t/(1000*60*60)) % 24 );
+              var days = Math.floor( t/(1000*60*60*24) );
+              return {
+                'total': t,
+                'days': days,
+                'hours': hours,
+                'minutes': minutes,
+                'seconds': seconds
+              };
+            }
+
+            function setGlobalSize() {
+
+                var timerFormat = (options.timer_format === 'clock') ? '00:00' : '00m 00s' ;
+
+                if (options.header_settings.header_enable) {
+                    switch (options.header_settings.header_display) {
+                        case '1':
+                            var headerFontSize = options.header_settings.header_display1_font_size;
+                            break;
+                        case '2':
+                            headerFontSize = options.header_settings.header_display2_font_size;
+                            break;
+                        case '3':
+                            headerFontSize = options.header_settings.header_display3_font_size;
+                            break;
+                        case '4':
+                            headerFontSize = options.header_settings.header_display4_font_size;
+                            break;
+                    }
+
+                    $('#wittyCartHeaderTimer').append('<div class="clock-measurement" style="font-size:'+headerFontSize+'px;">'+timerFormat+'</div>');
+                }
+
+                if (options.cart_settings.cart_enable) $('#wittyCartCartTimer').append('<div class="clock-measurement" style="font-size:'+options.cart_settings.cart_bar_timer_size+'px;">'+timerFormat+'</div>');
+
+                if (options.quick_view_settings.quick_view_enable) $('#wittyCartQuickView').append('<div class="clock-measurement" style="font-size:'+options.quick_view_settings.quick_view_timer_size+'px;">'+timerFormat+'</div>');
+                
+                setTimeout(function() {
+                    $('.clock-measurement').each(function() {
+                        var id = $(this).parent()[0].id;
+
+                        clockSizes[id] = $(this).width();
+                    });
+                    $.each(clockSizes, function(index, value) {
+                        $('#'+index+' .wittyCountDownTimer').width(value);
+                    });
+                    $('.clock-measurement').remove();
+                }, 00);
+            }
+
+            setGlobalSize();
+
+            // sets and formats timer based on passed timestamp
+            function initializeClock(query, endtime) {
+              var clock = $(query);
+              var text;
+              var letterSize = [];
+
+              function setSize() {
+                
+                clock.each(function() {
+                    var sizes = [];
+                    largestWidth = 0;
+
+                    $(this).find('span').each(function() {
+                        sizes.push($(this).width());
+                        if ($(this).width() > largestWidth) {
+                            largestWidth = $(this).width();
+                        }
+                    });
+
+                    var sum = 0;
+                    for( var i = 0; i < sizes.length; i++ ){
+                        sum += parseInt( sizes[i], 10 ); //don't forget to add the base
+                    }
+
+                    letterSize.push((sum/sizes.length)+2);
+                    
+                });
+              }
+
+              function updateClock() {
+                var t = getTimeRemaining(endtime);
+                if (clock) {
+                    if (options.timer_format == 'clock') {
+                        text = t.minutes + ':' + LeadingZero(t.seconds);
+                    } else {
+                        text =  t.minutes + 'm ' + t.seconds + 's';
+                    }
+
+                    totalSeconds = t.minutes*60 + t.seconds;
+
+                    console.log(totalSeconds);
+
+                    if (totalSeconds <= options.header_settings.header_low_warning) {
+                        if ($('#wittyCartHeaderLowTimeStyles').length == 0) $('body').append('<style id="wittyCartHeaderLowTimeStyles">'+headerLowCSS+'</style>');
+                    } else {
+                        $('#wittyCartHeaderLowTimeStyles').remove();
+                    }
+
+                    if (totalSeconds <= options.cart_settings.cart_low_warning) {
+                        if ($('#wittyCartCartLowTimeStyles').length == 0) $('body').append('<style id="wittyCartCartLowTimeStyles">'+cartLowCSS+'</style>');
+                    } else {
+                        $('#wittyCartCartLowTimeStyles').remove();
+                    }
+
+                    if (totalSeconds <= options.quick_view_settings.quick_view_low_warning) {
+                        if ($('#wittyCartQuickLowTimeStyles').length == 0) $('body').append('<style id="wittyCartQuickLowTimeStyles">'+quickLowCSS+'</style>');
+                    } else {
+                        $('#wittyCartQuickLowTimeStyles').remove();
+                    }
+
+                    if (totalSeconds <= options.quick_view_settings.quick_view_low_warning) {
+                        if ($('#wittyCartQuickLowTimeStyles').length == 0) $('body').append('<style id="wittyCartQuickLowTimeStyles">'+quickLowCSS+'</style>');
+                    } else {
+                        $('#wittyCartQuickLowTimeStyles').remove();
+                    }
+
+                    if (totalSeconds <= options.low_time_settings.low_time_warning) {
+                        $('#wittyCartLowBarTimer').removeClass('wittyCartHidden');
+                    } else {
+                        $('#wittyCartLowBarTimer').addClass('wittyCartHidden').removeClass('wittyCartLowWarningRemoved');
+                    }
+
+                    if (totalSeconds <= options.low_time_settings.low_time_warning_2) {
+                        $('#wittyCartLowBarTimer').addClass('wittyCartLowWarning2Show');
+                    } else {
+                        $('#wittyCartLowBarTimer').removeClass('wittyCartLowWarning2Show').removeClass('wittyCartLowWarning2Removed');
+                    }             
+
+                    // display:flex;
+
+                    text.replace(' ', '');
+                    clock.html( text );  
+                    
+                }
+
+                if (t.total <= 0) {
+                  clearInterval(timeinterval);
+                }
+              }
+
+              updateClock();
+
+              var timeinterval = setInterval(updateClock,1000);
+            }
+
+            var expires = addMinutes(new Date(), 1.1); // PLACEHOLDER!!!!!!!!
+            
+            // creates a fixed timer element if enabled
+            if (options.float_settings.float_enable) {
+                var floatCSS = '',
+                    f = options.float_settings,
+                    floatTimer = $('<div id="wittyCartFloatTimer">');
+                floatTimer.append('<a href="#" class="wittyClose">X</a>');
+                floatTimer.append('<div class="timer_message">' + options.float_settings.float_text + '</div>');
+                floatTimer.append('<div class="wittyCountDownTimer"></div>');
+                $('body').append(floatTimer);
+
+                floatCSS += '#wittyCartFloatTimer{position:fixed;'+f.float_position;
+                floatCSS += 'background:'+f.float_bg_color+';';
+                floatCSS += 'color:'+f.float_text_color+';';
+                floatCSS += 'border: 1px solid '+f.float_border+';';
+                floatCSS += 'border-radius:'+f.float_border_radius+'px;';
+                floatCSS += 'font-size:'+f.float_font_size+'px;}';
+                floatCSS += '#wittyCartFloatTimer .wittyCountDownTimer{color:'+f.float_timer_color+';';
+                floatCSS += 'font-size:'+f.float_timer_size+'px;}';
+                customCSS = floatCSS + customCSS;
+            } // end ENABLE FLOATING TIMER
+
+            // shows timer in the header (manually installed snippet) if enabled
+            if (options.header_settings.header_enable) {
+                var headerCSS = '',
+                    headerLowCSS = '',
+                    h =  options.header_settings;
+
+                switch (h.header_display) {
+                    case '1':
+                        headerCSS += '#wittyCartHeaderTimer{color:'+h.header_display1_text_color+';';
+                        headerCSS += 'font-size:'+h.header_display1_font_size+'px;';
+                        headerCSS += 'padding:'+h.header_display1_padding+';';
+                        headerCSS += 'margin:'+h.header_display1_margin+';}';
+                        headerCSS += '#wittyCartHeaderTimer .wittyIcon{display:none;}';
+
+                        headerLowCSS += '#wittyCartHeaderTimer{color:'+h.header_display1_low_text_color+';}';
+                        break;
+                    case '2':
+                        headerCSS += '#wittyCartHeaderTimer{color:'+h.header_display2_text_color+';';
+                        headerCSS += 'font-size:'+h.header_display2_font_size+'px;';
+                        headerCSS += 'padding:'+h.header_display2_padding+';';
+                        headerCSS += 'margin:'+h.header_display2_margin+';}';
+                        headerCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display2_icon_color+'}';
+
+                        headerLowCSS += '#wittyCartHeaderTimer{color:'+h.header_display2_low_text_color+';}';
+                        headerLowCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display2_low_icon_color+';}';
+                        break;
+                    case '3':
+                        headerCSS += '#wittyCartHeaderTimer{color:'+h.header_display3_text_color+';';
+                        headerCSS += 'background:'+h.header_display3_bg_color+';';
+                        headerCSS += 'border:1px solid '+h.header_display3_border+';';
+                        headerCSS += 'border-radius:'+h.header_display3_border_radius+'px;';
+                        headerCSS += 'font-size:'+h.header_display3_font_size+'px;';
+                        headerCSS += 'padding:'+h.header_display3_padding+';';
+                        headerCSS += 'margin:'+h.header_display3_margin+';}';
+                        headerCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display3_icon_color+'}';
+
+                        headerLowCSS += '#wittyCartHeaderTimer{color:'+h.header_display3_low_text_color+';';
+                        headerLowCSS += 'background:'+h.header_display3_low_bg_color+';';
+                        headerLowCSS += 'border:1px solid '+h.header_display3_low_border+';';
+                        headerLowCSS += 'border-radius:'+h.header_display3_low_border_radius+'px;}';
+                        headerLowCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display3_low_icon_color+';}';
+                        break;
+                    case '4':
+                        headerCSS += '#wittyCartHeaderTimer{color:'+h.header_display4_text_color+';';
+                        headerCSS += 'background:'+h.header_display4_bg_color+';';
+                        headerCSS += 'border:1px solid '+h.header_display4_border+';';
+                        headerCSS += 'border-radius:'+h.header_display4_border_radius+'px;';
+                        headerCSS += 'font-size:'+h.header_display4_font_size+'px;';
+                        headerCSS += 'padding:'+h.header_display4_padding+';';
+                        headerCSS += 'margin:'+h.header_display4_margin+';}';
+                        headerCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display4_icon_color+'}';
+
+                        headerLowCSS += '#wittyCartHeaderTimer{color:'+h.header_display4_low_text_color+';';
+                        headerLowCSS += 'background:'+h.header_display4_low_bg_color+';';
+                        headerLowCSS += 'border:1px solid '+h.header_display4_low_border+';';
+                        headerLowCSS += 'border-radius:'+h.header_display4_low_border_radius+'px;}';
+                        headerLowCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display4_low_icon_color+';}';
+                        break;
+                }
+                customCSS = headerCSS + customCSS;
+            } else {
+                $('#wittyCartHeaderTimer').remove();
+            }
+
+            if (options.cart_settings.cart_enable) {
+                var cartCSS = '',
+                    c =  options.cart_settings,
+                    padding_array = c.cart_bar_padding.split(' ');
+
+                $('#wittyCartCartTimer .wittyMessage').html(c.cart_text);
+                cartCSS += '#wittyCartCartTimer{background:'+c.cart_bar_bg_color+';';
+                cartCSS += 'color:'+c.cart_bar_text_color+';';
+                cartCSS += 'border: 1px solid '+c.cart_bar_border+';';
+                cartCSS += 'border-radius:'+c.cart_bar_border_radius+'px;';
+                cartCSS += 'font-size:'+c.cart_bar_font_size+'px;';
+                cartCSS += 'padding:0 '+padding_array[1]+' '+padding_array[2]+' '+padding_array[3]+';';
+                cartCSS += 'margin:'+c.cart_bar_margin+';}';
+                cartCSS += '#wittyCartCartTimer .wittyCountDownTimerHolder{';
+                cartCSS += 'border-right: 1px solid '+c.cart_bar_border+';'
+                cartCSS += 'font-size:'+c.cart_bar_timer_size+'px;';
+                cartCSS += 'margin-right: '+padding_array[3]+';';
+                cartCSS += 'margin-bottom: -'+padding_array[2]+';';
+                cartCSS += 'padding-top:'+padding_array[0]+';';
+                cartCSS += 'padding-right:'+padding_array[3]+';';
+                cartCSS += 'padding-bottom:'+padding_array[2]+';}';
+                cartCSS += '#wittyCartCartTimer .wittyCountDownTimer{color:'+c.cart_bar_timer_color+';}';
+                cartCSS += '#wittyCartCartTimer .wittyMessageButtonsHolder{margin:0 -'+(parseInt(padding_array[1])/2)+'px 0 -'+(parseInt(padding_array[3])/2)+'px;}';
+                cartCSS += '#wittyCartCartTimer .wittyMessage{';
+                cartCSS += 'padding:'+padding_array[0]+' '+(parseInt(padding_array[3])/2)+'px 0 '+(parseInt(padding_array[1])/2)+'px;}';
+                cartCSS += '#wittyCartCartTimer #wittyCartpageButtons{padding:0 '+(parseInt(padding_array[1])/2)+'px 0 '+(parseInt(padding_array[3])/2)+'px;}';
+                cartCSS += '#wittyCartCartTimer #wittyCartpageButtons #wittyButtonShopping{background:'+c.cart_continue_bg_color+';';
+                cartCSS += 'color:'+c.cart_continue_text_color+';';
+                cartCSS += 'margin-top:'+padding_array[0]+';';
+                cartCSS += 'border: 1px solid '+c.cart_continue_border+';';
+                cartCSS += 'border-radius:'+c.cart_continue_border_radius+'px;}';
+                cartCSS += '#wittyCartCartTimer #wittyCartpageButtons #wittyButtonCheckout{background:'+c.cart_checkout_bg_color+';';
+                cartCSS += 'color:'+c.cart_checkout_text_color+';';
+                cartCSS += 'margin-top:'+padding_array[0]+';';
+                cartCSS += 'border: 1px solid '+c.cart_checkout_border+';';
+                cartCSS += 'border-radius:'+c.cart_checkout_border_radius+'px;}';
+
+                cartLowCSS += '#wittyCartCartTimer{background:'+c.cart_bar_low_bg_color+';';
+                cartLowCSS += 'color:'+c.cart_bar_low_text_color+';';
+                cartLowCSS += 'border: 1px solid '+c.cart_bar_low_border+';';
+                cartLowCSS += 'border-radius:'+c.cart_bar_low_border_radius+'px;}';
+                cartLowCSS += '#wittyCartCartTimer .wittyCountDownTimer{color:'+c.cart_bar_low_timer_color+';}';
+                cartLowCSS += '#wittyCartCartTimer #wittyCartpageButtons #wittyButtonShopping{background:'+c.cart_continue_low_bg_color+';';
+                cartLowCSS += 'color:'+c.cart_continue_low_text_color+';';
+                cartLowCSS += 'border: 1px solid '+c.cart_continue_low_border+';';
+                cartLowCSS += 'border-radius:'+c.cart_continue_low_border_radius+'px;}';
+                cartLowCSS += '#wittyCartCartTimer #wittyCartpageButtons #wittyButtonCheckout{background:'+c.cart_checkout_low_bg_color+';';
+                cartLowCSS += 'color:'+c.cart_checkout_low_text_color+';';
+                cartLowCSS += 'border: 1px solid '+c.cart_checkout_low_border+';';
+                cartLowCSS += 'border-radius:'+c.cart_checkout_low_border_radius+'px;}';
+
+                customCSS = cartCSS + customCSS;
+            } else {
+                $('#wittyCartCartTimer').remove();
+            }
+
+            if (options.quick_view_settings.quick_view_enable) {
+                var quickCSS = '',
+                    q = options.quick_view_settings,
+                    padding_array = q.quick_view_padding.split(' ');
+
+                $('#wittyCartQuickView .wittyQuickMessage').html(q.quick_view_text);
+                quickCSS += '#wittyCartQuickView {background:'+q.quick_view_background_color+';';
+                quickCSS += 'color:'+q.quick_view_text_color+';';
+                quickCSS += 'border:1px solid '+q.quick_view_border+';';
+                quickCSS += 'border-radius:'+q.quick_view_border_radius+'px;';
+                quickCSS += 'font-size:'+q.quick_view_font_size+'px;';
+                quickCSS += 'margin:'+q.quick_view_margin+';';
+                quickCSS += 'padding:'+q.quick_view_padding+';}';
+                quickCSS += '#wittyCartQuickView .wittyCountDownTimerHolder {margin:-'+padding_array[0]+' 0 -'+padding_array[2]+' '+padding_array[1]+';';
+                quickCSS += 'color:'+q.quick_view_timer_color+';';
+                quickCSS += 'padding-left:'+padding_array[1]+';';
+                quickCSS += 'border-left:1px solid '+q.quick_view_border+';';
+                quickCSS += 'font-size:'+q.quick_view_timer_size+'px;}';
+
+                quickLowCSS += '#wittyCartQuickView {background:'+q.quick_view_low_background_color+';';
+                quickLowCSS += 'color:'+q.quick_view_low_text_color+';';
+                quickLowCSS += 'border:1px solid '+q.quick_view_low_border+';';
+                quickLowCSS += 'border-radius:'+q.quick_view_low_border_radius+'px;}';
+                quickLowCSS += '#wittyCartQuickView .wittyCountDownTimerHolder {color:'+q.quick_view_low_timer_color+';}';
+
+                customCSS = quickCSS + customCSS;
+            } else {
+                $('#wittyCartQuickView').remove();
+            }
+
+            if (options.low_time_settings.low_time_enable) {
+                var lowCSS = '',
+                    l = options.low_time_settings,
+                    lowWarning = $('<div id="wittyCartLowBarTimer" class="wittyCartHidden">');
+                lowWarning.append('<a href="#" class="wittyLowTimeClose">X</a>');
+                lowWarning.append('<div class="wittyCountDownTimerHolder"><div class="wittyCountDownTimer"></div></div>');
+                lowWarning.append('<div class="wittyCountTimerMessage">' + l.low_time_text + '</div>');
+                lowWarning.append('<div id="wittyCartLowTimerButtons"><a class="btn button" id="wittyButtonLowCart" href="/cart">View Cart</a><a class="btn button" id="wittyButtonLowCheckout" href="/checkout">Checkout</a></div>');
+
+                lowWarning.addClass(l.low_time_location);
+
+                $('body').append(lowWarning);
+
+                lowCSS += '#wittyCartLowBarTimer{background:'+l.low_time_bar_bg_color+';';
+                lowCSS += 'color:'+l.low_time_bar_text_color+';';
+                lowCSS += 'border: 1px solid '+l.low_time_bar_border+';';
+                lowCSS += 'border-radius:'+l.low_time_bar_border_radius+'px;';
+                lowCSS += 'font-size:'+l.low_time_bar_font_size+'px;}';
+                lowCSS += '#wittyCartLowBarTimer .wittyCountDownTimerHolder{border-right: 2px solid '+l.low_time_bar_border+';}';
+                lowCSS += '#wittyCartLowBarTimer .wittyCountDownTimer{font-size:'+l.low_time_bar_timer_size+'px;';
+                lowCSS += 'color:'+l.low_time_bar_timer_color+';}';
+
+                lowCSS += '#wittyCartLowBarTimer #wittyButtonLowCart{background:'+l.low_time_view_cart_bg_color+';';
+                lowCSS += 'color:'+l.low_time_view_cart_text_color+';';
+                // lowCSS += 'font-size:'+l.low_time_bar_font_size+'px;';
+                lowCSS += 'border: 1px solid '+l.low_time_view_cart_border+';';
+                lowCSS += 'border-radius:'+l.low_time_view_cart_border_radius+'px;}';
+
+                lowCSS += '#wittyCartLowBarTimer #wittyButtonLowCheckout{background:'+l.low_time_checkout_bg_color+';';
+                lowCSS += 'color:'+l.low_time_checkout_text_color+';';
+                // lowCSS += 'font-size:'+l.low_time_bar_font_size+'px;';
+                lowCSS += 'border: 1px solid '+l.low_time_checkout_border+';';
+                lowCSS += 'border-radius:'+l.low_time_checkout_border_radius+'px;}';
+
+                customCSS = lowCSS + customCSS;
+
+            }
+
+            customCSS = '<%= CartTimer::Application.assets["timer_js.css"].to_s.gsub(/\n/, '').html_safe %>' + customCSS;
+            $('body').append('<style>'+customCSS+'</style>');
+
+            initializeClock('.wittyCountDownTimer', expires);
+		} // end ENABLE APP 
+
+	}; // myAppJavaScript() ends here; ALL CUSTOM JS IS TO BE WITHIN THIS FUNCTION!
+
+    // checks for jquery, loads it if undefined.
+	if ((typeof jQuery === 'undefined') || (parseFloat(jQuery.fn.jquery) < 1.7)) {
+	  loadScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function(){
+	    jQuery191 = jQuery.noConflict(true);
+	    myAppJavaScript(jQuery191);
+	  });
+	} else {
+	  myAppJavaScript(jQuery);
+	}
+
+
+})();
