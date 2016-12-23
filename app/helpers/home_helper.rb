@@ -64,4 +64,33 @@ module HomeHelper
       last: last
     }
   end
+
+  def number_field_label_text(o, option_string, option_value)
+
+    if option_string.include? 'font_size'
+      o.label option_value, 'Font Size'
+    elsif option_string.include? 'timer_size'
+      o.label option_value, 'Timer Size'
+    elsif option_string.include? 'opacity'
+      o.label option_value, 'Opacity'
+    else
+      o.label option_value
+    end
+
+  end
+
+  def number_field_bottom_label(option_string)
+
+    if option_string.include? 'link'
+      ('<label for="option_' + option_string + '" class="below">Link</label>').html_safe
+    elsif option_string.include? 'top'
+      ('<label for="option_' + option_string + '" class="below">Top</label>').html_safe
+    elsif option_string.include? 'bottom' or option_string.include? 'opacity'  
+      ('<label for="option_' + option_string + '" class="below">Bottom</label>').html_safe
+    elsif option_string.include? 'border_radius'
+      ('<label for="option_' + option_string + '" class="below">Border Radius</label>').html_safe
+    end
+
+  end
+
 end

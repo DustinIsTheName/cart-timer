@@ -535,6 +535,10 @@
         </div>
       </div>
 
+      <div class="form-group header-label">
+        <h2>Product Page Settings</h2>
+      </div>
+
       <div class="well">
         <div class="form-group">
 
@@ -547,10 +551,7 @@
 
             <%= pixel_field o, :product_all_font_size_top %>
             <%= pixel_field o, :product_all_font_size_bottom %>
-            <div class="number-field no-pixel">
-              <%= o.label :product_all_opacity, 'Opacity' %>
-              <%= o.number_field :product_all_opacity %>
-            </div>
+            <%= pixel_field o, :product_all_opacity %>
 
             <br>
 

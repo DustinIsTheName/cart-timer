@@ -1,24 +1,17 @@
 <div class="number-field">
 	<% option_string = option_value.to_s %>
+
 	<% unless option_string.include? 'border_radius' %>
+		<%= number_field_label_text(o, option_string, option_value) %>
+	<% end %>
 
-		<% if option_string.include? 'font_size' %>
-			<%= o.label option_value, 'Font Size' %>
-		<% elsif option_string.include? 'timer_size' %>
-		  <%= o.label option_value, 'Timer Size' %>
-		<% else %>
-		  <%= o.label option_value %>
-	  <% end %>
+  <%= o.number_field option_value %>
 
-
-	  <%= o.number_field option_value %>
+  <% if option_string.include? 'opacity' %>
+	  <div class="px">%</div>
+  <% else %>
 	  <div class="px">px</div>
-	  <% if option_string.include? 'link' %>
-		  <label class="below">Link</label>
-	  <% end %>
-	<% else %>
-	  <%= o.number_field option_value %>
-	  <div class="px">px</div>
-	  <label class="below">Border Radius</label>
   <% end %>
+
+  <%= number_field_bottom_label(option_string) %>
 </div>
