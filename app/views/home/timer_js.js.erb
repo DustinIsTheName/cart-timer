@@ -177,14 +177,70 @@
                 quick_view_low_text_color: "<%= @option.quick_view_low_text_color %>",
                 quick_view_low_timer_color: "<%= @option.quick_view_low_timer_color %>",
                 quick_view_low_border: "<%= @option.quick_view_low_border %>",
-                quick_view_low_border_radius: "<%= @option.quick_view_low_border_radius %>",
+                quick_view_low_border_radius: "<%= @option.quick_view_low_border_radius %>"
+            },
+            product_settings: {
+                product_all_border_radius: "<%= @option.product_all_border_radius %>",
+                product_all_font_size_top: "<%= @option.product_all_font_size_top %>",
+                product_all_font_size_bottom: "<%= @option.product_all_font_size_bottom %>",
+                product_all_opacity: "<%= @option.product_all_opacity %>",
+                product_all_padding: "<%= @option.product_all_padding %>",
+                product_all_margin: "<%= @option.product_all_margin %>",
+
+                product_reserved_text_top: "<%= @option.product_reserved_text_top %>",
+                product_reserved_text_bottom: "<%= @option.product_reserved_text_bottom %>",
+                product_reserved_background: "<%= @option.product_reserved_background %>",
+                product_reserved_text_color_top: "<%= @option.product_reserved_text_color_top %>",
+                product_reserved_text_color_bottom: "<%= @option.product_reserved_text_color_bottom %>",
+                product_reserved_border: "<%= @option.product_reserved_border %>",
+
+                product_readd_text_top: "<%= @option.product_readd_text_top %>",
+                product_readd_text_bottom: "<%= @option.product_readd_text_bottom %>",
+                product_readd_background: "<%= @option.product_readd_background %>",
+                product_readd_text_color_top: "<%= @option.product_readd_text_color_top %>",
+                product_readd_text_color_bottom: "<%= @option.product_readd_text_color_bottom %>",
+                product_readd_border: "<%= @option.product_readd_border %>",
+
+                product_no_readd_text_top: "<%= @option.product_no_readd_text_top %>",
+                product_no_readd_text_bottom: "<%= @option.product_no_readd_text_bottom %>",
+                product_no_readd_background: "<%= @option.product_no_readd_background %>",
+                product_no_readd_text_color_top: "<%= @option.product_no_readd_text_color_top %>",
+                product_no_readd_text_color_bottom: "<%= @option.product_no_readd_text_color_bottom %>",
+                product_no_readd_timer_color: "<%= @option.product_no_readd_timer_color %>",
+                product_no_readd_border: "<%= @option.product_no_readd_border %>",
+                product_no_readd_link: "<%= @option.product_no_readd_link %>",
+                product_no_readd_link_color: "<%= @option.product_no_readd_link_color %>",
+                product_no_readd_link_font_size: "<%= @option.product_no_readd_link_font_size %>",
+
+                product_another_reserved_text_top: "<%= @option.product_another_reserved_text_top %>",
+                product_another_reserved_text_bottom: "<%= @option.product_another_reserved_text_bottom %>",
+                product_another_reserved_background: "<%= @option.product_another_reserved_background %>",
+                product_another_reserved_text_color_top: "<%= @option.product_another_reserved_text_color_top %>",
+                product_another_reserved_text_color_bottom: "<%= @option.product_another_reserved_text_color_bottom %>",
+                product_another_reserved_timer_color: "<%= @option.product_another_reserved_timer_color %>",
+                product_another_reserved_border: "<%= @option.product_another_reserved_border %>",
+                product_another_reserved_link: "<%= @option.product_another_reserved_link %>",
+                product_another_reserved_link_color: "<%= @option.product_another_reserved_link_color %>",
+                product_another_reserved_link_font_size: "<%= @option.product_another_reserved_link_font_size %>",
+
+                product_grid_text: "<%= @option.product_grid_text %>",
+                product_grid_background: "<%= @option.product_grid_background %>",
+                product_grid_text_color: "<%= @option.product_grid_text_color %>",
+                product_grid_border: "<%= @option.product_grid_border %>",
+                product_grid_border_radius: "<%= @option.product_grid_border_radius %>",
+                product_grid_padding: "<%= @option.product_grid_padding %>",
+                product_grid_margin: "<%= @option.product_grid_margin %>",
+                product_grid_reserved_background: "<%= @option.product_grid_reserved_background %>",
+                product_grid_reserved_text_color: "<%= @option.product_grid_reserved_text_color %>",
+                product_grid_reserved_border_radius: "<%= @option.product_grid_reserved_border_radius %>",
+                product_grid_sold_text: "<%= @option.product_grid_sold_text %>",
+                product_grid_sold_background: "<%= @option.product_grid_sold_background %>",
+                product_grid_sold_text_color: "<%= @option.product_grid_sold_text_color %>",
+                product_grid_sold_border_radius: "<%= @option.product_grid_sold_border_radius %>"
             },
             custom_css: "<%= @option.custom_css.gsub(/(?:\n\r?|\r\n?)/, '') %>"            
 		},
 		customCSS = options.custom_css,
-        headerLowCSS = '',
-        cartLowCSS = '',
-        quickLowCSS = '',
         clockSizes = {};
         console.log(options);
 
@@ -216,7 +272,7 @@
             }
 
             // returns time in day, hour, minute, and second increments
-            function getTimeRemaining(endtime){
+            function getTimeRemaining(endtime) {
               var t = Date.parse(endtime) - Date.parse(new Date());
               var seconds = Math.floor( (t/1000) % 60 );
               var minutes = Math.floor( (t/1000/60) % 60 );
@@ -316,25 +372,19 @@
                     console.log(totalSeconds);
 
                     if (totalSeconds <= options.header_settings.header_low_warning) {
-                        if ($('#wittyCartHeaderLowTimeStyles').length == 0) $('body').append('<style id="wittyCartHeaderLowTimeStyles">'+headerLowCSS+'</style>');
+                        if ($('#wittyCartHeaderLowTimeStyles').length == 0) $('body').append(headerLowCSS);
                     } else {
                         $('#wittyCartHeaderLowTimeStyles').remove();
                     }
 
                     if (totalSeconds <= options.cart_settings.cart_low_warning) {
-                        if ($('#wittyCartCartLowTimeStyles').length == 0) $('body').append('<style id="wittyCartCartLowTimeStyles">'+cartLowCSS+'</style>');
+                        if ($('#wittyCartCartLowTimeStyles').length == 0) $('body').append(cartLowCSS);
                     } else {
                         $('#wittyCartCartLowTimeStyles').remove();
                     }
 
                     if (totalSeconds <= options.quick_view_settings.quick_view_low_warning) {
-                        if ($('#wittyCartQuickLowTimeStyles').length == 0) $('body').append('<style id="wittyCartQuickLowTimeStyles">'+quickLowCSS+'</style>');
-                    } else {
-                        $('#wittyCartQuickLowTimeStyles').remove();
-                    }
-
-                    if (totalSeconds <= options.quick_view_settings.quick_view_low_warning) {
-                        if ($('#wittyCartQuickLowTimeStyles').length == 0) $('body').append('<style id="wittyCartQuickLowTimeStyles">'+quickLowCSS+'</style>');
+                        if ($('#wittyCartQuickLowTimeStyles').length == 0) $('body').append(quickLowCSS);
                     } else {
                         $('#wittyCartQuickLowTimeStyles').remove();
                     }
@@ -372,175 +422,56 @@
             
             // creates a fixed timer element if enabled
             if (options.float_settings.float_enable) {
-                var floatCSS = '',
-                    f = options.float_settings,
+                var f = options.float_settings,
                     floatTimer = $('<div id="wittyCartFloatTimer">');
                 floatTimer.append('<a href="#" class="wittyClose">X</a>');
                 floatTimer.append('<div class="timer_message">' + options.float_settings.float_text + '</div>');
                 floatTimer.append('<div class="wittyCountDownTimer"></div>');
                 $('body').append(floatTimer);
 
-                floatCSS += '#wittyCartFloatTimer{position:fixed;'+f.float_position;
-                floatCSS += 'background:'+f.float_bg_color+';';
-                floatCSS += 'color:'+f.float_text_color+';';
-                floatCSS += 'border: 1px solid '+f.float_border+';';
-                floatCSS += 'border-radius:'+f.float_border_radius+'px;';
-                floatCSS += 'font-size:'+f.float_font_size+'px;}';
-                floatCSS += '#wittyCartFloatTimer .wittyCountDownTimer{color:'+f.float_timer_color+';';
-                floatCSS += 'font-size:'+f.float_timer_size+'px;}';
-                customCSS = floatCSS + customCSS;
+                // Float Timer Dynamic CSS
+                $('body').append('<%= render(partial: "home/js_css/dynamic_float_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
+
             } // end ENABLE FLOATING TIMER
 
             // shows timer in the header (manually installed snippet) if enabled
             if (options.header_settings.header_enable) {
-                var headerCSS = '',
-                    headerLowCSS = '',
+                var headerLowCSS = '<%= render(partial: "home/js_css/dynamic_low_header_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>',
                     h =  options.header_settings;
 
-                switch (h.header_display) {
-                    case '1':
-                        headerCSS += '#wittyCartHeaderTimer{color:'+h.header_display1_text_color+';';
-                        headerCSS += 'font-size:'+h.header_display1_font_size+'px;';
-                        headerCSS += 'padding:'+h.header_display1_padding+';';
-                        headerCSS += 'margin:'+h.header_display1_margin+';}';
-                        headerCSS += '#wittyCartHeaderTimer .wittyIcon{display:none;}';
-
-                        headerLowCSS += '#wittyCartHeaderTimer{color:'+h.header_display1_low_text_color+';}';
-                        break;
-                    case '2':
-                        headerCSS += '#wittyCartHeaderTimer{color:'+h.header_display2_text_color+';';
-                        headerCSS += 'font-size:'+h.header_display2_font_size+'px;';
-                        headerCSS += 'padding:'+h.header_display2_padding+';';
-                        headerCSS += 'margin:'+h.header_display2_margin+';}';
-                        headerCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display2_icon_color+'}';
-
-                        headerLowCSS += '#wittyCartHeaderTimer{color:'+h.header_display2_low_text_color+';}';
-                        headerLowCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display2_low_icon_color+';}';
-                        break;
-                    case '3':
-                        headerCSS += '#wittyCartHeaderTimer{color:'+h.header_display3_text_color+';';
-                        headerCSS += 'background:'+h.header_display3_bg_color+';';
-                        headerCSS += 'border:1px solid '+h.header_display3_border+';';
-                        headerCSS += 'border-radius:'+h.header_display3_border_radius+'px;';
-                        headerCSS += 'font-size:'+h.header_display3_font_size+'px;';
-                        headerCSS += 'padding:'+h.header_display3_padding+';';
-                        headerCSS += 'margin:'+h.header_display3_margin+';}';
-                        headerCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display3_icon_color+'}';
-
-                        headerLowCSS += '#wittyCartHeaderTimer{color:'+h.header_display3_low_text_color+';';
-                        headerLowCSS += 'background:'+h.header_display3_low_bg_color+';';
-                        headerLowCSS += 'border:1px solid '+h.header_display3_low_border+';';
-                        headerLowCSS += 'border-radius:'+h.header_display3_low_border_radius+'px;}';
-                        headerLowCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display3_low_icon_color+';}';
-                        break;
-                    case '4':
-                        headerCSS += '#wittyCartHeaderTimer{color:'+h.header_display4_text_color+';';
-                        headerCSS += 'background:'+h.header_display4_bg_color+';';
-                        headerCSS += 'border:1px solid '+h.header_display4_border+';';
-                        headerCSS += 'border-radius:'+h.header_display4_border_radius+'px;';
-                        headerCSS += 'font-size:'+h.header_display4_font_size+'px;';
-                        headerCSS += 'padding:'+h.header_display4_padding+';';
-                        headerCSS += 'margin:'+h.header_display4_margin+';}';
-                        headerCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display4_icon_color+'}';
-
-                        headerLowCSS += '#wittyCartHeaderTimer{color:'+h.header_display4_low_text_color+';';
-                        headerLowCSS += 'background:'+h.header_display4_low_bg_color+';';
-                        headerLowCSS += 'border:1px solid '+h.header_display4_low_border+';';
-                        headerLowCSS += 'border-radius:'+h.header_display4_low_border_radius+'px;}';
-                        headerLowCSS += '#wittyCartHeaderTimer .wittyIcon tspan{fill:'+h.header_display4_low_icon_color+';}';
-                        break;
-                }
-                customCSS = headerCSS + customCSS;
+                $('body').append('<%= render(partial: "home/js_css/dynamic_header_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
+                // customCSS = headerCSS + customCSS;
             } else {
                 $('#wittyCartHeaderTimer').remove();
             }
 
+            // shows timer on the cart page (manually installed snippet) if enabled
             if (options.cart_settings.cart_enable) {
-                var cartCSS = '',
+                var cartLowCSS = '<%= render(partial: "home/js_css/dynamic_low_cart_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>',
                     c =  options.cart_settings,
                     padding_array = c.cart_bar_padding.split(' ');
 
                 $('#wittyCartCartTimer .wittyMessage').html(c.cart_text);
-                cartCSS += '#wittyCartCartTimer{background:'+c.cart_bar_bg_color+';';
-                cartCSS += 'color:'+c.cart_bar_text_color+';';
-                cartCSS += 'border: 1px solid '+c.cart_bar_border+';';
-                cartCSS += 'border-radius:'+c.cart_bar_border_radius+'px;';
-                cartCSS += 'font-size:'+c.cart_bar_font_size+'px;';
-                cartCSS += 'padding:0 '+padding_array[1]+' '+padding_array[2]+' '+padding_array[3]+';';
-                cartCSS += 'margin:'+c.cart_bar_margin+';}';
-                cartCSS += '#wittyCartCartTimer .wittyCountDownTimerHolder{';
-                cartCSS += 'border-right: 1px solid '+c.cart_bar_border+';'
-                cartCSS += 'font-size:'+c.cart_bar_timer_size+'px;';
-                cartCSS += 'margin-right: '+padding_array[3]+';';
-                cartCSS += 'margin-bottom: -'+padding_array[2]+';';
-                cartCSS += 'padding-top:'+padding_array[0]+';';
-                cartCSS += 'padding-right:'+padding_array[3]+';';
-                cartCSS += 'padding-bottom:'+padding_array[2]+';}';
-                cartCSS += '#wittyCartCartTimer .wittyCountDownTimer{color:'+c.cart_bar_timer_color+';}';
-                cartCSS += '#wittyCartCartTimer .wittyMessageButtonsHolder{margin:0 -'+(parseInt(padding_array[1])/2)+'px 0 -'+(parseInt(padding_array[3])/2)+'px;}';
-                cartCSS += '#wittyCartCartTimer .wittyMessage{';
-                cartCSS += 'padding:'+padding_array[0]+' '+(parseInt(padding_array[3])/2)+'px 0 '+(parseInt(padding_array[1])/2)+'px;}';
-                cartCSS += '#wittyCartCartTimer #wittyCartpageButtons{padding:0 '+(parseInt(padding_array[1])/2)+'px 0 '+(parseInt(padding_array[3])/2)+'px;}';
-                cartCSS += '#wittyCartCartTimer #wittyCartpageButtons #wittyButtonShopping{background:'+c.cart_continue_bg_color+';';
-                cartCSS += 'color:'+c.cart_continue_text_color+';';
-                cartCSS += 'margin-top:'+padding_array[0]+';';
-                cartCSS += 'border: 1px solid '+c.cart_continue_border+';';
-                cartCSS += 'border-radius:'+c.cart_continue_border_radius+'px;}';
-                cartCSS += '#wittyCartCartTimer #wittyCartpageButtons #wittyButtonCheckout{background:'+c.cart_checkout_bg_color+';';
-                cartCSS += 'color:'+c.cart_checkout_text_color+';';
-                cartCSS += 'margin-top:'+padding_array[0]+';';
-                cartCSS += 'border: 1px solid '+c.cart_checkout_border+';';
-                cartCSS += 'border-radius:'+c.cart_checkout_border_radius+'px;}';
 
-                cartLowCSS += '#wittyCartCartTimer{background:'+c.cart_bar_low_bg_color+';';
-                cartLowCSS += 'color:'+c.cart_bar_low_text_color+';';
-                cartLowCSS += 'border: 1px solid '+c.cart_bar_low_border+';';
-                cartLowCSS += 'border-radius:'+c.cart_bar_low_border_radius+'px;}';
-                cartLowCSS += '#wittyCartCartTimer .wittyCountDownTimer{color:'+c.cart_bar_low_timer_color+';}';
-                cartLowCSS += '#wittyCartCartTimer #wittyCartpageButtons #wittyButtonShopping{background:'+c.cart_continue_low_bg_color+';';
-                cartLowCSS += 'color:'+c.cart_continue_low_text_color+';';
-                cartLowCSS += 'border: 1px solid '+c.cart_continue_low_border+';';
-                cartLowCSS += 'border-radius:'+c.cart_continue_low_border_radius+'px;}';
-                cartLowCSS += '#wittyCartCartTimer #wittyCartpageButtons #wittyButtonCheckout{background:'+c.cart_checkout_low_bg_color+';';
-                cartLowCSS += 'color:'+c.cart_checkout_low_text_color+';';
-                cartLowCSS += 'border: 1px solid '+c.cart_checkout_low_border+';';
-                cartLowCSS += 'border-radius:'+c.cart_checkout_low_border_radius+'px;}';
-
-                customCSS = cartCSS + customCSS;
+                $('body').append('<%= render(partial: "home/js_css/dynamic_cart_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
             } else {
                 $('#wittyCartCartTimer').remove();
             }
 
+            // shows timer in the quick cart (manually installed snippet) if enabled
             if (options.quick_view_settings.quick_view_enable) {
-                var quickCSS = '',
+                var quickLowCSS = '<%= render(partial: "home/js_css/dynamic_low_quick_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>',
                     q = options.quick_view_settings,
                     padding_array = q.quick_view_padding.split(' ');
 
                 $('#wittyCartQuickView .wittyQuickMessage').html(q.quick_view_text);
-                quickCSS += '#wittyCartQuickView {background:'+q.quick_view_background_color+';';
-                quickCSS += 'color:'+q.quick_view_text_color+';';
-                quickCSS += 'border:1px solid '+q.quick_view_border+';';
-                quickCSS += 'border-radius:'+q.quick_view_border_radius+'px;';
-                quickCSS += 'font-size:'+q.quick_view_font_size+'px;';
-                quickCSS += 'margin:'+q.quick_view_margin+';';
-                quickCSS += 'padding:'+q.quick_view_padding+';}';
-                quickCSS += '#wittyCartQuickView .wittyCountDownTimerHolder {margin:-'+padding_array[0]+' 0 -'+padding_array[2]+' '+padding_array[1]+';';
-                quickCSS += 'color:'+q.quick_view_timer_color+';';
-                quickCSS += 'padding-left:'+padding_array[1]+';';
-                quickCSS += 'border-left:1px solid '+q.quick_view_border+';';
-                quickCSS += 'font-size:'+q.quick_view_timer_size+'px;}';
 
-                quickLowCSS += '#wittyCartQuickView {background:'+q.quick_view_low_background_color+';';
-                quickLowCSS += 'color:'+q.quick_view_low_text_color+';';
-                quickLowCSS += 'border:1px solid '+q.quick_view_low_border+';';
-                quickLowCSS += 'border-radius:'+q.quick_view_low_border_radius+'px;}';
-                quickLowCSS += '#wittyCartQuickView .wittyCountDownTimerHolder {color:'+q.quick_view_low_timer_color+';}';
-
-                customCSS = quickCSS + customCSS;
+                $('body').append('<%= render(partial: "home/js_css/dynamic_quick_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
             } else {
                 $('#wittyCartQuickView').remove();
             }
 
+            // shows low time pop up or message bar
             if (options.low_time_settings.low_time_enable) {
                 var lowCSS = '',
                     l = options.low_time_settings,
@@ -554,30 +485,29 @@
 
                 $('body').append(lowWarning);
 
-                lowCSS += '#wittyCartLowBarTimer{background:'+l.low_time_bar_bg_color+';';
-                lowCSS += 'color:'+l.low_time_bar_text_color+';';
-                lowCSS += 'border: 1px solid '+l.low_time_bar_border+';';
-                lowCSS += 'border-radius:'+l.low_time_bar_border_radius+'px;';
-                lowCSS += 'font-size:'+l.low_time_bar_font_size+'px;}';
-                lowCSS += '#wittyCartLowBarTimer .wittyCountDownTimerHolder{border-right: 2px solid '+l.low_time_bar_border+';}';
-                lowCSS += '#wittyCartLowBarTimer .wittyCountDownTimer{font-size:'+l.low_time_bar_timer_size+'px;';
-                lowCSS += 'color:'+l.low_time_bar_timer_color+';}';
-
-                lowCSS += '#wittyCartLowBarTimer #wittyButtonLowCart{background:'+l.low_time_view_cart_bg_color+';';
-                lowCSS += 'color:'+l.low_time_view_cart_text_color+';';
-                // lowCSS += 'font-size:'+l.low_time_bar_font_size+'px;';
-                lowCSS += 'border: 1px solid '+l.low_time_view_cart_border+';';
-                lowCSS += 'border-radius:'+l.low_time_view_cart_border_radius+'px;}';
-
-                lowCSS += '#wittyCartLowBarTimer #wittyButtonLowCheckout{background:'+l.low_time_checkout_bg_color+';';
-                lowCSS += 'color:'+l.low_time_checkout_text_color+';';
-                // lowCSS += 'font-size:'+l.low_time_bar_font_size+'px;';
-                lowCSS += 'border: 1px solid '+l.low_time_checkout_border+';';
-                lowCSS += 'border-radius:'+l.low_time_checkout_border_radius+'px;}';
-
-                customCSS = lowCSS + customCSS;
+                $('body').append('<%= render(partial: "home/js_css/dynamic_low_warning_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
 
             }
+
+            var productCSS = '',
+                p = options.product_settings,
+                padding_array = p.product_all_padding.split(' ');
+
+            $('#wittyCartReservedYes .line1').text(p.product_reserved_text_top);
+            $('#wittyCartReservedYes .line2').html(p.product_reserved_text_bottom.replace('[timer]', '<span class="wittyCountDownTimer"></span>'));
+            $('#wittyCartReservedReadd .line1').text(p.product_readd_text_top);
+            $('#wittyCartReservedReadd .line2').html(p.product_readd_text_bottom.replace('[timer]', '<span class="wittyCountDownTimer"></span>'));
+            
+            $('#wittyCartReservedNoReadd .line1').text(p.product_no_readd_text_top);
+            $('#wittyCartReservedNoReadd .line2').text(p.product_no_readd_text_bottom);
+            $('#wittyCartReservedNoReadd .wittyCartReservedView').text(p.product_no_readd_link);
+
+            $('#wittyCartReservedNo .line1').text(p.product_another_reserved_text_top);
+            $('#wittyCartReservedNo .line2').text(p.product_another_reserved_text_bottom);
+            $('#wittyCartReservedNo .wittyCartReservedView').text(p.product_another_reserved_link);
+            $('#wittyCartReservedGrid h3').text(p.product_grid_text);
+            
+            $('body').append('<%= render(partial: "home/js_css/dynamic_product_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
 
             customCSS = '<%= CartTimer::Application.assets["timer_js.css"].to_s.gsub(/\n/, '').html_safe %>' + customCSS;
             $('body').append('<style>'+customCSS+'</style>');

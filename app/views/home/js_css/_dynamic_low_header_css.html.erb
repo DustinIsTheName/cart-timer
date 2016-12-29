@@ -1,0 +1,38 @@
+<style id="wittyCartHeaderLowTimeStyles" type="text/css">
+  <% case o.header_display
+    when 1 %>
+    #wittyCartHeaderTimer { 
+      color: <%= o.header_display1_low_text_color %>;
+    }
+  <% when 2 %>
+    #wittyCartHeaderTimer {
+      color: <%= o.header_display2_low_text_color %>;
+    }
+
+    #wittyCartHeaderTimer .wittyIcon tspan {
+      fill: <%= o.header_display2_low_icon_color %>;
+    }
+  <% when 3 %>
+    #wittyCartHeaderTimer {
+      color: <%= o.header_display3_low_text_color %>;
+      background: <%= o.header_display3_low_bg_color %>;
+      border:1px solid <%= o.header_display3_low_border %>;
+      border-radius: <%= o.header_display3_low_border_radius %>px;
+    }
+
+    #wittyCartHeaderTimer .wittyIcon tspan {
+      fill: <%= o.header_display3_low_icon_color %>;
+    }
+  <% when 4 %>
+    #wittyCartHeaderTimer {
+      color: <%= o.header_display4_low_text_color %>;
+      background: <%= o.header_display4_low_bg_color %>;
+      border:1px solid <%= o.header_display4_low_border %>;
+      border-radius: <%= o.header_display4_low_border_radius %>px;
+    }
+
+    #wittyCartHeaderTimer .wittyIcon tspan {
+      fill: <%= o.header_display4_low_icon_color %>;
+    }
+  <% end %>
+</style>

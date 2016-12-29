@@ -1,0 +1,112 @@
+<% padding_array = o.product_all_padding.split(' ') %>
+<style id="wittyCartProductStyles" type="text/css">
+
+  .wittyCartReserved { 
+  	border-radius: <%= o.product_all_border_radius %>px;
+	  padding: <%= o.product_all_padding %>;
+	  margin: <%= o.product_all_margin %>;
+	}
+
+  .wittyCartReserved .line1 {
+  	font-size: <%= o.product_all_font_size_top %>px;
+  }
+
+  .wittyCartReserved .line2 {
+  	font-size: <%= o.product_all_font_size_bottom %>px;
+	  opacity: <%= (o.product_all_opacity.to_f/100) %>;
+	}
+
+  .wittyCartReserved div.wittyCountDownTimer {
+  	margin-top:-<%= padding_array[0] %>;
+	  margin-right:-<%= padding_array[1] %>;
+	  margin-bottom:-<%= padding_array[2] %>;
+	}
+
+  #wittyCartReservedYes {
+  	background: <%= o.product_reserved_background %>;
+    border: 1px solid <%= o.product_reserved_border %>;
+	}
+
+  #wittyCartReservedYes .line1 {color: <%= o.product_reserved_text_color_top %>;}
+  #wittyCartReservedYes .line2 {color: <%= o.product_reserved_text_color_bottom %>;}
+
+  #wittyCartReservedReadd {
+    background: <%= o.product_readd_background %>;
+    border: 1px solid <%= o.product_readd_border %>;
+  }
+
+  #wittyCartReservedReadd .line1 {color: <%= o.product_readd_text_color_top %>;}
+  #wittyCartReservedReadd .line2 {color: <%= o.product_readd_text_color_bottom %>;}
+
+  #wittyCartReservedNoReadd {
+    background: <%= o.product_no_readd_background %>;
+    border: 1px solid <%= o.product_no_readd_border %>;
+  }
+
+  #wittyCartReservedNoReadd .line1 {color: <%= o.product_no_readd_text_color_top %>;}
+  #wittyCartReservedNoReadd .line2 {color: <%= o.product_no_readd_text_color_bottom %>;}
+  #wittyCartReservedNoReadd .wittyCountDownTimer {
+    color: <%= o.product_no_readd_timer_color %>;
+    border-left: 1px solid <%= o.product_no_readd_border %>;
+  }
+
+  #wittyCartReservedNoReadd .wittyCartReservedView {
+    color: <%= o.product_no_readd_link_color %>;
+    font-size: <%= o.product_no_readd_link_font_size %>px;
+  }
+
+  #wittyCartReservedNo {
+    background: <%= o.product_another_reserved_background %>;
+    border: 1px solid <%= o.product_another_reserved_border %>;
+  }
+
+  #wittyCartReservedNo .line1 {color: <%= o.product_another_reserved_text_color_top %>;}
+  #wittyCartReservedNo .line2 {color: <%= o.product_another_reserved_text_color_bottom %>;}
+  #wittyCartReservedNo .wittyCountDownTimer {
+    color: <%= o.product_another_reserved_timer_color %>;
+    border-left: 1px solid <%= o.product_another_reserved_border %>;
+  }
+
+  #wittyCartReservedNo .wittyCartReservedView {
+    color: <%= o.product_another_reserved_link_color %>;
+    font-size: <%= o.product_another_reserved_link_font_size %>px;
+  }
+
+  #wittyCartReservedGrid {
+    background: <%= o.product_grid_background %>;
+    border: 1px solid <%= o.product_grid_border %>;
+    border-radius: <%= o.product_grid_border_radius %>px;
+    padding: <%= o.product_grid_padding %>;
+    margin: <%= o.product_grid_margin %>;
+  }
+
+  #wittyCartReservedGrid h3 {
+    color: <%= o.product_grid_text_color %>;
+  }
+
+  #wittyCartReservedGrid li {
+    background: <%= o.product_grid_reserved_background %>;
+    color: <%= o.product_grid_reserved_text_color %>;
+    border-radius: <%= o.product_grid_reserved_border_radius %>px;
+  }
+
+  #wittyCartReservedGrid li.active {
+    background: <%= o.product_grid_sold_background %>;
+    color: <%= o.product_grid_sold_text_color %>;
+    border-radius: <%= o.product_grid_sold_border_radius %>px;
+  }
+
+  
+
+</style>
+
+
+
+
+
+
+
+
+
+
+

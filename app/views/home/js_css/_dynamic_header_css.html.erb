@@ -1,0 +1,55 @@
+<style id="wittyCartHeaderStyles" type="text/css">
+  <% case o.header_display
+    when 1 %>
+    #wittyCartHeaderTimer {
+      color: <%= o.header_display1_text_color %>;
+      font-size: <%= o.header_display1_font_size %>px;
+      padding: <%= o.header_display1_padding %>;
+      margin: <%= o.header_display1_margin %>;
+    }
+
+    #wittyCartHeaderTimer .wittyIcon {
+      display: none;
+    }
+  <% when 2 %>
+    #wittyCartHeaderTimer {
+      color: <%= o.header_display2_text_color %>;
+      font-size: <%= o.header_display2_font_size %>px;
+      padding: <%= o.header_display2_padding %>;
+      margin: <%= o.header_display2_margin %>;
+    }
+
+    #wittyCartHeaderTimer .wittyIcon tspan {
+      fill: <%= o.header_display2_icon_color %>;
+    }
+  <% when 3 %>
+    #wittyCartHeaderTimer {
+      color: <%= o.header_display3_text_color %>;
+      background: <%= o.header_display3_bg_color %>;
+      border: 1px solid <%= o.header_display3_border %>;
+      border-radius: <%= o.header_display3_border_radius %>px;
+      font-size: <%= o.header_display3_font_size %>px;
+      padding: <%= o.header_display3_padding %>;
+      margin: <%= o.header_display3_margin %>;
+    }
+
+    #wittyCartHeaderTimer .wittyIcon tspan {
+      fill: <%= o.header_display3_icon_color %>;
+    }
+  <% when 4 %>
+    #wittyCartHeaderTimer {
+      color: <%= o.header_display4_text_color %>;
+      background: <%= o.header_display4_bg_color %>;
+      border:1px solid <%= o.header_display4_border %>;
+      border-radius: <%= o.header_display4_border_radius %>px;
+      font-size: <%= o.header_display4_font_size %>px;
+      padding: <%= o.header_display4_padding %>;
+      margin: <%= o.header_display4_margin %>;
+    }
+
+    #wittyCartHeaderTimer .wittyIcon tspan {
+      fill: <%= o.header_display4_icon_color %>;
+    }
+  <% end %>
+  }
+</style>

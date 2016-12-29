@@ -225,6 +225,128 @@
   }
 }
 
+.wittyCartReserved {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  line-height: 1.25;
+  font-weight: bold;
+  -webkit-font-smoothing: subpixel-antialiased;
+  letter-spacing: 2px;
+
+  div.wittyCountDownTimer {
+    font-size: 24px;
+    font-weight: bold;
+    float: right;
+    width: 87px;
+    padding: 19px 10px 15px;
+    letter-spacing: 1px;
+  }
+
+  .timer_message {
+    float: left;
+    width: 232px;
+    margin-top: 6px;
+  }
+
+  .line1 {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  .line2 {
+    white-space: nowrap;
+  }
+
+  .wittyCartReservedView {
+    position: relative;
+    bottom: -27px;
+    color: #aaa; /*#eb4a5e;*/
+    float: left;
+    line-height: 0;
+    width: 100%;
+    font-size: 10px;
+  }
+
+  &#wittyCartReservedNo {
+    width: 338px;
+  }
+
+  &#wittyCartReservedYes {
+    background: #00EE64;
+    border: #00EE64 solid 1px;
+    padding: 15px 30px;
+    border-radius: 50px;
+    line-height: 22px;
+
+    .line1 {
+      margin-top: -6px;
+    }
+
+    .line2 {
+      opacity: .8;
+      line-height: 0;
+      margin-bottom: 1px;
+    }
+  }
+
+  &#wittyCartReservedReadd {
+    background: #EB4A5E;
+    border: #c23345 solid 1px;
+    padding: 15px 30px;
+    border-radius: 50px;
+    line-height: 22px;
+
+    .line1 {
+      margin-top: -6px;
+    }
+
+    .line2 {
+      line-height: 0;
+      margin-bottom: 1px;
+    }
+  }
+
+  .wittyCountDownTimer {
+    white-space: nowrap;
+  }
+}
+
+#wittyCartReservedGrid {
+  border: #e1e2e2 solid 1px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  box-sizing: border-box;
+
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 12px;
+    color: #bbb;
+  }
+
+  h3 {
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      float: left;
+      margin: 5px;
+      padding: 7px 10px 4px;
+      border-radius: 5px;
+      width: calc(20% - 8px);
+    }
+  }
+}
+
 .clock-measurement {
   position: absolute;
   // visibility: hidden;

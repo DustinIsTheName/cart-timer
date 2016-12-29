@@ -1,0 +1,56 @@
+<% padding_array = o.cart_bar_padding.split(' ') %>
+<style id="wittyCartHeaderStyles" type="text/css">
+
+  #wittyCartCartTimer { 
+  	background: <%= o.cart_bar_bg_color %>;
+	  color: <%= o.cart_bar_text_color %>;
+	  border: 1px solid <%= o.cart_bar_border %>;
+	  border-radius: <%= o.cart_bar_border_radius %>px;
+	  font-size: <%= o.cart_bar_font_size %>px;
+	  padding:0 <%= padding_array[1] %> <%= padding_array[2] %> <%= padding_array[3] %>;
+	  margin: <%= o.cart_bar_margin %>;
+	}
+
+  #wittyCartCartTimer .wittyCountDownTimerHolder {
+	  border-right: 1px solid <%= o.cart_bar_border %>;
+	  font-size: <%= o.cart_bar_timer_size %>px;
+	  margin-right: <%= padding_array[3] %>;
+	  margin-bottom: -<%= padding_array[2] %>;
+	  padding-top: <%= padding_array[0] %>;
+	  padding-right: <%= padding_array[3] %>;
+	  padding-bottom: <%= padding_array[2] %>;
+	}
+
+  #wittyCartCartTimer .wittyCountDownTimer {
+  	color: <%= o.cart_bar_timer_color %>;
+	}
+
+  #wittyCartCartTimer .wittyMessageButtonsHolder {
+  	margin: 0 -<%= (padding_array[1].to_i)/2 %>px 0 -<%= (padding_array[3].to_i)/2 %>px;
+  }
+
+  #wittyCartCartTimer .wittyMessage {
+	  padding: <%= padding_array[0] %> <%= (padding_array[3].to_i)/2 %>px 0 <%= (padding_array[1].to_i)/2 %>px;
+	}
+
+  #wittyCartCartTimer #wittyCartpageButtons {
+  	padding: 0 <%= (padding_array[1].to_i)/2 %>px 0 <%= (padding_array[3].to_i)/2 %>px;
+  }
+
+  #wittyCartCartTimer #wittyCartpageButtons #wittyButtonShopping {
+  	background: <%= o.cart_continue_bg_color %>;
+	  color: <%= o.cart_continue_text_color %>;
+	  margin-top: <%= padding_array[0] %>;
+	  border: 1px solid <%= o.cart_continue_border %>;
+	  border-radius: <%= o.cart_continue_border_radius %>px;
+	}
+
+  #wittyCartCartTimer #wittyCartpageButtons #wittyButtonCheckout {
+  	background: <%= o.cart_checkout_bg_color %>;
+	  color: <%= o.cart_checkout_text_color %>;
+	  margin-top: <%= padding_array[0] %>;
+	  border: 1px solid <%= o.cart_checkout_border %>;
+	  border-radius: <%= o.cart_checkout_border_radius %>px;
+	}
+
+</style>

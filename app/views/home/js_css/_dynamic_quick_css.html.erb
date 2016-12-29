@@ -1,0 +1,22 @@
+<% padding_array = o.product_all_padding.split(' ') %>
+<style id="wittyCartQuickStyles" type="text/css">
+
+  #wittyCartQuickView {
+    background: <%= o.quick_view_background_color %>;
+    color: <%= o.quick_view_text_color %>;
+    border:1px solid <%= o.quick_view_border %>;
+    border-radius: <%= o.quick_view_border_radius %>px;
+    font-size: <%= o.quick_view_font_size %>px;
+    margin: <%= o.quick_view_margin %>;
+    padding: <%= o.quick_view_padding %>;
+  }
+
+  #wittyCartQuickView .wittyCountDownTimerHolder {
+    margin: -<%= padding_array[0] %> 0 -<%= padding_array[2] %> <%= padding_array[1] %>;
+    color: <%= o.quick_view_timer_color %>;
+    padding-left: <%= padding_array[1] %>;
+    border-left: 1px solid <%= o.quick_view_border %>;
+    font-size: <%= o.quick_view_timer_size %>px;
+  }
+
+</style>
