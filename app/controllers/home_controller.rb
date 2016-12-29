@@ -10,7 +10,10 @@ class HomeController < AuthenticatedController
 
   def update
 
+    puts Colorize.magenta('updating...')
     @shop = Shop.find_by_shopify_domain(@shop_session.url)
+
+    @shop.createScriptTag
 
   	@option = @shop.option
 

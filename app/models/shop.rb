@@ -7,7 +7,12 @@ class Shop < ActiveRecord::Base
   def createScriptTag
     script_tags = ShopifyAPI::ScriptTag.all
 
-    script_source = 'https://localhost:3000/timer-js.js'
+    if Rails.env.production?
+      script_source = 'https://cart-timer.herokuapp.com/timer-js.js'
+    else
+      script_source = 'https://localhost:3000/timer-js.js'
+    end
+
 
     script_tag_found = false
     script_tags.each do |script_tag|
