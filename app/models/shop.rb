@@ -2,6 +2,9 @@ class Shop < ActiveRecord::Base
   include ShopifyApp::Shop
 
   has_one :option
+  has_many :carts
+  has_many :products
+
   before_create :build_options_set
 
   def createScriptTag

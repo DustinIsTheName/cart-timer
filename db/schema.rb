@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216133800) do
+ActiveRecord::Schema.define(version: 20170103130906) do
+
+  create_table "carts", force: :cascade do |t|
+    t.integer  "expiry_date"
+    t.integer  "time_added_to_checkout"
+    t.integer  "original_expiry_date"
+    t.string   "cart_token"
+    t.integer  "shop_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "options", force: :cascade do |t|
     t.boolean  "enable_app"
@@ -199,6 +209,22 @@ ActiveRecord::Schema.define(version: 20161216133800) do
     t.string   "product_grid_sold_background"
     t.string   "product_grid_sold_text_color"
     t.integer  "product_grid_sold_border_radius"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.integer  "shopify_id"
+    t.integer  "quantity"
+    t.integer  "shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reserveds", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "cart_id"
+    t.integer  "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "shops", force: :cascade do |t|
