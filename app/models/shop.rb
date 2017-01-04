@@ -35,6 +35,12 @@ class Shop < ActiveRecord::Base
     end
   end
 
+  def syncProducts
+
+    APICallWorker.perform_async(self.shopify_domain, 1, 250)
+
+  end
+
   private
 
   	def build_options_set

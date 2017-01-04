@@ -11,6 +11,9 @@ group :production do
   gem 'rails_12factor'
 end
 
+# delaying jobs
+gem 'daemons'
+gem 'delayed_job_active_record'
 # Throttle API requests for Shopify's rate limit
 gem 'sidekiq-rate-limiter'
 gem 'shopify_app', '6.2.0'

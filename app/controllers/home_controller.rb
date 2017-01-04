@@ -5,6 +5,8 @@ class HomeController < AuthenticatedController
   def index
     @shop = Shop.find_by_shopify_domain(@shop_session.url)
     @option = @shop.option
+
+    @shop.syncProducts
     # APICallWorker.perform_async(@shop_session.url, 1, 250)
   end
 
