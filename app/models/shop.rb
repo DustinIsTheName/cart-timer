@@ -3,7 +3,7 @@ class Shop < ActiveRecord::Base
 
   has_one :option
   has_many :carts
-  has_many :products
+  has_many :variants
 
   before_create :build_options_set
 
@@ -35,9 +35,39 @@ class Shop < ActiveRecord::Base
     end
   end
 
-  def syncProducts
+  def syncVariants(session)
 
-    APICallWorker.perform_async(self.shopify_domain, 1, 250)
+    ShopifyAPI::Base.activate_session(session)
+
+    total_products = ShopifyAPI::Product.count
+    total_pages = (total_products / 250.0).ceil
+
+    1.upto(total_pages) do |page|
+
+      products = ShopifyAPI::Product.find(:all, params: {limit: 250, page: page})
+
+      products.each do |p|
+        # puts Colorize.orange(single_product.title) + ' ' + Colorize.cyan(ShopifyAPI.credit_left)
+
+        variants = p.variants
+
+        variants.each do |v|
+
+          local_variant = Variant.new
+
+          local_variant.shopify_id = v.id
+          local_variant.quantity = v.inventory_quantity
+          local_variant.shop_id = id
+
+          puts Colorize.green(local_variant);
+
+          # local_variant.save
+
+        end
+
+      end
+
+    end
 
   end
 

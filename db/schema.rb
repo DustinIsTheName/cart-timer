@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170104142605) do
+ActiveRecord::Schema.define(version: 20170107201518) do
 
   create_table "carts", force: :cascade do |t|
     t.integer  "expiry_date"
@@ -227,14 +227,6 @@ ActiveRecord::Schema.define(version: 20170104142605) do
     t.integer  "product_grid_sold_border_radius"
   end
 
-  create_table "products", force: :cascade do |t|
-    t.integer  "shopify_id"
-    t.integer  "quantity"
-    t.integer  "shop_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "reserveds", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "cart_id"
@@ -251,5 +243,13 @@ ActiveRecord::Schema.define(version: 20170104142605) do
   end
 
   add_index "shops", ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
+
+  create_table "variants", force: :cascade do |t|
+    t.integer  "shopify_id", limit: 5
+    t.integer  "quantity"
+    t.integer  "shop_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
 end
