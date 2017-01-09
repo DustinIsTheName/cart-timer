@@ -41,6 +41,7 @@ class Shop < ActiveRecord::Base
 
     total_products = ShopifyAPI::Product.count
     total_pages = (total_products / 250.0).ceil
+    total_variant_ids = []
 
     1.upto(total_pages) do |page|
 
@@ -51,21 +52,37 @@ class Shop < ActiveRecord::Base
 
         variants = p.variants
 
+        total_variant_ids += variants.map { |v| v.id }
+
         variants.each do |v|
 
-          local_variant = Variant.new
+          if Variant.where(shopify_id: v.id).empty?
 
-          local_variant.shopify_id = v.id
-          local_variant.quantity = v.inventory_quantity
-          local_variant.shop_id = id
+            local_variant = Variant.new
+            local_variant.shopify_id = v.id
+            local_variant.quantity = v.inventory_quantity
+            local_variant.shop_id = id
 
-          puts Colorize.green(local_variant);
+            local_variant.save
+            puts Colorize.green('created!')
 
-          # local_variant.save
+          else
 
+            local_variant = Variant.find_by_shopify_id(v.id)
+            local_variant.update_attributes(quantity: v.inventory_quantity)
+            puts Colorize.cyan('updated!')
+
+          end
         end
-
       end
+    end
+
+    products_to_delete = Variant.all.pluck(:shopify_id) - total_variant_ids
+
+    products_to_delete.each do |d|
+
+      Variant.find_by_shopify_id(d).destroy
+      puts Colorize.red('deleted!')
 
     end
 
