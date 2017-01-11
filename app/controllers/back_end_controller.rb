@@ -1,4 +1,4 @@
-class HomeController < AuthenticatedController
+class BackEndController < AuthenticatedController
 
   protect_from_forgery except: :timer_js
   
@@ -6,8 +6,7 @@ class HomeController < AuthenticatedController
     @shop = Shop.find_by_shopify_domain(@shop_session.url)
     @option = @shop.option
 
-    @shop.delay.syncVariants(@shop_session)
-    # APICallWorker.perform_async(@shop_session.url, 1, 250)
+    # @shop.delay.syncVariants(@shop_session)
   end
 
   def update

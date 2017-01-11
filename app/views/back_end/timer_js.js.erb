@@ -430,16 +430,16 @@
                 $('body').append(floatTimer);
 
                 // Float Timer Dynamic CSS
-                $('body').append('<%= render(partial: "home/js_css/dynamic_float_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
+                $('body').append('<%= render(partial: "back_end/js_css/dynamic_float_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
 
             } // end ENABLE FLOATING TIMER
 
             // shows timer in the header (manually installed snippet) if enabled
             if (options.header_settings.header_enable) {
-                var headerLowCSS = '<%= render(partial: "home/js_css/dynamic_low_header_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>',
+                var headerLowCSS = '<%= render(partial: "back_end/js_css/dynamic_low_header_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>',
                     h =  options.header_settings;
 
-                $('body').append('<%= render(partial: "home/js_css/dynamic_header_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
+                $('body').append('<%= render(partial: "back_end/js_css/dynamic_header_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
                 // customCSS = headerCSS + customCSS;
             } else {
                 $('#wittyCartHeaderTimer').remove();
@@ -447,26 +447,26 @@
 
             // shows timer on the cart page (manually installed snippet) if enabled
             if (options.cart_settings.cart_enable) {
-                var cartLowCSS = '<%= render(partial: "home/js_css/dynamic_low_cart_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>',
+                var cartLowCSS = '<%= render(partial: "back_end/js_css/dynamic_low_cart_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>',
                     c =  options.cart_settings,
                     padding_array = c.cart_bar_padding.split(' ');
 
                 $('#wittyCartCartTimer .wittyMessage').html(c.cart_text);
 
-                $('body').append('<%= render(partial: "home/js_css/dynamic_cart_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
+                $('body').append('<%= render(partial: "back_end/js_css/dynamic_cart_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
             } else {
                 $('#wittyCartCartTimer').remove();
             }
 
             // shows timer in the quick cart (manually installed snippet) if enabled
             if (options.quick_view_settings.quick_view_enable) {
-                var quickLowCSS = '<%= render(partial: "home/js_css/dynamic_low_quick_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>',
+                var quickLowCSS = '<%= render(partial: "back_end/js_css/dynamic_low_quick_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>',
                     q = options.quick_view_settings,
                     padding_array = q.quick_view_padding.split(' ');
 
                 $('#wittyCartQuickView .wittyQuickMessage').html(q.quick_view_text);
 
-                $('body').append('<%= render(partial: "home/js_css/dynamic_quick_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
+                $('body').append('<%= render(partial: "back_end/js_css/dynamic_quick_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
             } else {
                 $('#wittyCartQuickView').remove();
             }
@@ -485,7 +485,7 @@
 
                 $('body').append(lowWarning);
 
-                $('body').append('<%= render(partial: "home/js_css/dynamic_low_warning_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
+                $('body').append('<%= render(partial: "back_end/js_css/dynamic_low_warning_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
 
             }
 
@@ -507,7 +507,7 @@
             $('#wittyCartReservedNo .wittyCartReservedView').text(p.product_another_reserved_link);
             $('#wittyCartReservedGrid h3').text(p.product_grid_text);
             
-            $('body').append('<%= render(partial: "home/js_css/dynamic_product_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
+            $('body').append('<%= render(partial: "back_end/js_css/dynamic_product_css", locals: {o: @option}).to_s.gsub(/\n/, '').html_safe %>');
 
             customCSS = '<%= CartTimer::Application.assets["timer_js.css"].to_s.gsub(/\n/, '').html_safe %>' + customCSS;
             $('body').append('<style>'+customCSS+'</style>');

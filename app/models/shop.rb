@@ -48,10 +48,8 @@ class Shop < ActiveRecord::Base
       products = ShopifyAPI::Product.find(:all, params: {limit: 250, page: page})
 
       products.each do |p|
-        # puts Colorize.orange(single_product.title) + ' ' + Colorize.cyan(ShopifyAPI.credit_left)
 
         variants = p.variants
-
         total_variant_ids += variants.map { |v| v.id }
 
         variants.each do |v|
