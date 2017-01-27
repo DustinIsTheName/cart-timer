@@ -15,7 +15,7 @@ if Rails.env.development?
 	  config.secret = ENV["SECRET"]
 	  config.redirect_uri = "https://localhost:3000/auth/shopify/callback"
 	  # config.callback_url = "https://shopifytestasp.herokuapp.com/auth/shopify/callback/"
-	  config.scope = "read_products, write_products, read_script_tags, write_script_tags"
+	  config.scope = "read_products, write_products, read_script_tags, write_script_tags, read_themes, write_themes"
 	  config.embedded_app = true
 	end
 end

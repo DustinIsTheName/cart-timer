@@ -11,14 +11,13 @@ class BackEndController < AuthenticatedController
 
   def update
 
-    puts Colorize.magenta('updating...')
     @shop = Shop.find_by_shopify_domain(@shop_session.url)
 
-    @shop.createScriptTag
-
-  	@option = @shop.option
+    @option = @shop.option
 
   	if @option.update_attributes(option_params)
+      file = render_to_string file: '/app/views/back_end/timer_js.js'
+      @shop.createScriptTag(file)
 			flash[:success] = "Successfully updated"
  			redirect_to root_path
 		else
@@ -38,7 +37,7 @@ class BackEndController < AuthenticatedController
 
     respond_to do |format|
       format.json {render json: @option}
-      format.js
+      format.js {render content_type: 'text/javascript', layout: false}
     end
 
   end

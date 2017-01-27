@@ -7,32 +7,22 @@ class Shop < ActiveRecord::Base
 
   before_create :build_options_set
 
-  def createScriptTag
-    script_tags = ShopifyAPI::ScriptTag.all
+  def createScriptTag(file)
 
-    if Rails.env.production?
-      script_source = 'https://cart-timer.herokuapp.com/timer-js.js'
-    else
-      script_source = 'https://localhost:3000/timer-js.js'
-    end
+    asset = ShopifyAPI::Asset.new
+    asset.key = "assets/witty_cart_timer.js"
+    asset.value = file
+    asset.save
 
-
-    script_tag_found = false
-    script_tags.each do |script_tag|
-      if script_tag.src == script_source
-        script_tag_found = true
-      end
-    end
+    ShopifyAPI::ScriptTag.first.destroy
  
-    unless script_tag_found
-      new_script_tag = ShopifyAPI::ScriptTag.new
-      new_script_tag.event = 'onload'
-      new_script_tag.src = script_source
-      new_script_tag.save
-      puts Colorize.green('created script tag')
-    else
-      puts Colorize.cyan('script tag already created')
-    end
+    new_script_tag = ShopifyAPI::ScriptTag.new
+    new_script_tag.event = 'onload'
+    new_script_tag.src = asset.public_url
+    new_script_tag.save
+    puts Colorize.cyan(asset.public_url)
+    puts Colorize.green('created script tag')
+
   end
 
   def syncVariants(session)
