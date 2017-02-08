@@ -354,6 +354,14 @@
   z-index: -99999999;
 }
 
+#wittyCartTimerATC {
+  display: block !important;  
+}
+
+#wittyCartTimerATC + * {
+  display: none;
+}
+
 
 
 

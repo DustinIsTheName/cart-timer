@@ -29,6 +29,31 @@
 	/* This is my app's JavaScript */
 	var myAppJavaScript = function($) {
 
+        function createCookie(name,value,days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days*24*60*60*1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+
+        function eraseCookie(name) {
+            createCookie(name,"",-1);
+        }
+
 		var options = {
         	enable_app: <%= @option.enable_app %>,
             timer_format: "<%= @option.timer_format %>",
@@ -187,7 +212,7 @@
                 product_all_padding: "<%= @option.product_all_padding %>",
                 product_all_margin: "<%= @option.product_all_margin %>",
 
-                product_reserved_text_top: "<%= @option.product_reserved_text_top %>",
+                product_reserved_text_top: "<%= @option.product_reserved_text_top.html_safe %>",
                 product_reserved_text_bottom: "<%= @option.product_reserved_text_bottom %>",
                 product_reserved_background: "<%= @option.product_reserved_background %>",
                 product_reserved_text_color_top: "<%= @option.product_reserved_text_color_top %>",
@@ -242,7 +267,7 @@
 		},
 		customCSS = options.custom_css,
         clockSizes = {};
-        console.log(options);
+        console.log(options);        
 
 		if (options.enable_app) {
 
@@ -369,7 +394,7 @@
 
                     totalSeconds = t.minutes*60 + t.seconds;
 
-                    console.log(totalSeconds);
+                    // console.log(totalSeconds);
 
                     if (totalSeconds <= options.header_settings.header_low_warning) {
                         if ($('#wittyCartHeaderLowTimeStyles').length == 0) $('body').append(headerLowCSS);
@@ -513,6 +538,36 @@
             $('body').append('<style>'+customCSS+'</style>');
 
             initializeClock('.wittyCountDownTimer', expires);
+
+            $('#wittyCartTimerATC').unbind('click');
+
+            $('#wittyCartTimerATC').click(function(e) {
+                e.preventDefault();
+
+                var cart_info = $(this).data('cart');
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'https://localhost:3000/add-product',
+                    dataType: 'json',
+                    data: {
+                        cart_token: cart_info.token,
+                        shopify_domain: '<%= @shop.shopify_domain %>',
+                        variant_id: $('[name="id"]').val()
+                    },
+                    success: function(cart) {
+                        console.log(cart);
+
+                        if (cart) {
+
+                        } else {
+                            // qw12
+
+                        }
+                    }
+                });
+            });
+
 		} // end ENABLE APP 
 
 	}; // myAppJavaScript() ends here; ALL CUSTOM JS IS TO BE WITHIN THIS FUNCTION!

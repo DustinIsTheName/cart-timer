@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'install-instructions' => 'back_end#install_instructions'
   patch '/option/:id' => 'back_end#update', as: 'option'
   get '/timer-js' => 'back_end#timer_js'
+  post '/add-product' => 'front_end#add_product'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
